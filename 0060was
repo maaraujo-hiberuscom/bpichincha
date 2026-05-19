@@ -1,0 +1,3 @@
+curl --location "https://tnd-msa-sp-bnc-wsclientes0060-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0060"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: ""OperacionDatosComplementariosCliente51""" `
+--data "$body"
