@@ -1,1 +1,59 @@
+curl --location "https://tnd-msa-sp-wsproductos0009-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSProductos0009" ^
+  --header "Content-Type: text/xml; charset=utf-8" ^
+  --header "SOAPAction: http://bpichincha.com/servicios/ActualizarMontoTransferenciaCuenta31" ^
+  --data-binary "@migracion\request-soap.xml"
 
+
+-
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <ser:ActualizarMontoTransferenciaCuenta31>
+      <headerIn>
+        <dispositivo>jmeter</dispositivo>
+        <empresa>0010</empresa>
+        <canal>02</canal>
+        <medio>020002</medio>
+        <aplicacion>00270</aplicacion>
+        <agencia>?</agencia>
+        <tipoTransaccion>202000101</tipoTransaccion>
+        <geolocalizacion/>
+        <usuario>USINTERT</usuario>
+        <unicidad>sdfgsfdgfd67fdsgfdsgfdsgfdsgfdgfdsgfdsgfds</unicidad>
+        <guid>sdafdsafasdfadsfdvdsvdfsvfdsv</guid>
+        <fechaHora>20180517184120</fechaHora>
+        <filler/>
+        <idioma>es-EC</idioma>
+        <sesion>b56a9824c9dd4dd79997e44490975yy4</sesion>
+        <ip>10.0.94.104</ip>
+        <idCliente>0602370777</idCliente>
+        <tipoIdCliente>0001</tipoIdCliente>
+        <!--Optional:-->
+        <bancs>
+          <teller>00070560</teller>
+          <terminal>1</terminal>
+          <institucion>003</institucion>
+          <agencia>1</agencia>
+          <estacion>1</estacion>
+          <aplicacion>02</aplicacion>
+          <canal>02</canal>
+        </bancs>
+      </headerIn>
+      <bodyIn>
+        <numeroCuenta>2100393190</numeroCuenta>
+        <canales>
+          <canal>
+            <codigoCanal>06</codigoCanal>
+            <montoTransferencia>5000</montoTransferencia>
+            <activaTransferencia>true</activaTransferencia>
+          </canal>
+          <canal>
+            <codigoCanal></codigoCanal>
+            <montoTransferencia>5000</montoTransferencia>
+            <activaTransferencia>true</activaTransferencia>
+          </canal>
+        </canales>
+      </bodyIn>
+    </ser:ActualizarMontoTransferenciaCuenta31>
+  </soapenv:Body>
+</soapenv:Envelope>
