@@ -1,0 +1,52 @@
+curl --location "https://tnd-msa-sp-cfi-wsproductos0023-enp.apps.ocpdev.uiotest.bpichinchatest.test/WSClientes0060/soap/WSClientes0060Request"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: "ConsultarConfiguracionProducto01"
+--data "$body"
+
+
+
+-----------------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ConsultarConfiguracionProducto01>
+         <headerIn>
+            <dispositivo/>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020001</medio>
+            <aplicacion>00693</aplicacion>
+            <agencia/>
+            <tipoTransaccion>203000301</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>490c4511-8f02-4adb-8d99-1f30376550c0</guid>
+            <fechaHora>202008250043470090</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>8fdc526c-012d-49bc-9c07-fe8cc9305149</sesion>
+            <ip>10.0.232.186</ip>
+            <idCliente>1752608636</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <documento>
+               <fechaContable/>
+               <numeroDocumento/>
+               <journals>
+                  <journal>
+                     <valor/>
+                  </journal>
+               </journals>
+            </documento>
+         </headerIn>
+         <bodyIn>
+            <productos>
+               <producto><tipo>ahorro</tipo></producto>
+               <producto><tipo>prestamo</tipo></producto>
+               <producto><tipo>corriente</tipo></producto>
+               <producto><tipo>tarjeta</tipo></producto>
+               <producto><tipo>inversion</tipo></producto>
+            </productos>
+         </bodyIn>
+      </ser:ConsultarConfiguracionProducto01>
+   </soapenv:Body>
+</soapenv:Envelope>
