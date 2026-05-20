@@ -1,3 +1,53 @@
 curl --location "https://tnd-msa-sp-wsclientes0114-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0114"   --header "Content-Type: text/xml; charset=utf-8"
 --header "SOAPAction: ""ConsultaCuentasCliente02""" `
 --data "$body"
+
+
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ConsultaCuentasCliente02>
+         <headerIn>
+            <dispositivo>jmeter</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020002</medio>
+            <aplicacion>00270</aplicacion>
+            <agencia>?</agencia>
+            <tipoTransaccion>202000101</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad>sdfgsfdgfd67fdsgfdsgfdsgfdsgfdgfdsgfdsgfds</unicidad>
+            <guid>sdafdsafasdfadsfdvdsvdfsvfdsv</guid>
+            <fechaHora>20180517184120</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>b56a9824c9dd4dd79997e44490975yy4</sesion>
+            <ip>10.0.94.104</ip>
+            <idCliente>0602370777</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <!--Optional:-->
+            <bancs>
+               <teller>00070560</teller>
+               <terminal>1</terminal>
+               <institucion>003</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion>02</aplicacion>
+               <canal>02</canal>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <cif>684323</cif>
+            <identificacion>1701077511</identificacion>
+            <tipoIdentificacion>0001</tipoIdentificacion>
+            <filtroCuenta>T</filtroCuenta>
+            <canal>
+               <referido>l</referido>
+               <acceso>06</acceso>
+            </canal>
+         </bodyIn>
+      </ser:ConsultaCuentasCliente02>
+   </soapenv:Body>
+</soapenv:Envelope>
