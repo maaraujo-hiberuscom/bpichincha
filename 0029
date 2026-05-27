@@ -1,7 +1,7 @@
 curl --location "https://tnd-msa-sp-wsseguridad0029-enp.apps.ocptest.uiotest.bpichinchatest.test/WSSeguridad0029/soap/WSSeguridad0029Request"   --header "Content-Type: text/xml; charset=utf-8"
 --header "SOAPAction: ""consultaAsesorAgenciaAnclaje01""" `
 --data "$body"
-
+http://10.60.128.57:6951/WSSeguridad0029/soap/WSSeguridad0029Request
 ---------------------------------------
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
    <soapenv:Header/>
