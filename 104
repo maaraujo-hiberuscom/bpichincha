@@ -1,0 +1,83 @@
+curl --location "https://tnd-msa-sp-wsclientes0104-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0104" \
+--header "Content-Type: text/xml; charset=utf-8" \
+--header "SOAPAction: \"crearProspectoCliente21\"" \
+--data "$body"
+
+-----------------
+
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <ser:crearProspectoCliente21>
+      <headerIn>
+        <dispositivo>01010101010101010101010101010101010101010101</dispositivo>
+        <empresa>0010</empresa>
+        <canal>02</canal>
+        <medio>020007</medio>
+        <aplicacion>00664</aplicacion>
+        <agencia>0033</agencia>
+        <tipoTransaccion>201010421</tipoTransaccion>
+        <geolocalizacion>-0.171153,-78.4856303</geolocalizacion>
+        <usuario>USRTAGEW</usuario>
+        <unicidad>test-unicidad-001</unicidad>
+        <guid>138cf457873f4316a8c517fa86d3d6df</guid>
+        <fechaHora>202604141543500000</fechaHora>
+        <filler>filler</filler>
+        <idioma>es-EC</idioma>
+        <sesion>bbfbd402-9364-4c31-8db5-52f94f992b09</sesion>
+        <ip>10.223.15.237</ip>
+        <idCliente>1711991820</idCliente>
+        <tipoIdCliente>01</tipoIdCliente>
+        <bancs>
+          <teller>00070560</teller>
+          <terminal>1</terminal>
+          <institucion>003</institucion>
+          <agencia>1</agencia>
+          <estacion>1</estacion>
+          <aplicacion>02</aplicacion>
+          <canal>02</canal>
+        </bancs>
+      </headerIn>
+      <bodyIn>
+        <usuario>
+          <identificacion>1711991820</identificacion>
+          <tipoIdentificacion>01</tipoIdentificacion>
+          <tipoCliente>01</tipoCliente>
+          <agencia>0033</agencia>
+          <estadoCliente>000</estadoCliente>
+        </usuario>
+        <datosDemograficos>
+          <apellidoPrincipal>FERNANDEZ</apellidoPrincipal>
+          <apellidoSecundario></apellidoSecundario>
+          <nombrePrincipal>AUGUSTO</nombrePrincipal>
+          <nombreSecundario></nombreSecundario>
+          <nombreTercero></nombreTercero>
+          <nacionalidad>EC</nacionalidad>
+          <paisDomicilio>EC</paisDomicilio>
+          <codigoCiudad>0150</codigoCiudad>
+          <callePrincipal>Olson Walks</callePrincipal>
+          <calleSecundaria>Kozey Run</calleSecundaria>
+        </datosDemograficos>
+        <riesgoCliente>
+          <tfnProvisto>0</tfnProvisto>
+          <categorizacion>1</categorizacion>
+          <codigoSegmento>0011</codigoSegmento>
+          <codigoSubSegmento>0033</codigoSubSegmento>
+          <riesgoDomestico>ZZ</riesgoDomestico>
+          <cruceCupoRiesgo>ZZ</cruceCupoRiesgo>
+          <razonVinculacion>NV0000</razonVinculacion>
+          <ciudadVinculacion>0150</ciudadVinculacion>
+          <G324updateDate>19052026</G324updateDate>
+          <fechaExpedicionIdentificacion>16042018</fechaExpedicionIdentificacion>
+        </riesgoCliente>
+        <datosConyuge>
+          <tipoIdentificacionConyuge>01</tipoIdentificacionConyuge>
+          <identificacionConyuge></identificacionConyuge>
+        </datosConyuge>
+        <asesor>
+          <codigoAsesor>00003778</codigoAsesor>
+        </asesor>
+      </bodyIn>
+    </ser:crearProspectoCliente21>
+  </soapenv:Body>
+</soapenv:Envelope>
