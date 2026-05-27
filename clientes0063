@@ -1,0 +1,81 @@
+curl --location "https://tnd-msa-sp-wsclientes0063-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0063" \
+--header "Content-Type: text/xml; charset=utf-8" \
+--header "SOAPAction: \"OperacionReferenciasCliente51\"" \
+--data "$body"
+-----------------------------------------
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bp="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bp:OperacionReferenciasCliente51>
+         <headerIn>
+            <dispositivo>c7kfjrMkI9dL82cWsRImkAYl3KIemxYl16RMXyKpWsM=</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020002</medio>
+            <aplicacion>00647</aplicacion>
+            <agencia/>
+            <tipoTransaccion>201004601</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>d4720d15d2494e76a570b72d2d9af142</guid>
+            <fechaHora>201905011630150850</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>9a276660-ac6d-45dc-af4d-7636c016c7ad</sesion>
+            <ip>10.0.176.27</ip>
+            <idCliente>1720364767</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <bancs>
+               <teller>100028</teller>
+               <terminal>1</terminal>
+               <institucion>003</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal/>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <cif>0000000007407156</cif>
+            <operacion>3</operacion>
+            <referencias>
+               <referenciaGeneral>
+                  <tipoReferencia>
+                     <tipoReferencia>4</tipoReferencia>
+                     <tipoIdentificacion/>
+                     <numeroIdentificacion/>
+                     <nombreCompleto>Madre Cita</nombreCompleto>
+                     <relacion>Mam</relacion>
+                     <pais>EC</pais>
+                     <provincia/>
+                     <ciudad/>
+                     <direccion>Echeandia</direccion>
+                     <telefono>018502</telefono>
+                     <instancia>1</instancia>
+                     <estado/>
+                  </tipoReferencia>
+                  <tipoReferencia>
+                     <tipoReferencia>5</tipoReferencia>
+                     <tipoIdentificacion/>
+                     <numeroIdentificacion/>
+                     <nombreCompleto>Susana Horia</nombreCompleto>
+                     <relacion>Amiga</relacion>
+                     <pais>EC</pais>
+                     <provincia/>
+                     <ciudad/>
+                     <direccion>Dur</direccion>
+                     <telefono>082009</telefono>
+                     <instancia>1</instancia>
+                     <estado/>
+                  </tipoReferencia>
+               </referenciaGeneral>
+               <referenciaBancaria/>
+               <referenciaTarjetaCredito/>
+            </referencias>
+         </bodyIn>
+      </bp:OperacionReferenciasCliente51>
+   </soapenv:Body>
+</soapenv:Envelope>
+
