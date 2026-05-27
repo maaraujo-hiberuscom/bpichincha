@@ -1,42 +1,47 @@
+curl --location "https://tnd-msa-sp-wsseguridad0029-enp.apps.ocptest.uiotest.bpichinchatest.test/WSSeguridad0029/soap/WSSeguridad0029Request"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: ""consultaAsesorAgenciaAnclaje01""" `
+--data "$body"
+
+---------------------------------------
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
-    <soapenv:Header/>
-    <soapenv:Body>
-        <ser:ActualizarDatosDemograficos31>
-            <headerIn>
-                <dispositivo>DEVICE123</dispositivo>
-				<empresa>0010</empresa>
-				<canal>02</canal>
-				<medio>020002</medio>
-				<aplicacion>00270</aplicacion>
-				<agencia>00012</agencia>
-				<tipoTransaccion>304100111</tipoTransaccion>
-				<geolocalizacion>0,0</geolocalizacion>
-				<usuario>USINTERT</usuario>
-				<unicidad>UZhDOa2GXtkAK2/QovFagnnS+nQSGAF/SKyTIIv1axc=</unicidad>
-				<guid>550e8400e29b41d4a716446655440000</guid>
-				<fechaHora>202603311551000000</fechaHora>
-				<filler>00000000000000000000000000000000000000000000000000</filler>
-				<idioma>es</idioma>
-				<sesion>ASDASD77R01YH</sesion>
-				<ip>127.0.0.1</ip>
-				<idCliente>1711089364</idCliente>
-				<tipoIdCliente>0001</tipoIdCliente>
-                <!-- <bancs>
-                    <teller>00070560</teller>
-                    <terminal>1</terminal>
-                    <institucion>003</institucion>
-                    <agencia>1</agencia>
-                    <estacion>1</estacion>
-                    <aplicacion>1</aplicacion>
-                    <canal>1</canal>
-                </bancs>
-                -->
-            </headerIn>
-            <bodyIn>
-            	 <cif>0000000005319747</cif>
-                <operacion>2</operacion>
-                <clienteNatural>Y</clienteNatural>
-            </bodyIn>
-        </ser:ActualizarDatosDemograficos31>
-    </soapenv:Body>
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:consultaAsesorAgenciaAnclaje01>
+         <!--Optional:-->
+         <headerIn>
+            <dispositivo>DEVICE123</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020002</medio>
+            <aplicacion>00270</aplicacion>
+            <agencia>00012</agencia>
+            <tipoTransaccion>304100111</tipoTransaccion>
+            <geolocalizacion>0,0</geolocalizacion>
+            <usuario>USINTERT</usuario>
+            <unicidad>UZhDOa2GXtkAK2/QovFagnnS+nQSGAF/SKyTIIv1axc=</unicidad>
+            <guid>550e8400e29b41d4a716446655440000</guid>
+            <fechaHora>202603311551000000</fechaHora>
+            <filler>00000000000000000000000000000000000000000000000000</filler>
+            <idioma>es</idioma>
+            <sesion>ASDASD77R01YH</sesion>
+            <ip>127.0.0.1</ip>
+            <idCliente>1711089364</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <documento>
+               <fechaContable>2026-02-05</fechaContable>
+               <numeroDocumento>-553178658</numeroDocumento>
+               <journals>
+                  <journal>
+                     <valor>AUDITORIA-06FEB2026</valor>
+                  </journal>
+               </journals>
+            </documento>
+         </headerIn>
+         <!--Optional:-->
+         <bodyIn>
+            <!--Optional:-->
+            <usuarioBancs>00000052</usuarioBancs>
+         </bodyIn>
+      </ser:consultaAsesorAgenciaAnclaje01>
+   </soapenv:Body>
 </soapenv:Envelope>
