@@ -1,0 +1,77 @@
+curl --location "https://tnd-msa-sp-wsclientes0061-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0061" ^
+  --header "Content-Type: text/xml; charset=utf-8" ^
+  --header "SOAPAction: http://bpichincha.com/servicios/OperacionDemograficosCliente51" ^
+  --data-binary "@migracion\request-soap-success.xml"
+-----------------
+<ns2:Envelope xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns3="http://bpichincha.com/servicios">
+   <ns2:Header/>
+   <ns2:Body>
+      <ns3:OperacionDemograficosCliente51Response>
+         <headerOut>
+            <dispositivo>jmeter</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020002</medio>
+            <aplicacion>00270</aplicacion>
+            <agencia>1</agencia>
+            <tipoTransaccion>202000101</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad>sdfgsfdgfd67fdsgfdsgfdsgfdsgfdgfdsgfdsgfds</unicidad>
+            <guid>sdafdsafasdfadsfdvdsvdfsvfdsv</guid>
+            <fechaHora>20180517184120</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>b56a9824c9dd4dd79997e44490975yy4</sesion>
+            <ip>10.0.94.104</ip>
+            <idCliente>0602370777</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <bancs>
+               <teller>90233</teller>
+               <terminal>1</terminal>
+               <institucion>003</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion>02</aplicacion>
+               <canal>02</canal>
+            </bancs>
+            <documento>
+               <fechaContable/>
+               <numeroDocumento/>
+               <journals/>
+            </documento>
+         </headerOut>
+         <bodyOut>
+            <demografica>
+               <paisNacimiento>EC</paisNacimiento>
+               <provinciaEstadoNacimiento>EC 06</provinciaEstadoNacimiento>
+               <ciudadNacimiento>0706</ciudadNacimiento>
+               <fechaNacimiento>19/02/1976</fechaNacimiento>
+               <edad>7</edad>
+               <sexo>1</sexo>
+               <estadoCivil>1</estadoCivil>
+               <separacionBienes/>
+               <nivelEstudios/>
+               <profesion>200</profesion>
+               <numeroCargasFamiliares>0</numeroCargasFamiliares>
+               <tipoVivienda>0</tipoVivienda>
+               <domicilioCuentaEscrituraslegalizadas/>
+               <domicilioConServiciosBasicos/>
+               <nombreCompletoDuenioCasa/>
+               <caracteristicasDomicilio/>
+               <tiempoResidencia/>
+               <sectorDomicilioCliente/>
+            </demografica>
+         </bodyOut>
+         <error>
+            <codigo>0</codigo>
+            <mensaje>Ok</mensaje>
+            <mensajeNegocio/>
+            <tipo>INFO</tipo>
+            <recurso>tnd-msa-sp-wsclientes0061/OperacionDemograficosCliente61</recurso>
+            <componente>tnd-msa-sp-wsclientes0061</componente>
+            <backend>00638</backend>
+         </error>
+      </ns3:OperacionDemograficosCliente51Response>
+   </ns2:Body>
+</ns2:Envelope>
