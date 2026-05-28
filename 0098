@@ -1,6 +1,11 @@
 curl --location 'https://tnd-msa-sp-wsclientes0098-enp.apps.ocptest.uiotest.bpichinchatest.test/WSClientes0098/soap/WSClientes0098Request' \
   --header 'Content-Type: application/xml' \
   --data-binary '@migracion/datos-prueba/request/request-prueba.xml'
+--------
+http://datapowertest.bp.bpichincha.com:8911/Omnicanalidad/IntegrationBus/WSClienteS0061
+
+https://pichincha.atlassian.net/wiki/spaces/BPTPSRE/pages/6003196021/DOCUMENTACION_SERVICIO_WSClientes0098
+
 
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
    <soapenv:Header/>
