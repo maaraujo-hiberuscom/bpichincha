@@ -1,0 +1,63 @@
+https://pichincha.atlassian.net/wiki/spaces/BPTPSRE/pages/6013485114/WSProductos0189
+
+curl --location "https://tnd-msa-sp-wsproductos0189-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSProductos0189"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: ""consultarRetencionJudicialCuenta02""" `
+--data "$body"
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Envelope xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns3="http://bpichincha.com/servicios">
+    <ns2:Body>
+        <ns3:consultarRetencionJudicialCuenta02Response>
+            <headerOut>
+                <dispositivo>wpuMfBm9qufJbvXH/sIGIMsYy5ZeSjMFymUjH53c4DY</dispositivo>
+                <empresa>0010</empresa>
+                <canal>01</canal>
+                <medio>010003</medio>
+                <aplicacion>00657</aplicacion>
+                <agencia>0</agencia>
+                <tipoTransaccion>202018902</tipoTransaccion>
+                <geolocalizacion></geolocalizacion>
+                <usuario>USINTERT</usuario>
+                <unicidad></unicidad>
+                <guid>af616f28aa6c4c468f4593892f3a41eG</guid>
+                <fechaHora>202412051659394708</fechaHora>
+                <filler></filler>
+                <idioma>es-EC</idioma>
+                <sesion>hmffteadhqmvecjm241jzhku</sesion>
+                <ip>10.112.36.129</ip>
+                <idCliente></idCliente>
+                <tipoIdCliente></tipoIdCliente>
+                <bancs>
+                    <teller>00070560</teller>
+                    <terminal>1</terminal>
+                    <institucion>003</institucion>
+                    <agencia>1</agencia>
+                    <estacion>1</estacion>
+                    <aplicacion>02</aplicacion>
+                    <canal>02</canal>
+                </bancs>
+            </headerOut>
+            <bodyOut>
+                <retencionJudicial>
+                    <cuentas>
+                        <cuenta>
+                            <impedimento>NO</impedimento>
+                            <numero>2100345457</numero>
+                            <fechaRetencion>26092024</fechaRetencion>
+                            <valorRetencion>5000.000</valorRetencion>
+                        </cuenta>
+                    </cuentas>
+                </retencionJudicial>
+            </bodyOut>
+            <error>
+                <codigo>0</codigo>
+                <mensaje>OK</mensaje>
+                <mensajeNegocio></mensajeNegocio>
+                <tipo>OK</tipo>
+                <recurso>tnd-msa-sp-wsproductos0189/consultarRetencionJudicialCuenta02</recurso>
+                <componente>tnd-msa-sp-wsproductos0189</componente>
+                <backend>00638</backend>
+            </error>
+        </ns3:consultarRetencionJudicialCuenta02Response>
+    </ns2:Body>
+</ns2:Envelope>
