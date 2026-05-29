@@ -1,3 +1,10 @@
+/acción: aquí se van a poner la acción que quieran realizar
+El servicio que tengo es:
+mi tarjeta en jira es:
+mis contratos son: (puedes poner en texto o archivos en una carpeta y le referencias) poner los .wsdl .xsd .esql, ump, etc.
+tengo este curl migrado:
+tengo este curl legado:
+
 curl --location "https://tnd-msa-sp-wsclientes0104-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0104" \
 --header "Content-Type: text/xml; charset=utf-8" \
 --header "SOAPAction: \"crearProspectoCliente21\"" \
