@@ -1,0 +1,56 @@
+curl --location "https://tnd-msa-sp-wsclientes0155-enp.apps.ocptest.uiotest.bpichinchatest.test/WSClientes0155/soap/WSClientes0155Request" \
+  --header "Content-Type: text/xml; charset=utf-8" \
+  --header "SOAPAction: \"consultarOficialHomologado02\"" \
+  --data "$body"
+
+--------------------------------------------------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:consultarOficialHomologado02>
+         <headerIn>
+            <dispositivo>000000000000000000000Desconocido</dispositivo>
+            <empresa>0010</empresa>
+            <canal>01</canal>
+            <medio>010003</medio>
+            <aplicacion>00344</aplicacion>
+            <agencia></agencia>
+            <tipoTransaccion>201015502</tipoTransaccion>
+            <geolocalizacion>38.7094999999999984652276907581835985184 -78.15389999999999304236553143709897995</geolocalizacion>
+            <usuario>bdtorres</usuario>
+            <unicidad>52yGFAxmL74izoyL2QeYUCSZAeVF1kHclyo1DbWwB2jdCrY2mmnCrNyuS34G0v6Vl66OYI</unicidad>
+            <guid>7acb5ff77a304181abdf8a3c29823a9d</guid>
+            <fechaHora>202604161016050240</fechaHora>
+            <filler></filler>
+            <idioma>es-EC</idioma>
+            <sesion>1283455784</sesion>
+            <ip>10.70.128.74</ip>
+            <idCliente></idCliente>
+            <tipoIdCliente></tipoIdCliente>
+            <documento>
+               <fechaContable></fechaContable>
+               <numeroDocumento></numeroDocumento>
+               <journals>
+                  <journal>
+                     <valor></valor>
+                  </journal>
+               </journals>
+            </documento>
+         </headerIn>
+         <bodyIn>
+            <oficial>
+               <anterior>
+                  <idAplicacionOrigen>1</idAplicacionOrigen>
+                  <idAplicacionDestino>2</idAplicacionDestino>
+                  <nombreUsuario>bdtorres</nombreUsuario>
+               </anterior>
+               <posterior>
+                  <idAplicacionOrigen>1</idAplicacionOrigen>
+                  <idAplicacionDestino>2</idAplicacionDestino>
+                  <nombreUsuario>bdtorres</nombreUsuario>
+               </posterior>
+            </oficial>
+         </bodyIn>
+      </ser:consultarOficialHomologado02>
+   </soapenv:Body>
+</soapenv:Envelope>
