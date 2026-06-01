@@ -1,0 +1,41 @@
+curl --location "http://tpr-msa-sp-wsproductos0123.apps.ocptest.uiotest.bpichinchatest.test/WSProductos0123/soap/WSProductos0123Request"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: "consultarCatalogoTarjeta02"
+--data "$body"
+-------------------
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:consultarCatalogoTarjeta02>
+         <!--Optional:-->
+         <headerIn>
+            <dispositivo>wpuMfBm9qufJbvXH/sIGIMsYy5ZeSjMFymUjH53c4DY</dispositivo>
+            <empresa>0010</empresa>
+            <canal>01</canal>
+            <medio>010003</medio>
+            <aplicacion>00657</aplicacion>
+            <agencia>25</agencia>
+            <tipoTransaccion>202012302</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>8e6f64290cf047a7bf92a9c2c227da7a</guid>
+            <fechaHora>201905061026260000</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>vywcrdecokoe1yrjwpaule52</sesion>
+            <ip>10.0.176.216</ip>
+            <idCliente>1721290128</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+
+         </headerIn>
+         <!--Optional:-->
+         <bodyIn>
+            <codigoProductoCredito>2</codigoProductoCredito>
+            <!--Optional:-->
+            <bin>445447</bin>
+
+         </bodyIn>
+      </ser:consultarCatalogoTarjeta02>
+   </soapenv:Body>
+</soapenv:Envelope>
