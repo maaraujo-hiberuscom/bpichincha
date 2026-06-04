@@ -1,0 +1,144 @@
+https://tnd-msa-sp-wsclientes0055-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055
+
+curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocpdev.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: ""OperacionActividadEconomicaCliente51""" `
+--data "$body"
+
+--------------------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   soapenv:Header/
+   soapenv:Body
+      ser:OperacionActividadEconomicaCliente51
+         <headerIn>
+            <dispositivo>[B@689270b1</dispositivo>
+            <empresa>0010</empresa>
+            <canal>03</canal>
+            <medio>030001</medio>
+            <aplicacion>00662</aplicacion>
+            <agencia>12</agencia>
+            <tipoTransaccion>201005551</tipoTransaccion>
+            <geolocalizacion>0000</geolocalizacion>
+            <usuario>USINTERT</usuario>
+            <unicidad>ebda9410-69b6-41f1-b454-f6b0bb2adacd</unicidad>
+            <guid>6a080b15-49f4-4d13-9061-08650e16ef11</guid>
+            <fechaHora>202604151050030094</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>0de41021-c24c-45ec-a88c-8f2bf07023e8</sesion>
+            <ip>10.60.128.39</ip>
+            <idCliente/>
+            <tipoIdCliente/>
+            <bancs>
+               <teller>00070624</teller>
+               <terminal>1</terminal>
+               <institucion>0010</institucion>
+               <agencia>0012</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal/>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <informacionActividadEconomica>
+               <cif>5781092</cif>
+               <operacion>2</operacion>
+               <operacionFacta>2</operacionFacta>
+               <clienteNatural>Y</clienteNatural>
+            </informacionActividadEconomica>
+         </bodyIn>
+      </ser:OperacionActividadEconomicaCliente51>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
+
+operacion 52
+
+curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocpdev.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: ""OperacionActividadEconomicaCliente52""" `
+--data "$body"
+---
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ser="http://bpichincha.com/servicios">
+  soapenv:Header/
+  soapenv:Body
+    ser:OperacionActividadEconomicaCliente52
+      <headerIn>
+        <dispositivo>01010101010101010101010101010101010101010101</dispositivo>
+        <empresa>0010</empresa>
+        <canal>02</canal>
+        <medio>020007</medio>
+        <aplicacion>00664</aplicacion>
+        <agencia>0033</agencia>
+        <tipoTransaccion>201005552</tipoTransaccion>
+        <geolocalizacion>geolocalizacion</geolocalizacion>
+        <usuario>USRTAGEW</usuario>
+        <unicidad>geolocalizacion</unicidad>
+        <guid>160ab7dc98b6faffd8021b2179cb169a</guid>
+        <fechaHora>20260415095628851</fechaHora>
+        <filler>filler</filler>
+        <idioma>es-EC</idioma>
+        <sesion>6c5d9f7b-8028-4670-bf43-4c15833f6dd8</sesion>
+        <ip>10.223.15.237</ip>
+        <idCliente>1098204884</idCliente>
+        <tipoIdCliente>0001</tipoIdCliente>
+        <bancs>
+          <teller>00070560</teller>
+          <terminal>1</terminal>
+          <institucion>0010</institucion>
+          <agencia>1</agencia>
+          <estacion>1</estacion>
+          <aplicacion></aplicacion>
+          <canal></canal>
+        </bancs>
+      </headerIn>
+      <bodyIn>
+        <informacionActividadEconomica>
+          <cif>0000000004706917</cif>
+          <operacion>1</operacion>
+          <operacionFacta>2</operacionFacta>
+          <clienteNatural>Y</clienteNatural>
+          <actividadEconomica>
+            <situacionLaboral>
+              <situacionLaboralPrincipal>
+                <situacionLaboral>0</situacionLaboral>
+                <sectorEconomicoPrincipal>19000</sectorEconomicoPrincipal>
+                <actividadEconomicaPrincipal>19054</actividadEconomicaPrincipal>
+              </situacionLaboralPrincipal>
+              <situacionLaboralSecundaria>
+                <situacionLaboral>1</situacionLaboral>
+                <sectorEconomicoSecundaria>33000</sectorEconomicoSecundaria>
+                <actividadEconomicaSecundaria>33024</actividadEconomicaSecundaria>
+              </situacionLaboralSecundaria>
+            </situacionLaboral>
+            <sectorizacionBancoCentral>133300</sectorizacionBancoCentral>
+            <numeroEmpleados>66</numeroEmpleados>
+            <numeroSucursales>94</numeroSucursales>
+            <tipoEmpresa>3</tipoEmpresa>
+            <claseEmpresa>B</claseEmpresa>
+            <nombreEmpresaTrabajaCliente>Kerluke LLC</nombreEmpresaTrabajaCliente>
+            <tipoRelacionDependencia>FI</tipoRelacionDependencia>
+            <cargoArea>act</cargoArea>
+            <nombreJefe>Vincenzo Rogahn</nombreJefe>
+            <fechaInicioTrabajoActual>15012024</fechaInicioTrabajoActual>
+            <fechaInicioTrabajoAnterior>30012022</fechaInicioTrabajoAnterior>
+            <fechaFinTrabajoAnterior>30122023</fechaFinTrabajoAnterior>
+            <lugarMicroempresa>CO</lugarMicroempresa>
+            <propiedadLugarMicroempresa>KR</propiedadLugarMicroempresa>
+            <nombresDuenioMicroempresa>Andre Aufderhar</nombresDuenioMicroempresa>
+            <extensionTerrenoFinca>Palmira Alley</extensionTerrenoFinca>
+            <terrenoFincaConRiego>DE</terrenoFincaConRiego>
+            <productosPrincipales>Mosciski Flat</productosPrincipales>
+            <modalidadComercializacionProductos>AR</modalidadComercializacionProductos>
+            <sectorMicroempresaCliente>CO</sectorMicroempresaCliente>
+            <entornoNegocio>EC</entornoNegocio>
+            <nombreNegocioIndependiente>Moe Predovic and</nombreNegocioIndependiente>
+            <fechaInicioNegocioIndependiente>08082023</fechaInicioNegocioIndependiente>
+          </actividadEconomica>
+        </informacionActividadEconomica>
+      </bodyIn>
+    </ser:OperacionActividadEconomicaCliente52>
+  </soapenv:Body>
+</soapenv:Envelope>
+
