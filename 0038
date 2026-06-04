@@ -1,0 +1,61 @@
+http://10.60.128.57:6911/WSClientes0038/soap/WSClientes0098Request
+consultarDetalleAdicionalCliente01
+curl --location "https://tnd-msa-sp-wsclientes0038-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0038" `
+  --header "Content-Type: text/xml; charset=utf-8" `
+  --header "SOAPAction: ""http://bpichincha.com/servicios/ConsultarDetalleAdicionalesCliente01""" `
+  --data "$body"
+
+OperacionEconomicosCliente52
+curl --location "https://tnd-msa-sp-wsclientes0038-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0038" `
+  --header "Content-Type: text/xml; charset=utf-8" `
+  --header "SOAPAction: ""http://bpichincha.com/servicios/OperacionEconomicosCliente52""" `
+  --data "$body"
+
+OperacionEconomicosCliente53
+
+curl --location "https://tnd-msa-sp-wsclientes0038-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0038" `
+  --header "Content-Type: text/xml; charset=utf-8" `
+  --header "SOAPAction: ""http://bpichincha.com/servicios/OperacionEconomicosCliente53""" `
+  --data "$body"
+
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ConsultarDetalleAdicionalesCliente01>
+         <headerIn>
+            <dispositivo>773224043275244</dispositivo>
+            <empresa>0010</empresa>
+            <canal>01</canal>
+            <medio>010004</medio>
+            <aplicacion>00650</aplicacion>
+            <agencia>0012</agencia>
+            <tipoTransaccion>201003801</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>eajacome</usuario>
+            <unicidad/>
+            <guid>dcc1980251624e31b5bb243b7e2f603a</guid>
+            <fechaHora>202502282359230500</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>FRMKGRUP-eajacome-1.740805158075E12</sesion>
+            <ip>20.45.52.131</ip>
+            <idCliente/>
+            <tipoIdCliente/>
+            <bancs>
+               <teller>00070560</teller>
+               <terminal>1</terminal>
+               <institucion>003</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal>02</canal>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <cif>1725982</cif>
+            <opcion>1</opcion>
+         </bodyIn>
+      </ser:ConsultarDetalleAdicionalesCliente01>
+   </soapenv:Body>
+</soapenv:Envelope>
