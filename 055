@@ -1,15 +1,7 @@
-https://tnd-msa-sp-wsclientes0155-enp.apps.ocptest.uiotest.bpichinchatest.test/WSClientes0155/soap/WSClientes0155Request
-https://tnd-msa-sp-wsclientes0155-enp.apps.ocptest.uiotest.bpichinchatest.test/WSClientes0155/soap/WSClientes0155Request
-https://tnd-msa-sp-wsclientes0055-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055
-http://10.60.128.57:6911/WSClientes0155/soap/WSClientes0155Request
-
-https://tnd-msa-sp-wsclientes0055-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055
-
-curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocpdev.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055"   --header "Content-Type: text/xml; charset=utf-8"
+curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055"   --header "Content-Type: text/xml; charset=utf-8"
 --header "SOAPAction: ""OperacionActividadEconomicaCliente51""" `
 --data "$body"
 
---------------------------
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
    soapenv:Header/
    soapenv:Body
@@ -54,15 +46,10 @@ curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocpdev.uiotest.bpich
       </ser:OperacionActividadEconomicaCliente51>
    </soapenv:Body>
 </soapenv:Envelope>
-
-
-
-operacion 52
-
-curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocpdev.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055"   --header "Content-Type: text/xml; charset=utf-8"
+------------------------------------------------------------------------------------
+curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0055"   --header "Content-Type: text/xml; charset=utf-8"
 --header "SOAPAction: ""OperacionActividadEconomicaCliente52""" `
 --data "$body"
----
 
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
                   xmlns:ser="http://bpichincha.com/servicios">
@@ -146,4 +133,5 @@ curl --location "https://tnd-msa-sp-wsclientes0055-enp.apps.ocpdev.uiotest.bpich
     </ser:OperacionActividadEconomicaCliente52>
   </soapenv:Body>
 </soapenv:Envelope>
+
 
