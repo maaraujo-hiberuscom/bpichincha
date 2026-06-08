@@ -1,3 +1,4 @@
+https://github.com/lealomoto-hiberuscom
 curl --location "https://tpr-msa-sp-wsclientes0141-enp.apps.ocptest.uiotest.bpichinchatest.test/WSClientes0141/soap/WSClientes0141Request" \
 --header "Content-Type: text/xml; charset=utf-8" \
 --header 'SOAPAction: "consultarTarjetasDebitoCliente01"' \
