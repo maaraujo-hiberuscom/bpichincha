@@ -3,6 +3,10 @@ curl --location "https://tpr-msa-sp-wsclientes0141-enp.apps.ocptest.uiotest.bpic
 --header 'SOAPAction: "consultarTarjetasDebitoCliente01"' \
 --data "$body"
 
+-
+http://10.60.128.57:6911/WSClientes0098/soap/WSClientes0098Request
+---
+
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
    <soapenv:Header/>
    <soapenv:Body>
