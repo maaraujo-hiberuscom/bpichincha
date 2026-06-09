@@ -2,9 +2,10 @@ curl --location "http://tnd-msa-sp-orqclientes0056.apps.ocpdev.uiotest.bpichinch
 --header "Content-Type: text/xml; charset=utf-8" \
 --header "SOAPAction: \"ActualizarOficialCliente31\"" \
 --data "$body"
-
+---------------------
+http://10.60.128.86:2000/IntegrationBus/soap/ORQClientes0056?wsdl
 ------
-http://10.60.128.57:2000/IntegrationBus/soap/ORQClientes0056
+
 
 <?xml version="1.0" encoding="UTF-8"?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
