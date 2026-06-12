@@ -1,1 +1,201 @@
 
+curl --request POST \
+  --url https://tnd-msa-sp-wsclientes0103-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0103 \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'x-app: 12332' \
+  --header 'x-channel: 10' \
+  --header 'x-device: movil' \
+  --header 'x-device-ip: 0.0.0.0' \
+  --header 'x-guid: 550e8400-e29b-41d4-a716-4466554400XX' \
+  --header 'x-medium: 131213' \
+  --header 'x-session: abs' \
+  --data '{...}'
+
+
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ActualizarInformacionCliente31>
+         <headerIn>
+            <dispositivo>355105090256569</dispositivo>
+            <empresa>0010</empresa>
+            <canal>01</canal>
+            <medio>010004</medio>
+            <aplicacion>00650</aplicacion>
+            <agencia>475</agencia>
+            <tipoTransaccion>2010010331</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>tjacome</usuario>
+            <unicidad/>
+            <guid>45053f8ff85543848cf18f293548d713</guid>
+            <fechaHora>201905020946490500</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>FRMKDEUD-tjacome--1.556808380828E12</sesion>
+            <ip>10.60.192.24</ip>
+            <idCliente/>
+            <tipoIdCliente/>
+            <bancs>
+               <teller>00070560</teller>
+               <terminal>1</terminal>
+               <institucion>003</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal>02</canal>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <operacion>2</operacion>
+            <cif>0000000003807956</cif>
+            <clienteNatural>true</clienteNatural>
+            <informacionCliente>
+               <identificacion>
+                  <primerApellido>ELIZALDE</primerApellido>
+                  <segundoApellido>ELIZALDE</segundoApellido>
+                  <primerNombre>HECTOR</primerNombre>
+                  <segundoNombre>MARIO</segundoNombre>
+                  <tercerNombre/>
+                  <tipoCliente>1</tipoCliente>
+                  <nacionalidad>EC</nacionalidad>
+                  <otraNacionalidad>N</otraNacionalidad>
+                  <paisEmisionPasaporte/>
+                  <fechaExpiracionPasaporte/>
+                  <fechaInicioResidencia/>
+                  <tipoVisa/>
+                  <fechaExpiracionVisa/>
+                  <numeroCertificadoEmpadronamiento/>
+                  <fechaExpEmpadronamiento/>
+                  <clienteObligadoContabilidad>N</clienteObligadoContabilidad>
+                  <tipoIdentificacionAdicional1/>
+                  <numeroIdentificacionAdicional1/>
+                  <tipoIdentificacionAdicional2/>
+                  <numeroIdentificacionAdicional2/>
+               </identificacion>
+               <demograficos>
+                  <fechaNacimiento>30051944</fechaNacimiento>
+                  <estadoCivil>2</estadoCivil>
+                  <genero>0</genero>
+                  <nivelInstruccion>2000</nivelInstruccion>
+                  <codigoPaisNacimiento>EC</codigoPaisNacimiento>
+                  <codigoProvinciaNacimiento>01</codigoProvinciaNacimiento>
+                  <codigoCiudadNacimiento>0279</codigoCiudadNacimiento>
+                  <separacionBienes>1</separacionBienes>
+                  <profesion/>
+                  <tipoVivienda>1</tipoVivienda>
+                  <cargasFamiliares>0</cargasFamiliares>
+                  <edad>80</edad>
+               </demograficos>
+               <actividadEconomica>
+                  <situacionLaboral>
+                     <detalleSituacionLaboral>
+                        <situacionLaboral>1</situacionLaboral>
+                        <sectorEconomicoPrincipal>17000</sectorEconomicoPrincipal>
+                        <actividadEconomicaPrincipal>17630</actividadEconomicaPrincipal>
+                     </detalleSituacionLaboral>
+                  </situacionLaboral>
+                  <situacionLaboralNoTrabaja>
+                     <detalleSituacionLaboralNoTrabaja>
+                        <detalle/>
+                     </detalleSituacionLaboralNoTrabaja>
+                  </situacionLaboralNoTrabaja>
+                  <obligacionesTributariasExterior>N</obligacionesTributariasExterior>
+                  <paisObligacionesTributariasExterior/>
+                  <tinObligacionesTributariasExterior>0</tinObligacionesTributariasExterior>
+                  <representanteLegalDireccionEEUU/>
+                  <tipoTrabajo/>
+                  <nombreEmpreTrabajo/>
+                  <modalidadDependencia/>
+                  <cargoTrabajo/>
+                  <fechaIngresoTrabajo/>
+                  <nombreNegocio>Casa</nombreNegocio>
+                  <fechaInicioActividad>28042022</fechaInicioActividad>
+                  <cantidadEmpleados>0</cantidadEmpleados>
+                  <cantidadOficinasSucursales>0</cantidadOficinasSucursales>
+               </actividadEconomica>
+               <datosEconomicos>
+                  <sueldo>0.000</sueldo>
+                  <ingresosVariables>0.000</ingresosVariables>
+                  <ventasMensuales>6825.000</ventasMensuales>
+                  <otrosIngresos>0.000</otrosIngresos>
+                  <detalleOtrosIngresos/>
+                  <fechaInicioIngresos>0</fechaInicioIngresos>
+                  <ingresosMensualesConyugue>0.000</ingresosMensualesConyugue>
+                  <gastosFamiliares>35.000</gastosFamiliares>
+                  <gastosArriendo>0.000</gastosArriendo>
+                  <costoVentas>3675.000</costoVentas>
+                  <gastosGenerales>45.000</gastosGenerales>
+                  <otrosEgresos>303.170</otrosEgresos>
+                  <detalleOtrosEgresos>Pago Cuotas Sistema Financiero</detalleOtrosEgresos>
+                  <totalActivos>65975.000</totalActivos>
+                  <activosProductivos>32975.000</activosProductivos>
+                  <fechaDatosFinancieros>29042025</fechaDatosFinancieros>
+                  <totalPasivos>10686.810</totalPasivos>
+                  <totalPatrimonio>55288.190</totalPatrimonio>
+                  <fechaPatrimonio>29042025</fechaPatrimonio>
+               </datosEconomicos>
+               <localizacion>
+                  <listaDirecciones>
+                     <direccion>
+                        <tipoDireccion>01</tipoDireccion>
+                        <callePrincipal>Valle 1</callePrincipal>
+                        <calleSecundaria>Calle 5</calleSecundaria>
+                        <pais>EC</pais>
+                        <provincia>04</provincia>
+                        <ciudad>0020</ciudad>
+                        <canton>0404</canton>
+                        <parroquia>040451</parroquia>
+                        <latitud>000209006-</latitud>
+                        <longitud>078500740-</longitud>
+                        <informacionAdicional>Iglesia 08 DE DICIEMBRE</informacionAdicional>
+                        <zona/>
+                        <correspondencia/>
+                        <telefono/>
+                     </direccion>
+                  </listaDirecciones>
+                  <listaDireccionesAdicionales>
+                     <direccionAdicional>
+                        <contactoCelular>03Valle 1</contactoCelular>
+                        <contactoMail/>
+                     </direccionAdicional>
+                     <direccionAdicional>
+                        <contactoCelular/>
+                        <contactoMail>Calle 5</contactoMail>
+                     </direccionAdicional>
+                  </listaDireccionesAdicionales>
+               </localizacion>
+               <referencias>
+                  <listaReferencias>
+                     <referencia>
+                        <tipoReferencia/>
+                        <nombreCompleto/>
+                        <parentesco/>
+                        <pais/>
+                        <provincia/>
+                        <ciudad/>
+                        <telefono/>
+                        <celular/>
+                     </referencia>
+                  </listaReferencias>
+               </referencias>
+               <complementaria>
+                  <relacion>
+                     <tipoRelacion/>
+                     <tipoIdentificacionRelacion/>
+                     <identificacionRelacion/>
+                     <nombreRelacion/>
+                     <numeroCifRelacion>0</numeroCifRelacion>
+                     <fechaInicioRelacion>0</fechaInicioRelacion>
+                  </relacion>
+                  <esPoliticoExpuesto/>
+                  <esDirigentePolitico/>
+                  <propositoRelacion/>
+               </complementaria>
+            </informacionCliente>
+         </bodyIn>
+      </ser:ActualizarInformacionCliente31>
+   </soapenv:Body>
+</soapenv:Envelope>
