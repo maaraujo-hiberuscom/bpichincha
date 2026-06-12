@@ -1,0 +1,57 @@
+http://10.60.128.85:2000/IntegrationBus/soap/WSClientes0141
+
+
+curl --location "https://tpr-msa-sp-wsclientes0141-enp.apps.ocptest.uiotest.bpichinchatest.test/WSClientes0141/soap/WSClientes0141Request" \
+--header "Content-Type: text/xml; charset=utf-8" \
+--header 'SOAPAction: "consultarTarjetasDebitoCliente01"' \
+--data "$body"
+
+----------------------------------
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:consultarTarjetasDebitoCliente01>
+         <!--Optional:-->
+         <headerIn>
+            <dispositivo>MjQ3MjJiOTU1ZDg2ZjZjNTE4ODkzMGE5NGM5YTg4</dispositivo>
+            <empresa>0010</empresa>
+            <canal>03</canal>
+            <medio>030001</medio>
+            <aplicacion>00618</aplicacion>
+            <agencia>12</agencia>
+            <tipoTransaccion>201014101</tipoTransaccion>
+            <geolocalizacion>000</geolocalizacion>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>77533506137561020180724085120045</guid>
+            <fechaHora>201905131025100880</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>37974955321475120180724085120046</sesion>
+            <ip>10.138.154.7</ip>
+            <idCliente>1719214296</idCliente>
+            <tipoIdCliente>0003</tipoIdCliente>
+         </headerIn>
+         <!--Optional:-->
+         <bodyIn>
+            <!--Optional:-->
+            <ordenante>
+               <!--Optional:-->
+               <cif>2484931</cif>
+               <!--Optional:-->
+               <identificacion>1705267472</identificacion>
+               <!--Optional:-->
+               <tipoIdentificacion>0001</tipoIdentificacion>
+            </ordenante>
+            <!--Optional:-->
+            <criteriosBusqueda>
+               <!--Optional:-->
+               <operacion>B</operacion>
+               <!--Optional:-->
+               <tipoTarjeta>T</tipoTarjeta>
+            </criteriosBusqueda>
+         </bodyIn>
+      </ser:consultarTarjetasDebitoCliente01>
+   </soapenv:Body>
+</soapenv:Envelope>
