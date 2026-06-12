@@ -1,1 +1,57 @@
+http://10.60.128.86:2000/IntegrationBus/soap/ORQClientes0052
 
+curl --location "https://tpr-msa-sp-orqclientes0052-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0052" \
+--header "Content-Type: text/xml; charset=utf-8" \
+--header "SOAPAction: \"ConsultarTarjetasDebitoClientes01\"" \
+--data "$body"
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ser:ConsultarTarjetasDebitoClientes01>
+            <headerIn>
+                <dispositivo>IjUZZSChfCe9W3twFaqVOMARx15Xbxz62DEcE2I8Z52P</dispositivo>
+                <empresa>0010</empresa>
+                <canal>03</canal>
+                <medio>030006</medio>
+                <aplicacion>00663</aplicacion>
+                <agencia/>
+                <tipoTransaccion>301005201</tipoTransaccion>
+                <geolocalizacion/>
+                <usuario>USINTERT</usuario>
+                <unicidad/>
+                <guid>3ae3520cb7bf4343859973e458c9d899</guid>
+                <fechaHora>202404011200070130</fechaHora>
+                <filler/>
+                <idioma>es-EC</idioma>
+                <sesion>72496e27-e877-4ec3-aafe-8280350a26d2</sesion>
+                <ip>181.188.200.83</ip>
+                <idCliente>1802880052</idCliente>
+                <tipoIdCliente/>
+                <!--<bancs><teller>00070560</teller><terminal>1</terminal><institucion>0010</institucion><agencia>1</agencia><estacion>1</estacion><aplicacion/><canal/>
+</bancs>-->
+
+            </headerIn>
+            <bodyIn>
+                <ordenante>
+                    <cif>1081276</cif>
+                    <identificacion>1802880052</identificacion>
+                    <tipoIdentificacion>0001</tipoIdentificacion>
+                </ordenante>
+                <tarjeta>
+                    <tipo>T</tipo>
+                    <estado>T</estado>
+                </tarjeta>
+                <flujo>
+                    <estado>iniciar</estado>
+                    <campos>
+                        <campo>
+                            <clave/>
+                            <valor/>
+                        </campo>
+                    </campos>
+                </flujo>
+            </bodyIn>
+        </ser:ConsultarTarjetasDebitoClientes01>
+    </soapenv:Body>
+</soapenv:Envelope>
