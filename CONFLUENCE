@@ -1,2 +1,64 @@
 https://pichincha.atlassian.net/wiki/spaces/BPTPSRE/pages/5984026702/DOCUMENTACION+SERVICIO+WSClientes0102
 http://10.60.128.85:2000/IntegrationBus/soap/WSClientes102
+curl --location "http://tnd-msa-sp-wsclientes0102.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0102"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: ""SegmentacionEntradaFija01""" `
+--data "$body"
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <NS1:SegmentacionEntradaFija01 xmlns:NS1="http://bpichincha.com/servicios">
+         <headerIn>
+            <dispositivo>B6BfOH0ohJgF3liP9aqH7uwmqndG17FmcAjsCYoXnM4=</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020002</medio>
+            <aplicacion>00647</aplicacion>
+            <agencia>0012</agencia>
+            <tipoTransaccion>201010201</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad>sgftsgsgsdfgdfgdfgfdg</unicidad>
+            <guid>1P13348S46612_1.533528626397E12</guid>
+            <fechaHora>20190226145144050</fechaHora>
+            <filler/>
+            <idioma>ec-ES</idioma>
+            <sesion>SESION_IDENTIFICADOR_ORDEN20190226145144050</sesion>
+            <ip>867904036047319</ip>
+            <idCliente>55455611470</idCliente>
+            <tipoIdCliente>0002</tipoIdCliente>
+             <bancs>
+                <teller>00070560</teller>
+                <terminal>1</terminal>
+                <institucion>0000</institucion>
+                <agencia>0000</agencia>
+                <estacion>1</estacion>
+                <aplicacion>1</aplicacion>
+                <canal>1</canal>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <segmentacion>
+               <usuario>USINTERT</usuario>
+               <empresa>0010</empresa>
+               <centro>0012</centro>
+               <codPersona>0</codPersona>
+               <numIdentificacion>1706313192</numIdentificacion>
+               <tipIdentificacion>3</tipIdentificacion>
+               <codSexo>0</codSexo>
+               <indVivienda>4</indVivienda>
+               <codEstadoCivil>2</codEstadoCivil>
+               <codNivelEstudios>12</codNivelEstudios>
+               <indSitAct>0</indSitAct>
+               <mntIngresos>1334.00</mntIngresos>
+               <fecNacimiento>11.06.1989</fecNacimiento>
+               <numCargas>2</numCargas>
+               <codSecBCE/>
+               <codSecEcon>17000</codSecEcon>
+               <codActEcon>17681</codActEcon>
+               <mntVentas>16900</mntVentas>
+            </segmentacion>
+         </bodyIn>
+      </NS1:SegmentacionEntradaFija01>
+   </soapenv:Body>
+</soapenv:Envelope>
