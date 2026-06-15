@@ -1,3 +1,72 @@
+curl --location "https://tnd-msa-sp-wsclientes0096-enp.apps.ocpdev.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0096" \
+  --header "Content-Type: text/xml; charset=utf-8" \
+  --header "SOAPAction: \"CrearProspecto21\"" \
+  --data "$body"
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:CrearProspecto21>
+         <headerIn>
+            <dispositivo>355105090256569</dispositivo>
+            <empresa>0010</empresa>
+            <canal>01</canal>
+            <medio>010004</medio>
+            <aplicacion>00650</aplicacion>
+            <agencia>475</agencia>
+            <tipoTransaccion>201009621</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>tjacome</usuario>
+            <unicidad/>
+            <guid>ca010096000000000000000000000001</guid>
+            <fechaHora>201905020946490500</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>FRMKDEUD-tjacome--1.556808380828E12</sesion>
+            <ip>10.60.192.24</ip>
+            <idCliente/>
+            <tipoIdCliente/>
+            <bancs>
+               <teller>00070560</teller>
+               <terminal>1</terminal>
+               <institucion>003</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal/>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <prospecto>
+               <tipoCliente>01</tipoCliente>
+               <apellido1>FERNANDEZ</apellido1>
+               <apellido2/>
+               <nombre1>AUGUSTO</nombre1>
+               <nombre2/>
+               <nombre3/>
+               <nacionalidad>EC</nacionalidad>
+               <tfnProvisto>0</tfnProvisto>
+               <riesgoDomestico>ZZ</riesgoDomestico>
+               <cupoRiesgo>ZZ</cupoRiesgo>
+               <callePrincipal>Olson Walks</callePrincipal>
+               <calleSecundaria>Kozey Run</calleSecundaria>
+               <numeroIdentificacion>1950064012</numeroIdentificacion>
+               <tipoIdentificacion>01</tipoIdentificacion>
+               <retencionImpuestos/>
+               <paisDomicilio>EC</paisDomicilio>
+               <documentosVerificados/>
+               <banderaFormulario/>
+               <agenciaPropietaria>00033</agenciaPropietaria>
+               <paisEmisionPasaporte/>
+               <segmento>0011</segmento>
+            </prospecto>
+         </bodyIn>
+      </ser:CrearProspecto21>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+------------------------------------------------------------------------------------
+
 curl --location 'http://10.60.128.85:2000/IntegrationBus/soap/WSClientes0096' \
 --header 'Content-Type: text/xml; charset=utf-8' \
 --header 'SOAPAction: CrearProspecto21' \
