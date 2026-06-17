@@ -1,0 +1,130 @@
+const body = insomnia.response.text();
+
+insomnia.test('Status Code 200', () => {
+    insomnia.expect(insomnia.response.code).to.eql(200);
+});
+
+insomnia.test('No viene SOAP Fault', () => {
+    insomnia.expect(body).to.not.include('Fault');
+});
+
+insomnia.environment.set(
+    "legacyResponse",
+    insomnia.response.text()
+);
+
+const legacy = insomnia.environment.get("legacyResponse");
+const migrado = insomnia.response.text();
+
+insomnia.test('Comparar respuesta completa', () => {
+    insomnia.expect(migrado).to.eql(legacy);
+});
+
+Opción 3: Comparar solo campos
+
+Mucho mejor para Banco Pichincha.
+
+Supongamos que quieres comparar:
+
+<codigo>0</codigo>
+<mensaje>Proceso Exitoso</mensaje>
+
+En Legacy:
+
+const legacy = insomnia.response.text();
+
+const codigo =
+legacy.match(/<codigo>(.*?)<\/codigo>/)[1];
+
+const mensaje =
+legacy.match(/<mensaje>(.*?)<\/mensaje>/)[1];
+
+insomnia.environment.set("codigoLegacy", codigo);
+insomnia.environment.set("mensajeLegacy", mensaje);
+
+En Migrado:
+
+const body = insomnia.response.text();
+
+const codigoMigrado =
+body.match(/<codigo>(.*?)<\/codigo>/)[1];
+
+const mensajeMigrado =
+body.match(/<mensaje>(.*?)<\/mensaje>/)[1];
+
+const codigoLegacy =
+insomnia.environment.get("codigoLegacy");
+
+const mensajeLegacy =
+insomnia.environment.get("mensajeLegacy");
+
+insomnia.test('Codigo igual', () => {
+    insomnia.expect(codigoMigrado).to.eql(codigoLegacy);
+});
+
+insomnia.test('Mensaje igual', () => {
+    insomnia.expect(mensajeMigrado).to.eql(mensajeLegacy);
+}); 
+
+
+curl --location "http://tnd-msa-sp-orqclientes0056.apps.ocpdev.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0056" \
+--header "Content-Type: text/xml; charset=utf-8" \
+--header "SOAPAction: \"ActualizarOficialCliente31\"" \
+--data "$body"
+
+
+LEGADO - ActualizarOficialCliente31
+POST http://10.60.128.86:2000/IntegrationBus/soap/ORQClientes0056
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ser:ActualizarOficialCliente31>
+            <headerIn>
+                <dispositivo>000000000000000000000Desconocido</dispositivo>
+                <empresa>0010</empresa>
+                <canal>01</canal>
+                <medio>010003</medio>
+                <aplicacion>00344</aplicacion>
+                <agencia>0269</agencia>
+                <tipoTransaccion>301005631</tipoTransaccion>
+                <geolocalizacion>38.7094999999999984652276907581835985184 -78.15389999999999304236553143709897995</geolocalizacion>
+                <usuario>gmontano</usuario>
+                <unicidad>bTlQkWemiuGVOfNF7538MEMi7AGf47weFgVXMBENrnKwknOipDWlGnUwjwwvZruGCw8Vns</unicidad>
+                <guid>1716cdb89cab4fc39ea7ac346f653757</guid>
+                <fechaHora>202604201137140462</fechaHora>
+                <filler></filler>
+                <idioma>es-EC</idioma>
+                <sesion>5032ddfa52e82643b2f81186edfe85e0</sesion>
+                <ip>20.84.16.136</ip>
+                <idCliente>1703244861</idCliente>
+                <tipoIdCliente>0001</tipoIdCliente>
+            </headerIn>
+            <bodyIn>
+                <cliente>
+                    <cif>0000000004707018</cif>
+                </cliente>
+                <oficialOrdenante>
+                    <usuarioRed>gmontano</usuarioRed>
+                </oficialOrdenante>
+                <detalleCambio>
+                    <oficialCambio>
+                        <idAplicacionOrigen>1</idAplicacionOrigen>
+                        <idAplicacionDestino>2</idAplicacionDestino>
+                        <usuarioRed>gmontano</usuarioRed>
+                    </oficialCambio>
+                    <oficialPosterior>
+                        <idAplicacionOrigen>1</idAplicacionOrigen>
+                        <idAplicacionDestino>2</idAplicacionDestino>
+                        <usuarioRed>gmontano</usuarioRed>
+                    </oficialPosterior>
+                </detalleCambio>
+                <flujo>
+                    <estado>iniciar</estado>
+                </flujo>
+            </bodyIn>
+        </ser:ActualizarOficialCliente31>
+    </soapenv:Body>
+</soapenv:Envelope>
