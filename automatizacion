@@ -1,0 +1,110 @@
+1. Request LEGADO
+
+Nombre:
+
+LEGADO - ActualizarOficialCliente31
+
+En la pestaña Tests del request legado pega esto:
+
+const legacyResponse = insomnia.response.text();
+
+function getTag(xml, tag) {
+  const match = xml.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`));
+  return match ? match[1].trim() : "";
+}
+
+insomnia.environment.set("legacy_codigo", getTag(legacyResponse, "codigo"));
+insomnia.environment.set("legacy_mensaje", getTag(legacyResponse, "mensaje"));
+insomnia.environment.set("legacy_mensajeNegocio", getTag(legacyResponse, "mensajeNegocio"));
+insomnia.environment.set("legacy_tipo", getTag(legacyResponse, "tipo"));
+insomnia.environment.set("legacy_recurso", getTag(legacyResponse, "recurso"));
+insomnia.environment.set("legacy_componente", getTag(legacyResponse, "componente"));
+insomnia.environment.set("legacy_backend", getTag(legacyResponse, "backend"));
+
+insomnia.test("LEGADO - Status 200", () => {
+  insomnia.expect(insomnia.response.code).to.eql(200);
+});
+
+Ejecutas primero este request.
+
+2. Request MIGRADO
+
+Nombre:
+
+MIGRADO - ActualizarOficialCliente31
+
+En la pestaña Tests del request migrado pega esto:
+
+const migradoResponse = insomnia.response.text();
+
+function getTag(xml, tag) {
+  const match = xml.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`));
+  return match ? match[1].trim() : "";
+}
+
+const migrado_codigo = getTag(migradoResponse, "codigo");
+const migrado_mensaje = getTag(migradoResponse, "mensaje");
+const migrado_mensajeNegocio = getTag(migradoResponse, "mensajeNegocio");
+const migrado_tipo = getTag(migradoResponse, "tipo");
+const migrado_recurso = getTag(migradoResponse, "recurso");
+const migrado_componente = getTag(migradoResponse, "componente");
+const migrado_backend = getTag(migradoResponse, "backend");
+
+insomnia.test("MIGRADO - Status 200", () => {
+  insomnia.expect(insomnia.response.code).to.eql(200);
+});
+
+insomnia.test("Comparar codigo Legacy vs Migrado", () => {
+  insomnia.expect(migrado_codigo).to.eql(insomnia.environment.get("legacy_codigo"));
+});
+
+insomnia.test("Comparar mensaje Legacy vs Migrado", () => {
+  insomnia.expect(migrado_mensaje).to.eql(insomnia.environment.get("legacy_mensaje"));
+});
+
+insomnia.test("Comparar mensajeNegocio Legacy vs Migrado", () => {
+  insomnia.expect(migrado_mensajeNegocio).to.eql(insomnia.environment.get("legacy_mensajeNegocio"));
+});
+
+insomnia.test("Comparar tipo Legacy vs Migrado", () => {
+  insomnia.expect(migrado_tipo).to.eql(insomnia.environment.get("legacy_tipo"));
+});
+
+insomnia.test("Comparar recurso Legacy vs Migrado", () => {
+  insomnia.expect(migrado_recurso).to.eql(insomnia.environment.get("legacy_recurso"));
+});
+
+insomnia.test("Comparar componente Legacy vs Migrado", () => {
+  insomnia.expect(migrado_componente).to.eql(insomnia.environment.get("legacy_componente"));
+});
+
+insomnia.test("Comparar backend Legacy vs Migrado", () => {
+  insomnia.expect(migrado_backend).to.eql(insomnia.environment.get("legacy_backend"));
+});
+
+Ejecutas después este request.
+
+3. Flujo de ejecución
+
+Para cada escenario:
+
+1. Cambias el request XML en LEGADO
+2. Ejecutas LEGADO
+3. Copias el mismo XML en MIGRADO
+4. Ejecutas MIGRADO
+5. Revisas pestaña Tests
+
+Si todo está igual, verás los checks en verde.
+
+4. Escenarios accionables para cambiar el request
+ID	Cambio en request	Validación esperada
+CP-001	Request completo válido	<codigo>, <mensaje>, <tipo>, <recurso>, <componente>, <backend> iguales
+CP-002	Cambiar <tipoIdCliente>0001</tipoIdCliente> por otro tipo válido	Ambos servicios deben responder igual
+CP-003	Cambiar <tipoIdCliente> por un valor inválido	Ambos deben devolver el mismo error funcional
+CP-004	Cambiar <idCliente> por otro cliente válido	Ambos deben responder igual
+CP-005	Enviar <idCliente></idCliente> vacío	Ambos deben devolver el mismo mensaje de validación
+CP-006	Eliminar nodo <idCliente>	Ambos deben devolver el mismo mensaje de error
+CP-007	Enviar <cif></cif> vacío	Ambos deben devolver el mismo mensaje
+CP-008	Eliminar nodo <cif>	Ambos deben devolver el mismo mensaje
+CP-009	Cambiar <estado>iniciar</estado> por otro valor	Ambos deben responder igual
+CP-010	Eliminar <estado>	Ambos deben devolver el mismo mensaje
