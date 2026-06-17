@@ -1,3 +1,31 @@
+const migradoResponse = insomnia.response.body;
+
+function getTag(xml, tag) {
+  const regex = new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`);
+  const match = xml.match(regex);
+  return match ? match[1].trim() : "";
+}
+
+function compararCampo(nombreCampo, valorMigrado, variableLegacy) {
+  insomnia.test(`Comparar ${nombreCampo} Legacy vs Migrado`, () => {
+    insomnia.expect(valorMigrado).to.eql(insomnia.environment.get(variableLegacy));
+  });
+}
+
+compararCampo("codigo", getTag(migradoResponse, "codigo"), "legacy_codigo");
+compararCampo("mensaje", getTag(migradoResponse, "mensaje"), "legacy_mensaje");
+compararCampo("mensajeNegocio", getTag(migradoResponse, "mensajeNegocio"), "legacy_mensajeNegocio");
+compararCampo("tipo", getTag(migradoResponse, "tipo"), "legacy_tipo");
+compararCampo("recurso", getTag(migradoResponse, "recurso"), "legacy_recurso");
+compararCampo("componente", getTag(migradoResponse, "componente"), "legacy_componente");
+compararCampo("backend", getTag(migradoResponse, "backend"), "legacy_backend");
+
+insomnia.test("MIGRADO - Status 200", () => {
+  insomnia.expect(insomnia.response.code).to.eql(200);
+});
+
+
+
 1. Request LEGADO
 
 Nombre:
