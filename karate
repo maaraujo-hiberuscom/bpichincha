@@ -1,0 +1,131 @@
+1. Crear carpeta del proyecto
+
+En CMD:
+
+cd C:\Users\maaraujo
+mkdir karate-servicios
+cd karate-servicios
+2. Crear esta estructura
+mkdir src\test\java\servicios\actualizaroficial
+3. Crear archivo pom.xml
+
+En C:\Users\maaraujo\karate-servicios\pom.xml pega esto:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>qa.servicios</groupId>
+    <artifactId>karate-servicios</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.karatelabs</groupId>
+            <artifactId>karate-junit5</artifactId>
+            <version>1.5.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
+4. Crear archivo runner
+
+Crea este archivo:
+
+src/test/java/servicios/ActualizarOficialRunner.java
+
+Pega:
+
+package servicios;
+
+import com.intuit.karate.junit5.Karate;
+
+class ActualizarOficialRunner {
+
+    @Karate.Test
+    Karate testActualizarOficial() {
+        return Karate.run("actualizaroficial").relativeTo(getClass());
+    }
+}
+5. Crear el archivo .feature
+
+Crea:
+
+src/test/java/servicios/actualizaroficial/actualizar-oficial.feature
+
+Pega esto:
+
+Feature: Actualizar Oficial Cliente 31
+
+Scenario: Consumir servicio Legacy SOAP
+
+  Given url 'http://tnd-msa-sp-orqclientes0056.apps.ocpdev.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0056'
+  And header Content-Type = 'text/xml; charset=utf-8'
+  And header SOAPAction = '"ActualizarOficialCliente31"'
+  And request
+  """
+  <?xml version="1.0" encoding="UTF-8"?>
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+      <soapenv:Header/>
+      <soapenv:Body>
+          <ser:ActualizarOficialCliente31>
+              <headerIn>
+                  <dispositivo>000000000000000000000Desconocido</dispositivo>
+                  <empresa>0010</empresa>
+                  <canal>01</canal>
+                  <medio>010003</medio>
+                  <aplicacion>00344</aplicacion>
+                  <agencia>0269</agencia>
+                  <tipoTransaccion>301005631</tipoTransaccion>
+                  <geolocalizacion>38.7094999999999984652276907581835985184 -78.15389999999999304236553143709897995</geolocalizacion>
+                  <usuario>gmontano</usuario>
+                  <unicidad>bTlQkWemiuGVOfNF7538MEMi7AGf47weFgVXMBENrnKwknOipDWlGnUwjwwvZruGCw8Vns</unicidad>
+                  <guid>1716cdb89cab4fc39ea7ac346f653757</guid>
+                  <fechaHora>202604201137140462</fechaHora>
+                  <filler></filler>
+                  <idioma>es-EC</idioma>
+                  <sesion>5032ddfa52e82643b2f81186edfe85e0</sesion>
+                  <ip>20.84.16.136</ip>
+                  <idCliente>1703244861</idCliente>
+                  <tipoIdCliente>0001</tipoIdCliente>
+              </headerIn>
+              <bodyIn>
+                  <cliente>
+                      <cif>0000000004707018</cif>
+                  </cliente>
+                  <oficialOrdenante>
+                      <usuarioRed>gmontano</usuarioRed>
+                  </oficialOrdenante>
+                  <detalleCambio>
+                      <oficialCambio>
+                          <idAplicacionOrigen>1</idAplicacionOrigen>
+                          <idAplicacionDestino>2</idAplicacionDestino>
+                          <usuarioRed>gmontano</usuarioRed>
+                      </oficialCambio>
+                      <oficialPosterior>
+                          <idAplicacionOrigen>1</idAplicacionOrigen>
+                          <idAplicacionDestino>2</idAplicacionDestino>
+                          <usuarioRed>gmontano</usuarioRed>
+                      </oficialPosterior>
+                  </detalleCambio>
+                  <flujo>
+                      <estado>iniciar</estado>
+                  </flujo>
+              </bodyIn>
+          </ser:ActualizarOficialCliente31>
+      </soapenv:Body>
+  </soapenv:Envelope>
+  """
+  When method post
+  Then status 200
+
+  * print response
+6. Ejecutar
+
+Desde la carpeta:
+
+cd C:\Users\maaraujo\karate-servicios
+mvn test
