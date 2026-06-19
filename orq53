@@ -1,0 +1,119 @@
+curl --location "http://tnd-msa-sp-orqclientes0053.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0053" \
+--header "Content-Type: text/xml; charset=utf-8" \
+--header "SOAPAction: \"ConsultarRetencionJudicial04\"" \
+--data "$body"
+
+
+URL
+ 
+- http://10.60.128.86:2000/IntegrationBus/soap/ORQClientes0053
+- http://datapowertest.bp.bpichincha.com:8911/Omnicanalidad/IntegrationBus/ORQClientes0053
+ 
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ConsultarRetencionJudicial04>
+         <headerIn>
+            <dispositivo>01010101010101010101010101010101</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020007</medio>
+            <aplicacion>00664</aplicacion>
+            <agencia></agencia>
+            <tipoTransaccion>201010421</tipoTransaccion>
+            <geolocalizacion>0,0</geolocalizacion>
+            <usuario>USRPAGEW</usuario>
+            <unicidad>5542c956-d785-401a-899e-331d0b777cc3</unicidad>
+            <guid>5542c956-d785-401a-899e-331d0b777cc3</guid>
+            <fechaHora>202604160955300237</fechaHora>
+            <filler>service</filler>
+            <idioma>es-EC</idioma>
+            <sesion></sesion>
+            <ip>10.151.152.108</ip>
+            <idCliente></idCliente>
+            <tipoIdCliente/>
+            <!--Optional:-->
+            <bancs>
+               <teller>00070560</teller>
+               <terminal>000001</terminal>
+               <institucion>000001</institucion>
+               <agencia>00012</agencia>
+               <estacion>001</estacion>
+               <aplicacion>BEP</aplicacion>
+               <canal>02</canal>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <ordenante>
+               <identificacion>0502599814</identificacion>
+               <tipoIdentificacion>0001</tipoIdentificacion>
+            </ordenante>
+            <flujo>
+               <estado>iniciar</estado>
+               <campos>
+                  <!--1 or more repetitions:-->
+                  <campo> 
+                     <clave></clave>
+                     <valor></valor>
+                  </campo>
+               </campos>
+            </flujo>
+         </bodyIn>
+      </ser:ConsultarRetencionJudicial04>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+REQUEST orq
+
+ 
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+<soapenv:Header/>
+<soapenv:Body>
+<ser:ConsultarRetencionJudicial04>
+<headerIn>
+<dispositivo>wpuMfBm9qufJbvXH/sIGIMsYy5ZeSjMFymUjH53c4DY</dispositivo>
+<empresa>0010</empresa>
+<canal>01</canal>
+<medio>010003</medio>
+<aplicacion>00657</aplicacion>
+<agencia>0</agencia>
+<tipoTransaccion>301005304</tipoTransaccion>
+<geolocalizacion/>
+<usuario>USINTERT</usuario>
+<unicidad/>
+<guid>af616f28aa6c4c468f4593892f3a41eb</guid>
+<fechaHora>202412051658460695</fechaHora>
+<filler/>
+<idioma>es-EC</idioma>
+<sesion>hmffteadhqmvecjm241jzhku</sesion>
+<ip>10.112.36.129</ip>
+<idCliente/>
+<tipoIdCliente/>
+<bancs>
+<teller>00008002</teller>
+<terminal>1</terminal>
+<institucion>0010</institucion>
+<agencia>0012</agencia>
+<estacion>1</estacion>
+<aplicacion/>
+<canal/>
+</bancs>
+</headerIn>
+<bodyIn>
+<ordenante>
+<identificacion>0913944161</identificacion>
+<tipoIdentificacion>0001</tipoIdentificacion>
+</ordenante>
+<flujo>
+<estado>iniciar</estado>
+<campos>
+<campo>
+<clave/>
+<valor/>
+</campo>
+</campos>
+</flujo>
+</bodyIn>
+</ser:ConsultarRetencionJudicial04>
+</soapenv:Body>
+</soapenv:Envelope>
