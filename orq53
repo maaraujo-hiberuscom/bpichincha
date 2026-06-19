@@ -1,3 +1,11 @@
+FAIL
+Comparar mensaje Legacy vs Migrado | error: AssertionError: expected 'OK' to deeply equal 'TCSBRKR2_BP:ISClientes:2000-OK' | ACTUAL: OK | EXPECTED: TCSBRKR2_BP:ISClientes:2000-OK
+After-response Test (1.0 ms)
+FAIL
+Comparar recurso Legacy vs Migrado | error: AssertionError: expected 'tnd-msa-sp-orqclientes0053/ConsultarR…' to deeply equal 'ORQClientes0053/ConsultarRetencionJud…' | ACTUAL: tnd-msa-sp-orqclientes0053/ConsultarRetencionJudicial04 | EXPECTED: ORQClientes0053/ConsultarRetencionJudicial04
+After-response Test (0.2 ms)
+
+
 const legacyResponse = insomnia.response.body;
 
 function getTag(xml, tag) {
