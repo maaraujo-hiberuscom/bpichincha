@@ -1,3 +1,53 @@
+const legacyResponse = insomnia.response.body;
+
+function getTag(xml, tag) {
+  const regex = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>|<${tag}\\s*\\/?>`);
+  const match = xml.match(regex);
+  return match && match[1] ? match[1].trim() : "";
+}
+
+insomnia.environment.set("legacy_codigo", getTag(legacyResponse, "codigo"));
+insomnia.environment.set("legacy_mensaje", getTag(legacyResponse, "mensaje"));
+insomnia.environment.set("legacy_mensajeNegocio", getTag(legacyResponse, "mensajeNegocio"));
+insomnia.environment.set("legacy_tipo", getTag(legacyResponse, "tipo"));
+insomnia.environment.set("legacy_recurso", getTag(legacyResponse, "recurso"));
+insomnia.environment.set("legacy_componente", getTag(legacyResponse, "componente"));
+insomnia.environment.set("legacy_backend", getTag(legacyResponse, "backend"));
+
+insomnia.test("LEGADO - HTTP 200", () => {
+  insomnia.expect(insomnia.response.code).to.eql(200);
+});
+request m,eigrado 
+
+const migradoResponse = insomnia.response.body;
+
+function getTag(xml, tag) {
+  const regex = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>|<${tag}\\s*\\/?>`);
+  const match = xml.match(regex);
+  return match && match[1] ? match[1].trim() : "";
+}
+
+function compararCampo(nombreCampo, valorMigrado, variableLegacy) {
+  insomnia.test(`Comparar ${nombreCampo} Legacy vs Migrado`, () => {
+    insomnia.expect(valorMigrado).to.eql(insomnia.environment.get(variableLegacy));
+  });
+}
+
+insomnia.test("MIGRADO - HTTP 200", () => {
+  insomnia.expect(insomnia.response.code).to.eql(200);
+});
+
+compararCampo("codigo", getTag(migradoResponse, "codigo"), "legacy_codigo");
+compararCampo("mensaje", getTag(migradoResponse, "mensaje"), "legacy_mensaje");
+compararCampo("mensajeNegocio", getTag(migradoResponse, "mensajeNegocio"), "legacy_mensajeNegocio");
+compararCampo("tipo", getTag(migradoResponse, "tipo"), "legacy_tipo");
+compararCampo("recurso", getTag(migradoResponse, "recurso"), "legacy_recurso");
+compararCampo("componente", getTag(migradoResponse, "componente"), "legacy_componente");
+compararCampo("backend", getTag(migradoResponse, "backend"), "legacy_backend");
+
+
+
+
 curl --location "http://tnd-msa-sp-orqclientes0053.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0053" \
 --header "Content-Type: text/xml; charset=utf-8" \
 --header "SOAPAction: \"ConsultarRetencionJudicial04\"" \
@@ -7,7 +57,9 @@ curl --location "http://tnd-msa-sp-orqclientes0053.apps.ocptest.uiotest.bpichinc
 URL
  
 - http://10.60.128.86:2000/IntegrationBus/soap/ORQClientes0053
+http://tnd-msa-sp-orqclientes0053.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0053
 - http://datapowertest.bp.bpichincha.com:8911/Omnicanalidad/IntegrationBus/ORQClientes0053
+
  
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
    <soapenv:Header/>
