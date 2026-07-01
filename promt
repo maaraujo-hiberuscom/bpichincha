@@ -1,0 +1,39 @@
+Actúa como QA Automation especialista en pruebas de servicios SOAP con Insomnia.
+
+Necesito automatizar la comparación entre un servicio legado y un servicio migrado para validar que ambos respondan de forma equivalente ante los mismos escenarios de prueba.
+
+Servicio a validar:
+ActualizarCupoCuentaTransaccion31
+
+Objetivo:
+Crear scripts en Insomnia para comparar la respuesta del servicio migrado contra la respuesta del servicio legado.
+
+La comparación debe validar principalmente los campos del nodo <error>:
+
+- codigo
+- mensaje
+- mensajeNegocio
+- tipo
+- recurso
+- componente
+- backend
+
+Escenario de prueba:
+Enviar el mismo request SOAP al servicio legado y al servicio migrado. Por ejemplo, si se elimina o se deja vacío el campo <cif>, ambos servicios deben responder con el mismo código, mensaje, tipo de error y detalle técnico/negocio.
+
+Request SOAP base:
+[PEGAR AQUÍ EL REQUEST COMPLETO]
+
+Response esperado de referencia:
+[PEGAR AQUÍ EL RESPONSE DEL LEGADO O RESPONSE ESPERADO]
+
+Necesito que me ayudes a generar:
+
+1. Script After-response para el request del servicio legado, que guarde en variables de entorno los valores de los campos a comparar.
+2. Script After-response para el request del servicio migrado, que compare los valores recibidos contra las variables guardadas del legado.
+3. Validaciones con insomnia.test e insomnia.expect.
+4. Manejo de campos vacíos como <mensajeNegocio/> para que no falle incorrectamente.
+5. Recomendación de casos negativos adicionales para validar equivalencia entre legado y migrado.
+6. Explicación breve de cómo ejecutar la prueba en orden dentro de Insomnia.
+
+El resultado debe estar listo para copiar y pegar en Insomnia.
