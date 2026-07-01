@@ -1,3 +1,54 @@
+request legado 
+const xml = insomnia.response.body;
+
+function getValue(tag) {
+  const regex = new RegExp(`<${tag}>(.*?)</${tag}>`, "s");
+  const match = xml.match(regex);
+  return match ? match[1].trim() : "";
+}
+
+insomnia.environment.set("legado_codigo", getValue("codigo"));
+insomnia.environment.set("legado_mensaje", getValue("mensaje"));
+insomnia.environment.set("legado_mensajeNegocio", getValue("mensajeNegocio"));
+insomnia.environment.set("legado_tipo", getValue("tipo"));
+insomnia.environment.set("legado_recurso", getValue("recurso"));
+insomnia.environment.set("legado_componente", getValue("componente"));
+insomnia.environment.set("legado_backend", getValue("backend"));
+
+console.log("Variables legado guardadas correctamente");
+
+
+migrado 
+const xml = insomnia.response.body;
+
+function getValue(tag) {
+  const regex = new RegExp(`<${tag}>(.*?)</${tag}>`, "s");
+  const match = xml.match(regex);
+  return match ? match[1].trim() : "";
+}
+
+const campos = [
+  "codigo",
+  "mensaje",
+  "mensajeNegocio",
+  "tipo",
+  "recurso",
+  "componente",
+  "backend"
+];
+
+campos.forEach((campo) => {
+  const valorMigrado = getValue(campo);
+  const valorLegado = insomnia.environment.get(`legado_${campo}`);
+
+  insomnia.test(`Comparar ${campo}: migrado vs legado`, () => {
+    insomnia.expect(valorMigrado).to.eql(valorLegado);
+  });
+});
+
+
+
+
 curl --location "https://tpr-msa-sp-orqclientes0007-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0007" \
 --header "Content-Type: text/xml; charset=utf-8" \
 --header "SOAPAction: \"ActualizarCupoCuentaTransaccion31\"" \
@@ -67,3 +118,59 @@ http://10.60.128.86:2000/IntegrationBus/soap/ORQClientes0007
       </ser:ActualizarCupoCuentaTransaccion31>
    </soapenv:Body>
 </soapenv:Envelope>
+
+
+
+----------------------
+
+<ns2:ActualizarCupoCuentaTransaccion31Response xmlns:ns2="http://bpichincha.com/servicios">
+   <headerOut>
+      <dispositivo>01010101010101010101010101010101</dispositivo>
+      <empresa>0010</empresa>
+      <canal>03</canal>
+      <medio>030006</medio>
+      <aplicacion>00663</aplicacion>
+      <agencia/>
+      <tipoTransaccion>301000731</tipoTransaccion>
+      <geolocalizacion/>
+      <usuario>USINTERT</usuario>
+      <unicidad>UZhDOa2GXtkAK2/QovFagnnS+nQSGAF/SKyTIIv1axc=</unicidad>
+      <guid>3F2504E04F8911D39A0C0305E82C3302</guid>
+      <fechaHora>202210201505651262</fechaHora>
+      <filler/>
+      <idioma>es-EC</idioma>
+      <sesion>ASDASD77R01YH</sesion>
+      <ip>10.192.168.45</ip>
+      <idCliente>1710538933</idCliente>
+      <tipoIdCliente>0001</tipoIdCliente>
+      <bancs>
+         <teller>00008002</teller>
+         <terminal>1</terminal>
+         <institucion>0010</institucion>
+         <agencia>0012</agencia>
+         <estacion>1</estacion>
+         <aplicacion/>
+         <canal/>
+      </bancs>
+   </headerOut>
+   <bodyOut>
+      <flujo>
+         <estado>finalizar</estado>
+         <campos>
+            <campo>
+               <clave/>
+               <valor/>
+            </campo>
+         </campos>
+      </flujo>
+   </bodyOut>
+   <error>
+      <codigo>5</codigo>
+      <mensaje>Cliente no registra cuentas de ahorros activas</mensaje>
+      <mensajeNegocio/>
+      <tipo>ERROR</tipo>
+      <recurso>tnd-msa-sp-wsclientes0114/ConsultarCuentasActivasCliente01</recurso>
+      <componente>tnd-msa-sp-wsclientes0114</componente>
+      <backend>00638</backend>
+   </error>
+</ns2:ActualizarCupoCuentaTransaccion31Response>
