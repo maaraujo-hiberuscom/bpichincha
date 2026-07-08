@@ -6,7 +6,7 @@ curl --location "https://tpr-msa-sp-orqclientes0017-enp.apps.ocptest.uiotest.bpi
 
 --data "$body"
 
-
+http://10.60.128.86:2000/IntegrationBus/soap/ORQClientes0053
 
 Request completo - ConsultarProductosClientes01
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
