@@ -1,0 +1,227 @@
+curl --location "https://tpr-msa-sp-orqclientes0017-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0017" \
+
+--header "Content-Type: text/xml; charset=utf-8" \
+
+--header "SOAPAction: \"ConsultarProductosClientes01\"" \
+
+--data "$body"
+
+
+
+Request completo - ConsultarProductosClientes01
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ConsultarProductosClientes01>
+         <headerIn>
+            <dispositivo>263537710357445</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>010004</medio>
+            <aplicacion>00650</aplicacion>
+            <agencia>106</agencia>
+            <tipoTransaccion>301001701</tipoTransaccion>
+            <geolocalizacion>0,0</geolocalizacion>
+            <usuario>xalbann</usuario>
+            <unicidad>UZhDOa2GXtkAK2/QovFagnnS+nQSGAF/SKyTIIv1axc=</unicidad>
+            <guid>ae05f5d17b2f46f2aace243b7e2fb1b8</guid>
+            <fechaHora>202406031200050500</fechaHora>
+            <filler>00000000000000000000000000000000000000000000000000</filler>
+            <idioma>es-EC</idioma>
+            <sesion>FRMKGRUPBUP-xalbann--1.717433968366E12</sesion>
+            <ip>20.12.176.108</ip>
+            <idCliente>1711089364</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <bancs>
+               <teller>00088838</teller>
+               <terminal>1</terminal>
+               <institucion>0010</institucion>
+               <agencia>0012</agencia>
+               <estacion>1</estacion>
+               <aplicacion>BEP</aplicacion>
+               <canal>02</canal>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <usuario>USR QA XALBANN</usuario>
+            <agencia>LIBERTAD</agencia>
+            <identificacion>1717552606</identificacion>
+            <tipoIdentificacion>0001</tipoIdentificacion>
+            <tipoInterviniente>01</tipoInterviniente>
+            <primerNombre>PATRICIA</primerNombre>
+            <segundoNombre>ALEXANDRA</segundoNombre>
+            <primerApellido>CORNEJO</primerApellido>
+            <segundoApellido>ENRIQUEZ</segundoApellido>
+            <tipoProducto>T</tipoProducto>
+            <cif>5326542</cif>
+            <operacionesAPrecancelar/>
+            <externalId>XALBANN_1717552606_040701_3354</externalId>
+            <externalType>GR_UNOaUNO</externalType>
+            <flujo>
+               <estado>iniciar</estado>
+               <campos>
+                  <campo>
+                     <clave/>
+                     <valor/>
+                  </campo>
+               </campos>
+            </flujo>
+         </bodyIn>
+      </ser:ConsultarProductosClientes01>
+   </soapenv:Body>
+</soapenv:Envelope>
+Response ejemplo
+<ns2:Envelope xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns3="http://bpichincha.com/servicios">
+   <ns2:Body>
+      <ns3:ConsultarProductosClientes01Response>
+         <headerOut>
+            <dispositivo>263537710357445</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>010004</medio>
+            <aplicacion>00650</aplicacion>
+            <agencia>106</agencia>
+            <tipoTransaccion>301001701</tipoTransaccion>
+            <geolocalizacion>0,0</geolocalizacion>
+            <usuario>xalbann</usuario>
+            <unicidad>UZhDOa2GXtkAK2/QovFagnnS+nQSGAF/SKyTIIv1axc=</unicidad>
+            <guid>ae05f5d17b2f46f2aace243b7e2fb1b8</guid>
+            <fechaHora>202406031200050500</fechaHora>
+            <filler>00000000000000000000000000000000000000000000000000</filler>
+            <idioma>es-EC</idioma>
+            <sesion>FRMKGRUPBUP-xalbann--1.717433968366E12</sesion>
+            <ip>20.12.176.108</ip>
+            <idCliente>1711089364</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <bancs>
+               <teller>00088838</teller>
+               <terminal>1</terminal>
+               <institucion>0010</institucion>
+               <agencia>0012</agencia>
+               <estacion>1</estacion>
+               <aplicacion>BEP</aplicacion>
+               <canal>02</canal>
+            </bancs>
+            <documento>
+               <fechaContable/>
+               <numeroDocumento/>
+               <journals>
+                  <journal>
+                     <valor/>
+                  </journal>
+               </journals>
+            </documento>
+         </headerOut>
+         <bodyOut>
+            <tipoInterviniente>01</tipoInterviniente>
+            <fechaConsulta>2026-06-18 15:20:48</fechaConsulta>
+            <usuario>USR QA XALBANN</usuario>
+            <codigoBancsAsesorAnclaje>00001029</codigoBancsAsesorAnclaje>
+            <codigoAsesorAnclaje>MENAVARR</codigoAsesorAnclaje>
+            <nombreAsesorAnclaje>NAVARRO GONZALEZ MARTHA ELENA</nombreAsesorAnclaje>
+            <codigoAgenciaAnclaje>0027</codigoAgenciaAnclaje>
+            <nombreAgenciaAnclaje>AMERICA</nombreAgenciaAnclaje>
+            <agencia>LIBERTAD</agencia>
+            <tipoIdentificacion>branch 01</tipoIdentificacion>
+            <identificacion>1717552606</identificacion>
+            <nombreCliente>PATRICIA ALEXANDRA CORNEJO ENRIQUEZ</nombreCliente>
+            <productos>
+               <cuentas>
+                  <cuenta>
+                     <cuenta>2204057237</cuenta>
+                     <cuentaHash>6f4b493230577962503651474735462f6a4a6c3438546c7155692f54694d667a4748564b5666644c43386f3d</cuentaHash>
+                     <cuentaMask>220405XXXX</cuentaMask>
+                     <producto>2232</producto>
+                     <subProducto>0001</subProducto>
+                     <tipo>AHORROS EURO</tipo>
+                     <moneda>EUR</moneda>
+                     <saldoDisponible>0.00</saldoDisponible>
+                     <saldoContable>0.00</saldoContable>
+                     <relacion>PROPIETARIO</relacion>
+                     <estado>INACTIVO</estado>
+                  </cuenta>
+                  <cuenta>
+                     <cuenta>2204058331</cuenta>
+                     <cuentaHash>763432654d49566f344e71586973654d6c70755375614b73496d664d6957394f48464e2f6f7a444f64754d3d</cuentaHash>
+                     <cuentaMask>220405XXXX</cuentaMask>
+                     <producto>2232</producto>
+                     <subProducto>0003</subProducto>
+                     <tipo>Cuenta de AhorroTransaccional</tipo>
+                     <moneda>USD</moneda>
+                     <saldoDisponible>0.00</saldoDisponible>
+                     <saldoContable>0.00</saldoContable>
+                     <relacion>PROPIETARIO</relacion>
+                     <estado>INACTIVO</estado>
+                  </cuenta>
+                  <cuenta>
+                     <cuenta>2204129022</cuenta>
+                     <cuentaHash>7962634652735241344646454f717955526d716c4e7a6c4b2b527476476c595a4e5a626b734d7a4c4266413d</cuentaHash>
+                     <cuentaMask>220412XXXX</cuentaMask>
+                     <producto>2232</producto>
+                     <subProducto>0030</subProducto>
+                     <tipo>CUENTA ELECTRONICA CONFIANZA</tipo>
+                     <moneda>USD</moneda>
+                     <saldoDisponible>0.00</saldoDisponible>
+                     <saldoContable>0.00</saldoContable>
+                     <relacion>PROPIETARIO</relacion>
+                     <estado>PENDIENTE PARA VERIFICACION</estado>
+                  </cuenta>
+                  <cuenta>
+                     <cuenta>2204129034</cuenta>
+                     <cuentaHash>2f2b34556a754731344f756155426535415871453450674a54304b6f4e38676f47325a354d5548456c4e303d</cuentaHash>
+                     <cuentaMask>220412XXXX</cuentaMask>
+                     <producto>2232</producto>
+                     <subProducto>0003</subProducto>
+                     <tipo>Cuenta de AhorroTransaccional</tipo>
+                     <moneda>USD</moneda>
+                     <saldoDisponible>0.00</saldoDisponible>
+                     <saldoContable>0.00</saldoContable>
+                     <relacion>PROPIETARIO</relacion>
+                     <estado>INACTIVO</estado>
+                  </cuenta>
+               </cuentas>
+               <creditos>
+                  <credito>
+                     <operacion/>
+                     <operacionHash>51722b5671357a464b364f36796b2f6e433376766e4779417a4d47793972382b754c332b56645a693142303d</operacionHash>
+                     <operacionMask>4478XXXX</operacionMask>
+                     <producto>CART VENDIDA PAGUE YA</producto>
+                     <tipoCredito/>
+                     <moneda>USD</moneda>
+                     <fechaVencimiento/>
+                     <tipoRelacion>INDIRECTO</tipoRelacion>
+                     <estado>VENCIDO</estado>
+                     <fechaOtorgamiento/>
+                     <fechaProximoPago>01/04/2008</fechaProximoPago>
+                     <montoProximoPago>0.0</montoProximoPago>
+                     <montoAdeudado>1612.59</montoAdeudado>
+                  </credito>
+                  <totalCreditos>
+                     <totalMontoAdeudadoDirecto>0</totalMontoAdeudadoDirecto>
+                     <totalMontoAdeudadoIndirecto>1612.59</totalMontoAdeudadoIndirecto>
+                     <totalCuotaADeudadoDirecto>0</totalCuotaADeudadoDirecto>
+                  </totalCreditos>
+               </creditos>
+            </productos>
+            <flujo>
+               <estado>finalizar</estado>
+               <campos>
+                  <campo>
+                     <clave/>
+                     <valor/>
+                  </campo>
+               </campos>
+            </flujo>
+         </bodyOut>
+         <error>
+            <codigo>0</codigo>
+            <mensaje>OK</mensaje>
+            <mensajeNegocio/>
+            <tipo>INFO</tipo>
+            <recurso>ORQClientes0017/ConsultarProductosClientes01</recurso>
+            <componente>ConsultarProductosClientes01</componente>
+            <backend>00638</backend>
+         </error>
+      </ns3:ConsultarProductosClientes01Response>
+   </ns2:Body>
+</ns2:Envelope>
