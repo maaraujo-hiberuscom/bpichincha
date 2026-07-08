@@ -1,3 +1,82 @@
+curl --location 'https://tnd-msa-sp-wsclientes0114-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0114' \
+--header 'Content-Type: text/xml; charset=utf-8' \
+--header 'SOAPAction: ConsultarDatosAdicionalesCliente01' \
+--header 'Cookie: e768a266d7ae41dba20d4c6702596ae0=03fe6a6b7483fcc5c5d673b05757b8b2' \
+--data '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:crearProspectoCliente21>
+         <headerIn>
+            <dispositivo>01010101010101010101010101010101010101010101</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020007</medio>
+            <aplicacion>00664</aplicacion>
+            <agencia>0016</agencia>
+            <tipoTransaccion>201010421</tipoTransaccion>
+            <geolocalizacion>geolocalizacion</geolocalizacion>
+            <usuario>USINTERT</usuario>
+            <unicidad>geolocalizacion</unicidad>
+            <guid>52f66830535f4a228c4d21d78ac5b42a</guid>
+            <fechaHora>201905221615208740</fechaHora>
+            <filler>filler</filler>
+            <idioma>es-EC</idioma>
+            <sesion>da6a4ec4-5305-4109-85b6-eae177b8ee5b</sesion>
+            <ip>10.0.94.183</ip>
+            <idCliente>0600272942</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>
+            <bancs>
+               <teller>100028</teller>
+               <terminal>1</terminal>
+               <institucion>0010</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal/>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <usuario>
+               <identificacion>0600592944</identificacion>
+               <tipoIdentificacion>0001</tipoIdentificacion>
+               <tipoCliente>01</tipoCliente>
+               <agencia>0016</agencia>
+               <estadoCliente>000</estadoCliente>
+            </usuario>
+            <datosDemograficos>
+               <apellidoPrincipal>Molina</apellidoPrincipal>
+               <apellidoSecundario>Vasquez</apellidoSecundario>
+               <nombrePrincipal>Fabian</nombrePrincipal>
+               <nombreSecundario>Pedro</nombreSecundario>
+               <nombreTercero/>
+               <nacionalidad>EC</nacionalidad>
+               <paisDomicilio>EC</paisDomicilio>
+               <codigoCiudad>0060</codigoCiudad>
+               <callePrincipal>Amazonas 45-45 y Pereira</callePrincipal>
+               <calleSecundaria/>
+            </datosDemograficos>
+            <riesgoCliente>
+               <tfnProvisto>0</tfnProvisto>
+               <categorizacion>1</categorizacion>
+               <codigoSegmento>0011</codigoSegmento>
+               <codigoSubSegmento>061</codigoSubSegmento>
+               <riesgoDomestico>ZZ</riesgoDomestico>
+               <cruceCupoRiesgo>ZZ</cruceCupoRiesgo>
+               <razonVinculacion></razonVinculacion>
+               <ciudadVinculacion>0060</ciudadVinculacion>
+               <G324updateDate>22052019</G324updateDate>
+               <fechaExpedicionIdentificacion>15102010</fechaExpedicionIdentificacion>
+            </riesgoCliente>
+            <asesor>
+               <codigoAsesor>00001651</codigoAsesor>
+            </asesor>
+         </bodyIn>
+      </ser:crearProspectoCliente21>
+   </soapenv:Body>
+</soapenv:Envelope>'
+
+
+
 /acción: aquí se van a poner la acción que quieran realizar
 El servicio que tengo es:
 mi tarjeta en jira es:
