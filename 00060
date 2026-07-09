@@ -1,0 +1,51 @@
+curl --location "https://tnd-msa-sp-bnc-wsclientes0060-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0060"   --header "Content-Type: text/xml; charset=utf-8"
+--header "SOAPAction: ""OperacionDatosComplementariosCliente51""" `
+--data "$body"
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:OperacionDatosComplementariosCliente51>
+          <headerIn>
+            <dispositivo>jmeter</dispositivo>
+            <empresa>0010</empresa>
+            <canal>02</canal>
+            <medio>020002</medio>
+            <aplicacion>00270</aplicacion>
+            <agencia>?</agencia>
+            <tipoTransaccion>202000101</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad>sdfgsfdgfd67fdsgfdsgfdsgfdsgfdgfdsgfdsgfds</unicidad>
+            <guid>sdafdsafasdfadsfdvdsvdfsvfdsv</guid>
+            <fechaHora>20180517184120</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>b56a9824c9dd4dd79997e44490975yy4</sesion>
+            <ip>10.0.94.104</ip>
+            <idCliente>0602370777</idCliente>
+            <tipoIdCliente>0001</tipoIdCliente>          
+            <bancs>
+                <teller>00070560</teller>
+                <terminal></terminal>
+                <institucion>0000</institucion>
+                <agencia>0000</agencia>
+                <estacion>1</estacion>
+                <aplicacion></aplicacion>
+                <canal></canal>
+            </bancs>
+        </headerIn>
+         <bodyIn>
+            <datosComplementarios>
+              
+               <cif>000000000000033</cif>
+               
+               <operacion>2</operacion>
+              
+            </datosComplementarios>
+         </bodyIn>
+      </ser:OperacionDatosComplementariosCliente51>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
