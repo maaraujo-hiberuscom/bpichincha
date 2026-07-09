@@ -1,3 +1,82 @@
+curl --location 'https://tnd-msa-sp-wsclientes0038-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0038' \
+--header 'Content-Type: text/xml; charset=utf-8' \
+--header 'SOAPAction: http://bpichincha.com/servicios/OperacionEconomicosCliente53' \
+--header 'Cookie: 3ed9b9983cc30dff2353bac620fe12df=d78fd99418e3acbcc732b678d70b31bf' \
+--data '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:OperacionEconomicosCliente53>
+         <headerIn>
+            <dispositivo>64-5A-04-42-6F-2D</dispositivo>
+            <empresa>0010</empresa>
+            <canal>01</canal>
+            <medio>010003</medio>
+            <aplicacion>00344</aplicacion>
+            <agencia>0012</agencia>
+            <tipoTransaccion>201003852</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>0aec139d-74ff-4fed-a434-f76b3776393b</guid>
+            <fechaHora>202502011659260246</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>0aec139d-74ff-4fed-a434-f76b3776393b</sesion>
+            <ip>181.61.204.2</ip>
+            <idCliente/>
+            <tipoIdCliente/>
+            <bancs>
+               <teller>90233</teller>
+               <terminal>1</terminal>
+               <institucion>0010</institucion>
+               <agencia>0012</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal/>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <cif>5319747</cif>
+            <operacion>3</operacion>
+            <categorizacion>1</categorizacion>
+            <subSegmento>057</subSegmento>
+            <clienteLiquidado>1</clienteLiquidado>
+            <motivoCreacionCliente>06</motivoCreacionCliente>
+            <asesor>2044</asesor>
+            <usuarioActualizacionCliente>00006699</usuarioActualizacionCliente>
+            <usuarioCreacionCliente>06</usuarioCreacionCliente>
+            <informacionEconomica>
+               <ingresosFijosClienteMes>1850.00</ingresosFijosClienteMes>
+               <fechaInicioIngresosFijosReportados>20240101</fechaInicioIngresosFijosReportados>
+               <ingresosMesConyuge>250.00</ingresosMesConyuge>
+               <otrosIngresosFijosPorMes>125.00</otrosIngresosFijosPorMes>
+               <fuentePrincipalOtrosIngresos>NEGOCIO</fuentePrincipalOtrosIngresos>
+               <ingresosVariablesMes>500.00</ingresosVariablesMes>
+               <egresosFijosMesAlimentacion>350.00</egresosFijosMesAlimentacion>
+               <egresosFijosMesArriendoVivienda>420.00</egresosFijosMesArriendoVivienda>
+               <otrosEgresosFijosMes>95.00</otrosEgresosFijosMes>
+               <egresosVariablesMes>180.00</egresosVariablesMes>
+               <totalActivos>12000.00</totalActivos>
+               <totalActivosProductivos>9000.00</totalActivosProductivos>
+               <totalPasivos>3000.00</totalPasivos>
+               <ventasMensuales>2600.00</ventasMensuales>
+               <fechaDatosFinancieros>20250604</fechaDatosFinancieros>
+               <patrimonio>9000.00</patrimonio>
+               <fechaPatrimonio>20250604</fechaPatrimonio>
+               <tipoBienes>INMUEBLE</tipoBienes>
+               <tiposGarantiasVigentes>HIPOTECA</tiposGarantiasVigentes>
+               <egresosPorAnio>7200.00</egresosPorAnio>
+               <capitalSuscritoPagado>5000.00</capitalSuscritoPagado>
+               <detalleOtrosEgresos>PRUEBA_UPDATE_53_20260612</detalleOtrosEgresos>
+               <costoVentas>700.00</costoVentas>
+               <gastosOperativos>650.00</gastosOperativos>
+            </informacionEconomica>
+         </bodyIn>
+      </ser:OperacionEconomicosCliente53>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
    <soapenv:Header/>
    <soapenv:Body>
