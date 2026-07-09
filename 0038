@@ -1,3 +1,45 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:OperacionEconomicosCliente53>
+         <headerIn>
+            <dispositivo>64-5A-04-42-6F-2D</dispositivo>
+            <empresa>0010</empresa>
+            <canal>01</canal>
+            <medio>010003</medio>
+            <aplicacion>00344</aplicacion>
+            <agencia>0012</agencia>
+            <tipoTransaccion>201003852</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>0aec139d-74ff-4fed-a434-f76b3776393b</guid>
+            <fechaHora>202502011659260246</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>0aec139d-74ff-4fed-a434-f76b3776393b</sesion>
+            <ip>181.61.204.2</ip>
+            <idCliente/>
+            <tipoIdCliente/>
+            <bancs>
+               <teller>00070560</teller>
+               <terminal>1</terminal>
+               <institucion>003</institucion>
+               <agencia>1</agencia>
+               <estacion>1</estacion>
+               <aplicacion/>
+               <canal>02</canal>
+            </bancs>
+         </headerIn>
+         <bodyIn>
+            <cif>9999999999999999</cif>
+            <operacion>2</operacion>
+         </bodyIn>
+      </ser:OperacionEconomicosCliente53>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
 http://10.60.128.57:6911/WSClientes0038/soap/WSClientes0098Request
 consultarDetalleAdicionalCliente01
 curl --location "https://tnd-msa-sp-wsclientes0038-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0038" `
