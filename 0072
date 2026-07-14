@@ -1,3 +1,73 @@
+curl --location 'https://tnd-msa-sp-wsclientes0072-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0072' \
+--header 'Content-Type: application/xml' \
+--header 'Cookie: c2f0ef950d8ecca92c743fdd740cf6cd=9c29085dd7eb774b1bf9e5953505f985' \
+--data '<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ser:ActualizarDatosReferencias31>
+            <headerIn>
+                <dispositivo>01010101010101010101010101010101010101010</dispositivo>
+                <empresa>0010</empresa>
+                <canal>03</canal>
+                <medio>030001</medio>
+                <aplicacion>00663</aplicacion>
+                <agencia>12</agencia>
+                <tipoTransaccion>201007231</tipoTransaccion>
+                <geolocalizacion/>
+                <usuario>USINTERT</usuario>
+                <unicidad/>
+                <guid>3F2504E04F8911D39A0C0305E82C3302</guid>
+                <fechaHora>201902281459012548</fechaHora>
+                <filler/>
+                <idioma>es-EC</idioma>
+                <sesion>ASFGD1234DFG</sesion>
+                <ip>172.10.125.223</ip>
+                <idCliente/>
+                <tipoIdCliente/>
+                <bancs>
+                    <teller>00070560</teller>
+                    <terminal>1</terminal>
+                    <institucion>0010</institucion>
+                    <agencia>0001</agencia>
+                    <estacion>1</estacion>
+                    <aplicacion/>
+                    <canal/>
+                </bancs>
+            </headerIn>
+            <bodyIn>
+                <cif>7404931</cif>
+                <operacion>0</operacion>
+                <referencia>0</referencia>
+                <DatosReferencias>
+                    <ReferenciaBancaria/>
+                    <ReferenciaTarjetaCredito/>
+                    <ReferenciaProveedor/>
+                    <ReferenciaFamiliar/>
+                    <ReferenciaPersonal>
+                        <TipoReferencia>
+                            <tipoReferencia>05</tipoReferencia>
+                            <tipoIdentificacion></tipoIdentificacion>
+                            <numeroIdentificacion></numeroIdentificacion>
+                            <nombreCompleto>JOS10suMKmsbxmMehFZw0YsSNSvY9bcSBP2XE</nombreCompleto>
+                            <pais>EC</pais>
+                            <provincia></provincia>
+                            <ciudad></ciudad>
+                            <telefono>5930995946067</telefono>
+                            <operacion>A</operacion>
+                            <identificador>10</identificador>
+                        </TipoReferencia>
+                    </ReferenciaPersonal>
+                    <ReferenciaCliente/>
+                    <ReferenciaPersonaContacto/>
+                </DatosReferencias>
+            </bodyIn>
+        </ser:ActualizarDatosReferencias31>
+    </soapenv:Body>
+</soapenv:Envelope>'
+
+
+
 http://tnd-msa-sp-orqclientes0072.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/ORQClientes0072
 
 <?xml version="1.0" encoding="utf-8"?>
