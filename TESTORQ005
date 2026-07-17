@@ -22,3 +22,127 @@ insomnia.environment.set(
 );
 
 console.log('Respuesta del Servicio A almacenada correctamente.');
+
+-------------------------------------------------------
+const xml2js = require('xml2js');
+const lodash = require('lodash');
+
+const respuestaServicioA =
+  insomnia.environment.get('respuesta_servicio_a');
+
+const respuestaServicioB =
+  insomnia.response.text();
+
+insomnia.test('Servicio B responde HTTP 200', () => {
+  insomnia.expect(insomnia.response.status).to.eql(200);
+});
+
+insomnia.test('Existe una respuesta previa del Servicio A', () => {
+  insomnia.expect(respuestaServicioA).to.be.a('string');
+  insomnia.expect(respuestaServicioA.trim().length).to.be.greaterThan(0);
+});
+
+insomnia.test('Servicio B devuelve contenido', () => {
+  insomnia.expect(respuestaServicioB).to.be.a('string');
+  insomnia.expect(respuestaServicioB.trim().length).to.be.greaterThan(0);
+});
+
+const opcionesXml = {
+  explicitArray: false,
+  ignoreAttrs: false,
+  trim: true,
+  normalize: true
+};
+
+const objetoServicioA =
+  await xml2js.parseStringPromise(
+    respuestaServicioA,
+    opcionesXml
+  );
+
+const objetoServicioB =
+  await xml2js.parseStringPromise(
+    respuestaServicioB,
+    opcionesXml
+  );
+
+/*
+ * Elimina datos técnicos que pueden cambiar en cada ejecución.
+ * Ajusta esta lista según la estructura real de tu respuesta.
+ */
+function eliminarCamposDinamicos(objeto) {
+  const copia = lodash.cloneDeep(objeto);
+
+  const camposDinamicos = [
+    'fechaHora',
+    'guid',
+    'unicidad',
+    'tiempoRespuesta',
+    'timestamp',
+    'traceId',
+    'correlationId',
+    'idTransaccion'
+  ];
+
+  function recorrer(valor) {
+    if (!valor || typeof valor !== 'object') {
+      return;
+    }
+
+    if (Array.isArray(valor)) {
+      valor.forEach(recorrer);
+      return;
+    }
+
+    for (const clave of Object.keys(valor)) {
+      const claveSinPrefijo = clave.includes(':')
+        ? clave.split(':').pop()
+        : clave;
+
+      if (camposDinamicos.includes(claveSinPrefijo)) {
+        delete valor[clave];
+      } else {
+        recorrer(valor[clave]);
+      }
+    }
+  }
+
+  recorrer(copia);
+  return copia;
+}
+
+const respuestaNormalizadaA =
+  eliminarCamposDinamicos(objetoServicioA);
+
+const respuestaNormalizadaB =
+  eliminarCamposDinamicos(objetoServicioB);
+
+insomnia.test(
+  'Las respuestas funcionales de ambos servicios son iguales',
+  () => {
+    insomnia.expect(
+      respuestaNormalizadaB
+    ).to.deep.eql(
+      respuestaNormalizadaA
+    );
+  }
+);
+
+if (!lodash.isEqual(
+  respuestaNormalizadaA,
+  respuestaNormalizadaB
+)) {
+  console.log('RESPUESTA SERVICIO A:');
+  console.log(
+    JSON.stringify(respuestaNormalizadaA, null, 2)
+  );
+
+  console.log('RESPUESTA SERVICIO B:');
+  console.log(
+    JSON.stringify(respuestaNormalizadaB, null, 2)
+  );
+} else {
+  console.log(
+    'Las respuestas de ambos servicios coinciden.'
+  );
+}
