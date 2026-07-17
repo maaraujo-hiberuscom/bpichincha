@@ -1,3 +1,215 @@
+Script del servicio legado
+
+En la petición:
+
+EP-006 - 01 Legado
+
+entra en:
+
+Scripts → After-response
+
+y pega:
+
+const respuesta = insomnia.response.text();
+
+insomnia.test('LEGADO - HTTP 200', () => {
+  insomnia.expect(insomnia.response.status).to.eql(200);
+});
+
+insomnia.test('LEGADO - Código esperado 2', () => {
+  insomnia.expect(respuesta).to.match(
+    /<codigo>\s*2\s*<\/codigo>/
+  );
+});
+
+insomnia.test('LEGADO - Tipo ERROR', () => {
+  insomnia.expect(respuesta).to.match(
+    /<tipo>\s*ERROR\s*<\/tipo>/
+  );
+});
+
+insomnia.test('LEGADO - Mensaje identificación inválida', () => {
+  insomnia.expect(respuesta).to.include(
+    'Valor del identificacion vacío o inválido'
+  );
+});
+
+/*
+ * Se guarda la respuesta para compararla posteriormente
+ * contra el servicio migrado.
+ */
+insomnia.environment.set(
+  'ep006_respuesta_legado',
+  respuesta
+);
+
+Primero ejecuta esta petición.
+
+Script del servicio migrado
+
+En:
+
+EP-006 - 02 Migrado
+
+coloca este After-response:
+
+const respuestaLegado =
+  insomnia.environment.get('ep006_respuesta_legado');
+
+const respuestaMigrado =
+  insomnia.response.text();
+
+function obtenerCampo(xml, nombreCampo) {
+  const expresion = new RegExp(
+    `<(?:\\w+:)?${nombreCampo}[^>]*>([\\s\\S]*?)<\\/(?:\\w+:)?${nombreCampo}>`,
+    'i'
+  );
+
+  const resultado = xml.match(expresion);
+
+  return resultado
+    ? resultado[1].trim()
+    : null;
+}
+
+const legado = {
+  codigo: obtenerCampo(respuestaLegado, 'codigo'),
+  mensaje: obtenerCampo(respuestaLegado, 'mensaje'),
+  tipo: obtenerCampo(respuestaLegado, 'tipo'),
+  backend: obtenerCampo(respuestaLegado, 'backend'),
+  recurso: obtenerCampo(respuestaLegado, 'recurso'),
+  componente: obtenerCampo(respuestaLegado, 'componente')
+};
+
+const migrado = {
+  codigo: obtenerCampo(respuestaMigrado, 'codigo'),
+  mensaje: obtenerCampo(respuestaMigrado, 'mensaje'),
+  tipo: obtenerCampo(respuestaMigrado, 'tipo'),
+  backend: obtenerCampo(respuestaMigrado, 'backend'),
+  recurso: obtenerCampo(respuestaMigrado, 'recurso'),
+  componente: obtenerCampo(respuestaMigrado, 'componente')
+};
+
+insomnia.test('MIGRADO - HTTP 200', () => {
+  insomnia.expect(insomnia.response.status).to.eql(200);
+});
+
+insomnia.test('MIGRADO - Código esperado 2', () => {
+  insomnia.expect(migrado.codigo).to.eql('2');
+});
+
+insomnia.test('MIGRADO - Tipo ERROR', () => {
+  insomnia.expect(migrado.tipo).to.eql('ERROR');
+});
+
+insomnia.test('HOMOLOGACIÓN - Código coincide', () => {
+  insomnia.expect(migrado.codigo).to.eql(legado.codigo);
+});
+
+insomnia.test('HOMOLOGACIÓN - Tipo coincide', () => {
+  insomnia.expect(migrado.tipo).to.eql(legado.tipo);
+});
+
+insomnia.test('HOMOLOGACIÓN - Backend coincide', () => {
+  insomnia.expect(migrado.backend).to.eql(legado.backend);
+});
+
+insomnia.test(
+  'HOMOLOGACIÓN - Mensaje coincide exactamente',
+  () => {
+    insomnia.expect(migrado.mensaje).to.eql(legado.mensaje);
+  }
+);
+
+console.log('RESULTADO LEGADO');
+console.log(JSON.stringify(legado, null, 2));
+
+console.log('RESULTADO MIGRADO');
+console.log(JSON.stringify(migrado, null, 2));
+
+if (migrado.mensaje !== legado.mensaje) {
+  console.log('DIFERENCIA EN MENSAJE:');
+  console.log(`Legado : ${legado.mensaje}`);
+  console.log(`Migrado: ${migrado.mensaje}`);
+}
+
+Con las respuestas de tus imágenes, esta prueba debe mostrar:
+
+✓ Código coincide
+✓ Tipo coincide
+✓ Backend coincide
+✗ Mensaje coincide exactamente
+
+Ese resultado es correcto porque identifica la diferencia real.
+
+Comparación con tolerancia al prefijo
+
+Solo debes usar esta opción si se acuerda formalmente que:
+
+TCSBRKR2_BP-
+
+es un prefijo técnico permitido.
+
+Agrega esta función:
+
+function normalizarMensaje(mensaje) {
+  if (!mensaje) {
+    return mensaje;
+  }
+
+  return mensaje
+    .replace(/^TCSBRKR2_BP-/i, '')
+    .trim();
+}
+
+Y cambia la prueba por:
+
+insomnia.test(
+  'HOMOLOGACIÓN - Mensaje funcional coincide',
+  () => {
+    insomnia.expect(
+      normalizarMensaje(migrado.mensaje)
+    ).to.eql(
+      normalizarMensaje(legado.mensaje)
+    );
+  }
+);
+
+Esto haría que los mensajes se consideren funcionalmente equivalentes:
+
+Legado:
+Valor del identificacion vacío o inválido
+
+Migrado normalizado:
+Valor del identificacion vacío o inválido
+
+Mi recomendación es mantener las dos pruebas:
+
+insomnia.test(
+  'Mensaje exacto coincide',
+  () => {
+    insomnia.expect(migrado.mensaje)
+      .to.eql(legado.mensaje);
+  }
+);
+
+insomnia.test(
+  'Mensaje funcional coincide sin prefijo técnico',
+  () => {
+    insomnia.expect(
+      normalizarMensaje(migrado.mensaje)
+    ).to.eql(
+      normalizarMensaje(legado.mensaje)
+    );
+  }
+);
+
+Así puedes reportar:
+
+Compatibilidad exacta: FALLA
+Compatibilidad funcional: PASA
+
+------------------------------------------------------------------------------------------------------------------
 const respuestaServicioA = insomnia.response.text();
 
 insomnia.test('Servicio A responde HTTP 200', () => {
