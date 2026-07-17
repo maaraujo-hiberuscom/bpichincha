@@ -1,1 +1,24 @@
+const respuestaServicioA = insomnia.response.text();
 
+insomnia.test('Servicio A responde HTTP 200', () => {
+  insomnia.expect(insomnia.response.status).to.eql(200);
+});
+
+insomnia.test('Servicio A devuelve contenido', () => {
+  insomnia.expect(respuestaServicioA).to.be.a('string');
+  insomnia.expect(respuestaServicioA.trim().length).to.be.greaterThan(0);
+});
+
+insomnia.test('Servicio A devuelve un Envelope SOAP', () => {
+  insomnia.expect(respuestaServicioA).to.match(
+    /<(?:\w+:)?Envelope[\s>]/
+  );
+});
+
+// Guardar la respuesta completa para utilizarla en el Servicio B.
+insomnia.environment.set(
+  'respuesta_servicio_a',
+  respuestaServicioA
+);
+
+console.log('Respuesta del Servicio A almacenada correctamente.');
