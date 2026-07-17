@@ -1,57 +1,10 @@
-Script del servicio legado
+ORQ0005/MIGRADO → Scripts → After-response. Ahí mismo debes colocar la función.
 
-En la petición:
+Para evitar confusión, reemplaza todo el contenido actual de ese After-response con el siguiente código.
 
-EP-006 - 01 Legado
-
-entra en:
-
-Scripts → After-response
-
-y pega:
-
-const respuesta = insomnia.response.text();
-
-insomnia.test('LEGADO - HTTP 200', () => {
-  insomnia.expect(insomnia.response.status).to.eql(200);
-});
-
-insomnia.test('LEGADO - Código esperado 2', () => {
-  insomnia.expect(respuesta).to.match(
-    /<codigo>\s*2\s*<\/codigo>/
-  );
-});
-
-insomnia.test('LEGADO - Tipo ERROR', () => {
-  insomnia.expect(respuesta).to.match(
-    /<tipo>\s*ERROR\s*<\/tipo>/
-  );
-});
-
-insomnia.test('LEGADO - Mensaje identificación inválida', () => {
-  insomnia.expect(respuesta).to.include(
-    'Valor del identificacion vacío o inválido'
-  );
-});
-
-/*
- * Se guarda la respuesta para compararla posteriormente
- * contra el servicio migrado.
- */
-insomnia.environment.set(
-  'ep006_respuesta_legado',
-  respuesta
-);
-
-Primero ejecuta esta petición.
-
-Script del servicio migrado
-
-En:
-
-EP-006 - 02 Migrado
-
-coloca este After-response:
+// =====================================================
+// 1. OBTENER LAS DOS RESPUESTAS
+// =====================================================
 
 const respuestaLegado =
   insomnia.environment.get('ep006_respuesta_legado');
@@ -59,9 +12,20 @@ const respuestaLegado =
 const respuestaMigrado =
   insomnia.response.text();
 
+
+// =====================================================
+// 2. FUNCIÓN PARA OBTENER CAMPOS DEL XML
+// =====================================================
+
 function obtenerCampo(xml, nombreCampo) {
+  if (!xml) {
+    return null;
+  }
+
   const expresion = new RegExp(
-    `<(?:\\w+:)?${nombreCampo}[^>]*>([\\s\\S]*?)<\\/(?:\\w+:)?${nombreCampo}>`,
+    `<(?:\\w+:)?${nombreCampo}[^>]*>` +
+    `([\\s\\S]*?)` +
+    `<\\/(?:\\w+:)?${nombreCampo}>`,
     'i'
   );
 
@@ -72,6 +36,26 @@ function obtenerCampo(xml, nombreCampo) {
     : null;
 }
 
+
+// =====================================================
+// 3. FUNCIÓN PARA QUITAR EL PREFIJO DEL MENSAJE
+// =====================================================
+
+function normalizarMensaje(mensaje) {
+  if (!mensaje) {
+    return mensaje;
+  }
+
+  return mensaje
+    .replace(/^TCSBRKR2_BP-/i, '')
+    .trim();
+}
+
+
+// =====================================================
+// 4. OBTENER LOS CAMPOS DEL SERVICIO LEGADO
+// =====================================================
+
 const legado = {
   codigo: obtenerCampo(respuestaLegado, 'codigo'),
   mensaje: obtenerCampo(respuestaLegado, 'mensaje'),
@@ -80,6 +64,11 @@ const legado = {
   recurso: obtenerCampo(respuestaLegado, 'recurso'),
   componente: obtenerCampo(respuestaLegado, 'componente')
 };
+
+
+// =====================================================
+// 5. OBTENER LOS CAMPOS DEL SERVICIO MIGRADO
+// =====================================================
 
 const migrado = {
   codigo: obtenerCampo(respuestaMigrado, 'codigo'),
@@ -90,16 +79,18 @@ const migrado = {
   componente: obtenerCampo(respuestaMigrado, 'componente')
 };
 
+
+// =====================================================
+// 6. VALIDACIONES DEL SERVICIO MIGRADO
+// =====================================================
+
 insomnia.test('MIGRADO - HTTP 200', () => {
   insomnia.expect(insomnia.response.status).to.eql(200);
 });
 
-insomnia.test('MIGRADO - Código esperado 2', () => {
-  insomnia.expect(migrado.codigo).to.eql('2');
-});
-
-insomnia.test('MIGRADO - Tipo ERROR', () => {
-  insomnia.expect(migrado.tipo).to.eql('ERROR');
+insomnia.test('Existe respuesta guardada del legado', () => {
+  insomnia.expect(respuestaLegado).to.be.a('string');
+  insomnia.expect(respuestaLegado.length).to.be.greaterThan(0);
 });
 
 insomnia.test('HOMOLOGACIÓN - Código coincide', () => {
@@ -114,55 +105,28 @@ insomnia.test('HOMOLOGACIÓN - Backend coincide', () => {
   insomnia.expect(migrado.backend).to.eql(legado.backend);
 });
 
+
+// =====================================================
+// 7. COMPARACIÓN EXACTA DEL MENSAJE
+// Esta prueba fallará cuando exista el prefijo TCSBRKR2_BP-
+// =====================================================
+
 insomnia.test(
-  'HOMOLOGACIÓN - Mensaje coincide exactamente',
+  'HOMOLOGACIÓN - Mensaje exacto coincide',
   () => {
-    insomnia.expect(migrado.mensaje).to.eql(legado.mensaje);
+    insomnia.expect(
+      migrado.mensaje
+    ).to.eql(
+      legado.mensaje
+    );
   }
 );
 
-console.log('RESULTADO LEGADO');
-console.log(JSON.stringify(legado, null, 2));
 
-console.log('RESULTADO MIGRADO');
-console.log(JSON.stringify(migrado, null, 2));
-
-if (migrado.mensaje !== legado.mensaje) {
-  console.log('DIFERENCIA EN MENSAJE:');
-  console.log(`Legado : ${legado.mensaje}`);
-  console.log(`Migrado: ${migrado.mensaje}`);
-}
-
-Con las respuestas de tus imágenes, esta prueba debe mostrar:
-
-✓ Código coincide
-✓ Tipo coincide
-✓ Backend coincide
-✗ Mensaje coincide exactamente
-
-Ese resultado es correcto porque identifica la diferencia real.
-
-Comparación con tolerancia al prefijo
-
-Solo debes usar esta opción si se acuerda formalmente que:
-
-TCSBRKR2_BP-
-
-es un prefijo técnico permitido.
-
-Agrega esta función:
-
-function normalizarMensaje(mensaje) {
-  if (!mensaje) {
-    return mensaje;
-  }
-
-  return mensaje
-    .replace(/^TCSBRKR2_BP-/i, '')
-    .trim();
-}
-
-Y cambia la prueba por:
+// =====================================================
+// 8. COMPARACIÓN FUNCIONAL DEL MENSAJE
+// Esta prueba elimina el prefijo TCSBRKR2_BP-
+// =====================================================
 
 insomnia.test(
   'HOMOLOGACIÓN - Mensaje funcional coincide',
@@ -175,186 +139,35 @@ insomnia.test(
   }
 );
 
-Esto haría que los mensajes se consideren funcionalmente equivalentes:
 
-Legado:
-Valor del identificacion vacío o inválido
+// =====================================================
+// 9. MOSTRAR RESULTADOS EN LA CONSOLA
+// =====================================================
 
-Migrado normalizado:
-Valor del identificacion vacío o inválido
+console.log('RESPUESTA LEGADO:');
+console.log(JSON.stringify(legado, null, 2));
 
-Mi recomendación es mantener las dos pruebas:
+console.log('RESPUESTA MIGRADO:');
+console.log(JSON.stringify(migrado, null, 2));
 
-insomnia.test(
-  'Mensaje exacto coincide',
-  () => {
-    insomnia.expect(migrado.mensaje)
-      .to.eql(legado.mensaje);
-  }
-);
+console.log('MENSAJE LEGADO NORMALIZADO:');
+console.log(normalizarMensaje(legado.mensaje));
 
-insomnia.test(
-  'Mensaje funcional coincide sin prefijo técnico',
-  () => {
-    insomnia.expect(
-      normalizarMensaje(migrado.mensaje)
-    ).to.eql(
-      normalizarMensaje(legado.mensaje)
-    );
-  }
-);
+console.log('MENSAJE MIGRADO NORMALIZADO:');
+console.log(normalizarMensaje(migrado.mensaje));
+-----------------SEGUNDP----------------------------------------------------------------
+Antes debes ejecutar el legado
 
-Así puedes reportar:
+En orq005/Legado → Scripts → After-response debes tener al menos esto:
 
-Compatibilidad exacta: FALLA
-Compatibilidad funcional: PASA
+const respuestaLegado = insomnia.response.text();
 
-------------------------------------------------------------------------------------------------------------------
-const respuestaServicioA = insomnia.response.text();
-
-insomnia.test('Servicio A responde HTTP 200', () => {
-  insomnia.expect(insomnia.response.status).to.eql(200);
-});
-
-insomnia.test('Servicio A devuelve contenido', () => {
-  insomnia.expect(respuestaServicioA).to.be.a('string');
-  insomnia.expect(respuestaServicioA.trim().length).to.be.greaterThan(0);
-});
-
-insomnia.test('Servicio A devuelve un Envelope SOAP', () => {
-  insomnia.expect(respuestaServicioA).to.match(
-    /<(?:\w+:)?Envelope[\s>]/
-  );
-});
-
-// Guardar la respuesta completa para utilizarla en el Servicio B.
 insomnia.environment.set(
-  'respuesta_servicio_a',
-  respuestaServicioA
+  'ep006_respuesta_legado',
+  respuestaLegado
 );
 
-console.log('Respuesta del Servicio A almacenada correctamente.');
-
--------------------------------------------------------
-const xml2js = require('xml2js');
-const lodash = require('lodash');
-
-const respuestaServicioA =
-  insomnia.environment.get('respuesta_servicio_a');
-
-const respuestaServicioB =
-  insomnia.response.text();
-
-insomnia.test('Servicio B responde HTTP 200', () => {
+insomnia.test('LEGADO - HTTP 200', () => {
   insomnia.expect(insomnia.response.status).to.eql(200);
 });
 
-insomnia.test('Existe una respuesta previa del Servicio A', () => {
-  insomnia.expect(respuestaServicioA).to.be.a('string');
-  insomnia.expect(respuestaServicioA.trim().length).to.be.greaterThan(0);
-});
-
-insomnia.test('Servicio B devuelve contenido', () => {
-  insomnia.expect(respuestaServicioB).to.be.a('string');
-  insomnia.expect(respuestaServicioB.trim().length).to.be.greaterThan(0);
-});
-
-const opcionesXml = {
-  explicitArray: false,
-  ignoreAttrs: false,
-  trim: true,
-  normalize: true
-};
-
-const objetoServicioA =
-  await xml2js.parseStringPromise(
-    respuestaServicioA,
-    opcionesXml
-  );
-
-const objetoServicioB =
-  await xml2js.parseStringPromise(
-    respuestaServicioB,
-    opcionesXml
-  );
-
-/*
- * Elimina datos técnicos que pueden cambiar en cada ejecución.
- * Ajusta esta lista según la estructura real de tu respuesta.
- */
-function eliminarCamposDinamicos(objeto) {
-  const copia = lodash.cloneDeep(objeto);
-
-  const camposDinamicos = [
-    'fechaHora',
-    'guid',
-    'unicidad',
-    'tiempoRespuesta',
-    'timestamp',
-    'traceId',
-    'correlationId',
-    'idTransaccion'
-  ];
-
-  function recorrer(valor) {
-    if (!valor || typeof valor !== 'object') {
-      return;
-    }
-
-    if (Array.isArray(valor)) {
-      valor.forEach(recorrer);
-      return;
-    }
-
-    for (const clave of Object.keys(valor)) {
-      const claveSinPrefijo = clave.includes(':')
-        ? clave.split(':').pop()
-        : clave;
-
-      if (camposDinamicos.includes(claveSinPrefijo)) {
-        delete valor[clave];
-      } else {
-        recorrer(valor[clave]);
-      }
-    }
-  }
-
-  recorrer(copia);
-  return copia;
-}
-
-const respuestaNormalizadaA =
-  eliminarCamposDinamicos(objetoServicioA);
-
-const respuestaNormalizadaB =
-  eliminarCamposDinamicos(objetoServicioB);
-
-insomnia.test(
-  'Las respuestas funcionales de ambos servicios son iguales',
-  () => {
-    insomnia.expect(
-      respuestaNormalizadaB
-    ).to.deep.eql(
-      respuestaNormalizadaA
-    );
-  }
-);
-
-if (!lodash.isEqual(
-  respuestaNormalizadaA,
-  respuestaNormalizadaB
-)) {
-  console.log('RESPUESTA SERVICIO A:');
-  console.log(
-    JSON.stringify(respuestaNormalizadaA, null, 2)
-  );
-
-  console.log('RESPUESTA SERVICIO B:');
-  console.log(
-    JSON.stringify(respuestaNormalizadaB, null, 2)
-  );
-} else {
-  console.log(
-    'Las respuestas de ambos servicios coinciden.'
-  );
-}
