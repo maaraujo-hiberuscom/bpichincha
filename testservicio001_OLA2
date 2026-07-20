@@ -1,0 +1,190 @@
+LEGADO -
+const respuesta = insomnia.response.text();
+
+function obtenerCampo(xml, nombre) {
+
+    const exp = new RegExp(
+        `<${nombre}>([\\s\\S]*?)<\\/${nombre}>`,
+        "i"
+    );
+
+    const r = xml.match(exp);
+
+    return r ? r[1].trim() : "";
+}
+
+const error = {
+
+    codigo: obtenerCampo(respuesta,"codigo"),
+    mensaje: obtenerCampo(respuesta,"mensaje"),
+    mensajeNegocio: obtenerCampo(respuesta,"mensajeNegocio"),
+    tipo: obtenerCampo(respuesta,"tipo"),
+    recurso: obtenerCampo(respuesta,"recurso"),
+    componente: obtenerCampo(respuesta,"componente"),
+    backend: obtenerCampo(respuesta,"backend")
+
+};
+
+insomnia.environment.set(
+    "errorLegado",
+    JSON.stringify(error)
+);
+
+insomnia.test("Legado responde HTTP 200",()=>{
+    insomnia.expect(insomnia.response.status).to.eql(200);
+});
+
+----------------------------------------------------------------------------------
+AFTER MIGRADO
+
+
+const respuesta = insomnia.response.text();
+
+function obtenerCampo(xml,nombre){
+
+    const exp=new RegExp(
+        `<${nombre}>([\\s\\S]*?)<\\/${nombre}>`,
+        "i"
+    );
+
+    const r=respuesta.match(exp);
+
+    return r ? r[1].trim() : "";
+
+}
+
+const migrado={
+
+    codigo:obtenerCampo(respuesta,"codigo"),
+    mensaje:obtenerCampo(respuesta,"mensaje"),
+    mensajeNegocio:obtenerCampo(respuesta,"mensajeNegocio"),
+    tipo:obtenerCampo(respuesta,"tipo"),
+    recurso:obtenerCampo(respuesta,"recurso"),
+    componente:obtenerCampo(respuesta,"componente"),
+    backend:obtenerCampo(respuesta,"backend")
+
+};
+
+const legado=JSON.parse(
+    insomnia.environment.get("errorLegado")
+);
+
+insomnia.test("Código igual",()=>{
+
+    insomnia.expect(migrado.codigo)
+        .to.eql(legado.codigo);
+
+});
+
+insomnia.test("Mensaje igual",()=>{
+
+    insomnia.expect(migrado.mensaje)
+        .to.eql(legado.mensaje);
+
+});
+
+insomnia.test("Mensaje negocio igual",()=>{
+
+    insomnia.expect(migrado.mensajeNegocio)
+        .to.eql(legado.mensajeNegocio);
+
+});
+
+insomnia.test("Tipo igual",()=>{
+
+    insomnia.expect(migrado.tipo)
+        .to.eql(legado.tipo);
+
+});
+
+insomnia.test("Backend igual",()=>{
+
+    insomnia.expect(migrado.backend)
+        .to.eql(legado.backend);
+
+});
+
+insomnia.test("Recurso igual",()=>{
+
+    insomnia.expect(migrado.recurso)
+        .to.eql(legado.recurso);
+
+});
+
+insomnia.test("Componente igual",()=>{
+
+    insomnia.expect(migrado.componente)
+        .to.eql(legado.componente);
+
+});
+
+console.log("LEGADO");
+console.log(legado);
+
+console.log("MIGRADO");
+console.log(migrado);
+-------------------------------------
+
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <ns3:ConsultarDetallePrestamos01Response xmlns:ns3="http://bpichincha.com/servicios">
+         <headerOut>
+            <dispositivo>01010101010101010101010101010101</dispositivo>
+            <empresa>0010</empresa>
+            <canal>03</canal>
+            <medio>030006</medio>
+            <aplicacion>00663</aplicacion>
+            <agencia/>
+            <tipoTransaccion>201002401</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>MONITOREO-FBUS-0001</guid>
+            <fechaHora>202212291545150503</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>ASDASD77R01YH</sesion>
+            <ip>10.192.168.45</ip>
+            <idCliente/>
+            <tipoIdCliente>0001</tipoIdCliente>
+         </headerOut>
+         <bodyOut>
+            <credito>
+               <producto>2</producto>
+               <subProducto>0208</subProducto>
+               <tipoProducto>HABITAR GAF</tipoProducto>
+               <plazo>5479</plazo>
+               <fechaDesembolso>27052025</fechaDesembolso>
+               <deudaActual>71522.52</deudaActual>
+               <diasMora>55</diasMora>
+               <interesMora>11.0</interesMora>
+               <numeroDividendos>180</numeroDividendos>
+               <nombreCliente>DELGADO MORANTE  JOSE LUIS</nombreCliente>
+               <identificacion>1309723359</identificacion>
+               <tipoIdentificacion>Cedula</tipoIdentificacion>
+               <numeroOperacion>41730298</numeroOperacion>
+               <numeroOriginalOperacion>0418270700</numeroOriginalOperacion>
+               <moneda>USD</moneda>
+               <cuotaPagar>851.71</cuotaPagar>
+               <fechaPago>27112025</fechaPago>
+               <monto>70000.0</monto>
+               <cuentaDebito>
+                  <numeroCuenta>0</numeroCuenta>
+                  <numeroCuentaMask>X</numeroCuentaMask>
+                  <tipoProducto>No Disponible</tipoProducto>
+               </cuentaDebito>
+            </credito>
+         </bodyOut>
+         <error>
+            <codigo>0</codigo>
+            <mensaje>OK</mensaje>
+            <mensajeNegocio/>
+            <tipo>INFO</tipo>
+            <recurso>tpr-msa-sp-wsproductos0001/consultarDetallePrestamos</recurso>
+            <componente>tpr-msa-sp-wsproductos0001</componente>
+            <backend>00633</backend>
+         </error>
+      </ns3:ConsultarDetallePrestamos01Response>
+   </soapenv:Body>
+</soapenv:Envelope>
