@@ -1,3 +1,5 @@
+text/xml; charset=UTF-8
+
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
    <soapenv:Header/>
    <soapenv:Body>
