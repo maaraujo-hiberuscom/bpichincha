@@ -1,3 +1,43 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://bpichincha.com/servicios">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:ConsultarDetallePrestamos01>
+         <!--Optional:-->
+         <headerIn>
+            <dispositivo>01010101010101010101010101010101</dispositivo>
+            <empresa>0010</empresa>
+            <canal>03</canal>
+            <medio>030006</medio>
+            <aplicacion>00663</aplicacion>
+            <agencia/>
+            <tipoTransaccion>201002401</tipoTransaccion>
+            <geolocalizacion/>
+            <usuario>USINTERT</usuario>
+            <unicidad/>
+            <guid>MONITOREO-FBUS-0001</guid>
+            <fechaHora>202212291545150503</fechaHora>
+            <filler/>
+            <idioma>es-EC</idioma>
+            <sesion>ASDASD77R01YH</sesion>
+            <ip>10.192.168.45</ip>
+            <idCliente/>
+            <tipoIdCliente>0001</tipoIdCliente>
+
+         </headerIn>
+         <!--Optional:-->
+         <bodyIn>
+            <!--Optional:-->
+            <identificacion>1309723359</identificacion>
+            <!--Optional:-->
+            <tipoIdentificacion>00041</tipoIdentificacion>
+            <!--Optional:-->
+            <numeroOperacion>41730298</numeroOperacion>
+         </bodyIn>
+      </ser:ConsultarDetallePrestamos01>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
 LEGADO -
 const respuesta = insomnia.response.text();
 
