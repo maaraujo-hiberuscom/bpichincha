@@ -1,0 +1,126 @@
+legado 
+const respuesta = insomnia.response.text();
+
+function obtenerCampo(xml, nombreCampo) {
+  if (!xml) return '';
+
+  const expresion = new RegExp(
+    `<(?:\\w+:)?${nombreCampo}[^>]*>([\\s\\S]*?)<\\/(?:\\w+:)?${nombreCampo}>`,
+    'i'
+  );
+
+  const resultado = xml.match(expresion);
+  return resultado ? resultado[1].trim() : '';
+}
+
+const errorLegado = {
+  codigo: obtenerCampo(respuesta, 'codigo'),
+  mensaje: obtenerCampo(respuesta, 'mensaje'),
+  mensajeNegocio: obtenerCampo(respuesta, 'mensajeNegocio'),
+  tipo: obtenerCampo(respuesta, 'tipo'),
+  recurso: obtenerCampo(respuesta, 'recurso'),
+  componente: obtenerCampo(respuesta, 'componente'),
+  backend: obtenerCampo(respuesta, 'backend')
+};
+
+insomnia.environment.set(
+  'wsproductos0248_error_legado',
+  JSON.stringify(errorLegado)
+);
+
+insomnia.environment.set(
+  'wsproductos0248_respuesta_legado',
+  respuesta
+);
+
+insomnia.test('LEGADO - HTTP exitoso', () => {
+  insomnia.expect(insomnia.response.status).to.be.oneOf([200, 400, 500]);
+});
+
+console.log('Error legado:', errorLegado);
+
+------------------------------------
+MIGRADO
+
+const respuestaMigrado = insomnia.response.text();
+
+function obtenerCampo(xml, nombreCampo) {
+  if (!xml) return '';
+
+  const expresion = new RegExp(
+    `<(?:\\w+:)?${nombreCampo}[^>]*>([\\s\\S]*?)<\\/(?:\\w+:)?${nombreCampo}>`,
+    'i'
+  );
+
+  const resultado = xml.match(expresion);
+  return resultado ? resultado[1].trim() : '';
+}
+
+function normalizarMensaje(mensaje) {
+  if (!mensaje) return '';
+
+  return mensaje
+    .replace(/^TCSBRKR2_BP-/i, '')
+    .trim();
+}
+
+const valorGuardado = insomnia.environment.get(
+  'wsproductos0248_error_legado'
+);
+
+insomnia.test('Existe respuesta previa del legado', () => {
+  insomnia.expect(valorGuardado).to.be.a('string');
+  insomnia.expect(valorGuardado.length).to.be.greaterThan(0);
+});
+
+const legado = JSON.parse(valorGuardado);
+
+const migrado = {
+  codigo: obtenerCampo(respuestaMigrado, 'codigo'),
+  mensaje: obtenerCampo(respuestaMigrado, 'mensaje'),
+  mensajeNegocio: obtenerCampo(respuestaMigrado, 'mensajeNegocio'),
+  tipo: obtenerCampo(respuestaMigrado, 'tipo'),
+  recurso: obtenerCampo(respuestaMigrado, 'recurso'),
+  componente: obtenerCampo(respuestaMigrado, 'componente'),
+  backend: obtenerCampo(respuestaMigrado, 'backend')
+};
+
+insomnia.test('Código coincide', () => {
+  insomnia.expect(migrado.codigo).to.eql(legado.codigo);
+});
+
+insomnia.test('Mensaje exacto coincide', () => {
+  insomnia.expect(migrado.mensaje).to.eql(legado.mensaje);
+});
+
+insomnia.test('Mensaje funcional coincide', () => {
+  insomnia.expect(
+    normalizarMensaje(migrado.mensaje)
+  ).to.eql(
+    normalizarMensaje(legado.mensaje)
+  );
+});
+
+insomnia.test('Mensaje de negocio coincide', () => {
+  insomnia.expect(migrado.mensajeNegocio)
+    .to.eql(legado.mensajeNegocio);
+});
+
+insomnia.test('Tipo coincide', () => {
+  insomnia.expect(migrado.tipo).to.eql(legado.tipo);
+});
+
+insomnia.test('Backend coincide', () => {
+  insomnia.expect(migrado.backend).to.eql(legado.backend);
+});
+
+insomnia.test('Recurso coincide', () => {
+  insomnia.expect(migrado.recurso).to.eql(legado.recurso);
+});
+
+insomnia.test('Componente coincide', () => {
+  insomnia.expect(migrado.componente).to.eql(legado.componente);
+});
+
+console.log('LEGADO:', legado);
+console.log('MIGRADO:', migrado);
