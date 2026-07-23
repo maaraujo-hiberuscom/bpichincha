@@ -1,3 +1,72 @@
+MIGRADO
+const legado =
+  insomnia.environment.get('CP002_RESPUESTA_LEGADO');
+
+const migrado =
+  insomnia.response.text();
+
+function obtenerCampo(xml, campo) {
+  if (!xml) return '';
+
+  const expresion = new RegExp(
+    `<(?:\\w+:)?${campo}[^>]*>([\\s\\S]*?)<\\/(?:\\w+:)?${campo}>`,
+    'i'
+  );
+
+  const resultado = xml.match(expresion);
+  return resultado ? resultado[1].trim() : '';
+}
+
+insomnia.test('CP-002 - Código esperado 0001', () => {
+  insomnia.expect(
+    obtenerCampo(migrado, 'codigo')
+  ).to.eql('0001');
+});
+
+insomnia.test('CP-002 - Mensaje esperado', () => {
+  insomnia.expect(
+    obtenerCampo(migrado, 'mensaje')
+  ).to.eql(
+    'Valor del campo cuenta vacío o inválido'
+  );
+});
+
+insomnia.test('CP-002 - Tipo ERROR', () => {
+  insomnia.expect(
+    obtenerCampo(migrado, 'tipo')
+  ).to.eql('ERROR');
+});
+
+insomnia.test('CP-002 - Código coincide con legado', () => {
+  insomnia.expect(
+    obtenerCampo(migrado, 'codigo')
+  ).to.eql(
+    obtenerCampo(legado, 'codigo')
+  );
+});
+
+insomnia.test('CP-002 - Mensaje coincide con legado', () => {
+  insomnia.expect(
+    obtenerCampo(migrado, 'mensaje')
+  ).to.eql(
+    obtenerCampo(legado, 'mensaje')
+  );
+});
+
+-----------------
+LEGADO
+const respuesta = insomnia.response.text();
+
+insomnia.environment.set(
+  'CP002_RESPUESTA_LEGADO',
+  respuesta
+);
+
+insomnia.test('CP-002 LEGADO - HTTP válido', () => {
+  insomnia.expect(insomnia.response.status)
+    .to.be.oneOf([200, 400, 500]);
+});
+--------------------------
 legado 
 const respuesta = insomnia.response.text();
 
