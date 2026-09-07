@@ -1,0 +1,41 @@
+[
+  {
+    "caseId": "EP-002",
+    "descripcion": "Actualización exitosa de ingresos",
+    "cif": "REEMPLAZAR_CON_CIF_VALIDO",
+    "idCliente": "1765274576001",
+    "tipoIdCliente": "0003",
+    "ingresosFijos": "2000",
+    "expectedCode": "0",
+    "expectedMessage": "OK",
+    "expectedType": "INFO",
+    "expectedBackend": "00638",
+    "expectEconomicData": "false"
+  },
+  {
+    "caseId": "EP-003",
+    "descripcion": "CIF vacío",
+    "cif": "",
+    "idCliente": "1765274576001",
+    "tipoIdCliente": "0003",
+    "ingresosFijos": "2000",
+    "expectedCode": "1",
+    "expectedMessage": "Valor del campo cif vacío o inválido",
+    "expectedType": "ERROR",
+    "expectedBackend": "00638",
+    "expectEconomicData": "false"
+  },
+  {
+    "caseId": "EP-004",
+    "descripcion": "CIF alfanumérico",
+    "cif": "ABC",
+    "idCliente": "1765274576001",
+    "tipoIdCliente": "0003",
+    "ingresosFijos": "2000",
+    "expectedCode": "1",
+    "expectedMessage": "Valor del campo cif vacío o inválido",
+    "expectedType": "ERROR",
+    "expectedBackend": "00638",
+    "expectEconomicData": "false"
+  }
+]
