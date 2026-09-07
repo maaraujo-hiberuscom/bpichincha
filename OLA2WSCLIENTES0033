@@ -1,89 +1,21 @@
-Paso 2: coloca la variable en el XML
+Pega este script en cada solicitud
 
-Busca dentro del request el campo que corresponde al CIF.
+En Insomnia:
 
-Si existe:
-
-<cif>1765274576001</cif>
-
-Cámbialo por:
-
-<cif>{{cif}}</cif>
-
-Si el servicio no tiene <cif> y utiliza idCliente, entonces cambia:
-
-<idCliente>1765274576001</idCliente>
-
-por:
-
-<idCliente>{{cif}}</idCliente>
-
-No cambies los dos campos al mismo tiempo. Primero identifica cuál utiliza la operación.
-
-Para el valor de ingresos, cambia:
-
-<fijos>2000</fijos>
-
-por:
-
-<fijos>{{ingresosFijos}}</fijos>
-Paso 3: verifica el archivo JSON
-
-Tu archivo debe tener una estructura similar a esta:
-
-[
-  {
-    "caseId": "EP-002",
-    "cif": "1765274576001",
-    "ingresosFijos": "2000",
-    "expectedCode": "0",
-    "expectedMessage": "OK",
-    "expectedType": "INFO"
-  },
-  {
-    "caseId": "EP-003",
-    "cif": "",
-    "ingresosFijos": "2000",
-    "expectedCode": "1",
-    "expectedMessage": "Valor del campo cif vacío o inválido",
-    "expectedType": "ERROR"
-  },
-  {
-    "caseId": "EP-004",
-    "cif": "ABC",
-    "ingresosFijos": "2000",
-    "expectedCode": "1",
-    "expectedMessage": "Valor del campo cif vacío o inválido",
-    "expectedType": "ERROR"
-  }
-]
-
-Asegúrate de que:
-
-Comience con [.
-Termine con ].
-Cada caso esté separado por coma.
-No tenga comentarios.
-El CIF del EP-002 sea un dato válido de pruebas.
-Paso 4: elimina temporalmente el script anterior
-
-En la solicitud Migrada:
-
-Abre Scripts.
+Abre la solicitud.
+Selecciona Scripts.
 Selecciona After-response.
-Borra el script anterior que validaba siempre código 0 y mensaje OK.
-Pega solamente el siguiente script.
+Borra el script anterior.
+Pega el siguiente:
+const config = {
+  caseId: 'EP-003',
+  expectedCode: '1',
+  expectedMessage: 'Valor del campo cif vacío o inválido',
+  expectedType: 'ERROR',
+  expectedBackend: '00638'
+};
+
 const body = insomnia.response.text();
-
-function getData(name) {
-  const value = insomnia.iterationData.get(name);
-
-  if (value === undefined || value === null) {
-    return '';
-  }
-
-  return String(value);
-}
 
 function getTagValue(tagName) {
   const regex = new RegExp(
@@ -107,351 +39,106 @@ function normalizeMessage(value) {
     .toLowerCase();
 }
 
-const caseId = getData('caseId');
-const expectedCode = getData('expectedCode');
-const expectedMessage = getData('expectedMessage');
-const expectedType = getData('expectedType');
-
-const codigo = getTagValue('codigo');
-const mensaje = getTagValue('mensaje');
-const tipo = getTagValue('tipo');
-const backend = getTagValue('backend');
-
-const httpStatus =
-  insomnia.response.code ??
-  insomnia.response.status;
-
-insomnia.test(`${caseId} - HTTP exitoso`, () => {
-  insomnia.expect(
-    httpStatus === 200 ||
-    httpStatus === '200' ||
-    httpStatus === 'OK'
-  ).to.eql(true);
-});
-
-insomnia.test(`${caseId} - Es respuesta SOAP`, () => {
-  insomnia.expect(body).to.match(
-    /<(?:[\w.-]+:)?Envelope(?:\s|>)/i
-  );
-});
-
-insomnia.test(`${caseId} - Sin SOAP Fault`, () => {
-  insomnia.expect(body).not.to.match(
-    /<(?:[\w.-]+:)?Fault(?:\s|>)/i
-  );
-});
-
-insomnia.test(
-  `${caseId} - Código esperado ${expectedCode}`,
-  () => {
-    insomnia.expect(codigo).to.eql(expectedCode);
-  }
-);
-
-insomnia.test(
-  `${caseId} - Mensaje esperado`,
-  () => {
-    insomnia.expect(
-      normalizeMessage(mensaje)
-    ).to.eql(
-      normalizeMessage(expectedMessage)
-    );
-  }
-);
-
-insomnia.test(
-  `${caseId} - Tipo esperado ${expectedType}`,
-  () => {
-    insomnia.expect(tipo).to.eql(expectedType);
-  }
-);
-
-insomnia.test(`${caseId} - Backend informado`, () => {
-  insomnia.expect(backend).to.eql('00638');
-});
-Paso 5: no presiones el botón “Send”
-
-Este punto es importante: al utilizar iterationData, no debes ejecutar esta prueba directamente con Send.
-
-Debes hacerlo desde el Collection Runner, porque allí es donde Insomnia lee cada fila del archivo JSON.
-
-Paso 6: abre el Collection Runner
-
-Dependiendo de tu versión de Insomnia:
-
-Busca la carpeta o colección en el panel izquierdo.
-Haz clic derecho sobre ella.
-Selecciona Run Collection.
-
-También puede aparecer como:
-
-Collection Runner
-
-Selecciona únicamente:
-
-AUTOMATICO-MIGRADO-ActualizarDatosEconomicos
-Paso 7: carga el archivo
-
-Dentro del Runner:
-
-Busca Upload Data.
-Selecciona el archivo JSON que creaste.
-Verifica que Insomnia reconozca tres iteraciones.
-Presiona Run.
-
-Debe ejecutar automáticamente:
-
-Iteración	Caso	CIF enviado	Resultado esperado
-1	EP-002	CIF válido	Código 0
-2	EP-003	Vacío	Código 1
-3	EP-004	ABC	Código 1
-Paso 8: interpreta los resultados
-
-Si funciona correctamente, verás algo parecido a esto:
-
-EP-002 - HTTP exitoso               PASS
-EP-002 - Código esperado 0          PASS
-EP-002 - Mensaje esperado           PASS
-
-EP-003 - HTTP exitoso               PASS
-EP-003 - Código esperado 1          PASS
-EP-003 - Mensaje esperado           PASS
-
-EP-004 - HTTP exitoso               PASS
-EP-004 - Código esperado 1          PASS
-EP-004 - Mensaje esperado           PASS
-
-Si EP-003 responde código 1, no es un error de automatización: es el resultado correcto del caso negativo.
-
-Paso 9: automatiza el Legado
-
-Cuando el Migrado funcione:
-
-Duplica la solicitud automática.
-Nómbrala:
-AUTOMATICO-LEGADO-ActualizarDatosEconomicos
-Cambia únicamente la URL por la del Legado.
-Mantén exactamente el mismo XML.
-Mantén el mismo script.
-Ejecuta nuevamente el Runner con el mismo JSON.
-
-Después podrás comparar el resumen:
-
-Caso	Legado	Migrado	Decisión
-EP-002	PASS	PASS	Cumple
-EP-003	PASS	PASS	Cumple
-EP-004	PASS	PASS	Cumple
-Un caso pasa solo en Legado	PASS	FAIL	Posible regresión
-Un caso pasa solo en Migrado	FAIL	PASS	Revisar legado o mejora autorizada
-Ambos fallan	FAIL	FAIL	Revisar CA, datos o request
-
-Primero ejecuta únicamente el Migrado siguiendo estos pasos. Si aparece un error, envíame una captura del Runner y el contenido de tu archivo JSON; con eso podremos identificar exactamente en qué paso está el problema.
-
-
-
-automatico
-const body = insomnia.response.text();
-
-function iterationValue(name, fallback = '') {
-  try {
-    const value = insomnia.iterationData.get(name);
-    return value === undefined || value === null
-      ? fallback
-      : String(value);
-  } catch (error) {
-    return fallback;
-  }
-}
-
-function getTagValue(tagName) {
-  const expression = new RegExp(
-    `<(?:(?:[\\w.-]+):)?${tagName}(?:\\s[^>]*)?>\\s*([^<]*)\\s*<\\/(?:(?:[\\w.-]+):)?${tagName}\\s*>`,
-    'i'
-  );
-
-  const result = body.match(expression);
-  return result ? result[1].trim() : '';
-}
-
-function normalizeMessage(value) {
-  return String(value || '')
-    .replace(/^(?:TCSBRKR\\d+_BP[-:]?)+/i, '')
-    .normalize('NFD')
-    .replace(/[\\u0300-\\u036f]/g, '')
-    .replace(/\\s+/g, ' ')
-    .trim()
-    .toLowerCase();
-}
-
-const caseId = iterationValue('caseId', 'MANUAL');
-const expectedCode = iterationValue('expectedCode');
-const expectedMessage = iterationValue('expectedMessage');
-const expectedType = iterationValue('expectedType');
-const expectedBackend = iterationValue('expectedBackend');
-const expectEconomicData =
-  iterationValue('expectEconomicData') === 'true';
-
 const codigo = getTagValue('codigo');
 const mensaje = getTagValue('mensaje');
 const tipo = getTagValue('tipo');
 const backend = getTagValue('backend');
 const recurso = getTagValue('recurso');
 
-const responseCode =
+const status =
   insomnia.response.code ??
   insomnia.response.status;
 
-insomnia.test(`${caseId} - HTTP 200`, () => {
+insomnia.test(`${config.caseId} - HTTP exitoso`, () => {
   insomnia.expect(
-    responseCode === 200 ||
-    responseCode === '200' ||
-    responseCode === 'OK'
+    status === 200 ||
+    status === '200' ||
+    status === 'OK'
   ).to.eql(true);
 });
 
-insomnia.test(`${caseId} - Respuesta SOAP`, () => {
+insomnia.test(`${config.caseId} - Respuesta SOAP`, () => {
   insomnia.expect(body).to.match(
     /<(?:[\w.-]+:)?Envelope(?:\s|>)/i
   );
 });
 
-insomnia.test(`${caseId} - Sin SOAP Fault`, () => {
+insomnia.test(`${config.caseId} - Sin SOAP Fault`, () => {
   insomnia.expect(body).not.to.match(
     /<(?:[\w.-]+:)?Fault(?:\s|>)/i
   );
 });
 
 insomnia.test(
-  `${caseId} - Código ${expectedCode}`,
+  `${config.caseId} - Código ${config.expectedCode}`,
   () => {
-    insomnia.expect(codigo).to.eql(expectedCode);
-  }
-);
-
-insomnia.test(
-  `${caseId} - Mensaje funcional`,
-  () => {
-    insomnia.expect(
-      normalizeMessage(mensaje)
-    ).to.eql(
-      normalizeMessage(expectedMessage)
+    insomnia.expect(codigo).to.eql(
+      config.expectedCode
     );
   }
 );
 
 insomnia.test(
-  `${caseId} - Tipo ${expectedType}`,
-  () => {
-    insomnia.expect(tipo).to.eql(expectedType);
-  }
-);
-
-insomnia.test(
-  `${caseId} - Backend ${expectedBackend}`,
-  () => {
-    insomnia.expect(backend).to.eql(expectedBackend);
-  }
-);
-
-if (expectEconomicData) {
-  insomnia.test(
-    `${caseId} - Datos económicos informados`,
-    () => {
-      insomnia.expect(body).to.match(
-        /<(?:[\w.-]+:)?detalleEconomicos(?:\s|>)/i
-      );
-    }
-  );
-}
-
-insomnia.test(
-  `${caseId} - Recurso no genérico`,
+  `${config.caseId} - Mensaje esperado`,
   () => {
     insomnia.expect(
-      recurso.toLowerCase()
-    ).not.to.eql('resource');
+      normalizeMessage(mensaje)
+    ).to.eql(
+      normalizeMessage(config.expectedMessage)
+    );
   }
 );
-
-
---------------------------------------------
-
-Comparar automáticamente Legado vs. Migrado
-
-Además de validar contra los CA, puedes guardar el resultado del Legado y compararlo con el Migrado.
-
-Agrega al final del script del Legado:
-
-const comparisonResult = {
-  codigo,
-  mensaje: normalizeMessage(mensaje),
-  tipo,
-  backend
-};
-
-insomnia.environment.set(
-  `legacy_${caseId}`,
-  JSON.stringify(comparisonResult)
-);
-
-Agrega al final del script del Migrado:
-
-const legacyStored =
-  insomnia.environment.get(`legacy_${caseId}`);
 
 insomnia.test(
-  `${caseId} - Existe resultado Legado`,
+  `${config.caseId} - Tipo ${config.expectedType}`,
   () => {
-    insomnia.expect(legacyStored).to.be.a('string');
-    insomnia.expect(legacyStored.length).to.be.greaterThan(0);
+    insomnia.expect(tipo).to.eql(
+      config.expectedType
+    );
   }
 );
 
-if (legacyStored) {
-  const legacyResult = JSON.parse(legacyStored);
+insomnia.test(
+  `${config.caseId} - Backend ${config.expectedBackend}`,
+  () => {
+    insomnia.expect(backend).to.eql(
+      config.expectedBackend
+    );
+  }
+);
 
-  insomnia.test(
-    `${caseId} - Código Migrado = Legado`,
-    () => {
-      insomnia.expect(codigo).to.eql(
-        legacyResult.codigo
-      );
-    }
-  );
+insomnia.test(
+  `${config.caseId} - Recurso informado`,
+  () => {
+    insomnia.expect(recurso).to.be.a('string');
+    insomnia.expect(recurso.length).to.be.greaterThan(0);
+  }
+);
+4. Cambia solamente la configuración de cada EP
 
-  insomnia.test(
-    `${caseId} - Mensaje Migrado = Legado`,
-    () => {
-      insomnia.expect(
-        normalizeMessage(mensaje)
-      ).to.eql(
-        legacyResult.mensaje
-      );
-    }
-  );
+El resto del script no se toca. Únicamente cambia el bloque superior.
 
-  insomnia.test(
-    `${caseId} - Tipo Migrado = Legado`,
-    () => {
-      insomnia.expect(tipo).to.eql(
-        legacyResult.tipo
-      );
-    }
-  );
-
-  insomnia.test(
-    `${caseId} - Backend Migrado = Legado`,
-    () => {
-      insomnia.expect(backend).to.eql(
-        legacyResult.backend
-      );
-    }
-  );
-}
-
-No compares el XML completo como texto. Eso generaría falsos errores por diferencias como:
-
-NS1 frente a ns2.
-<filler/> frente a <filler></filler>.
-Prefijo TCSBRKR1_BP-.
-Nombre técnico de recurso y componente.
+Configuración EP-002
+const config = {
+  caseId: 'EP-002',
+  expectedCode: '0',
+  expectedMessage: 'OK',
+  expectedType: 'INFO',
+  expectedBackend: '00638'
+};
+Configuración EP-003
+const config = {
+  caseId: 'EP-003',
+  expectedCode: '1',
+  expectedMessage: 'Valor del campo cif vacío o inválido',
+  expectedType: 'ERROR',
+  expectedBackend: '00638'
+};
+Configuración EP-004
+const config = {
+  caseId: 'EP-004',
+  expectedCode: '1',
+  expectedMessage: 'Valor del campo cif vacío o inválido',
+  expectedType: 'ERROR',
+  expectedBackend: '00638'
+};
