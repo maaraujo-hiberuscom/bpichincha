@@ -1,113 +1,206 @@
-migrado 
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:Envelope
-	xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/"
-	xmlns:ns3="http://bpichincha.com/servicios">
-	<ns2:Body>
-		<ns3:ActualizarDatosEconomicosCliente32Response>
-			<headerOut>
-				<dispositivo>0000000000000000000000000Unknown</dispositivo>
-				<empresa>0010</empresa>
-				<canal>01</canal>
-				<medio>010003</medio>
-				<aplicacion>00344</aplicacion>
-				<agencia>0010</agencia>
-				<tipoTransaccion>201003332</tipoTransaccion>
-				<geolocalizacion>45.9172999999999973397279973141849040985 -119.342500000000001136868377216160297394</geolocalizacion>
-				<usuario>USINTERT</usuario>
-				<unicidad>163AoWTzPr3hKCLpwZ6Pr6VOgDImgZKd9CAr4ZnP47R81JTujExUL5Eu0Gi7UBwvrECLBB</unicidad>
-				<guid>21cbdbd722b34ce09b811edb65eed5c1</guid>
-				<fechaHora>202608071214000613</fechaHora>
-				<filler></filler>
-				<idioma>es-EC</idioma>
-				<sesion>779052fd588eb3590cf195ef21985588</sesion>
-				<ip>155.226.129.251</ip>
-				<idCliente></idCliente>
-				<tipoIdCliente>0003</tipoIdCliente>
-				<bancs>
-					<teller>00070624</teller>
-					<terminal>1</terminal>
-					<institucion>0010</institucion>
-					<agencia>0012</agencia>
-					<estacion>1</estacion>
-					<aplicacion></aplicacion>
-					<canal></canal>
-				</bancs>
-				<documento>
-					<fechaContable></fechaContable>
-					<numeroDocumento></numeroDocumento>
-					<journals>
-						<journal>
-							<valor></valor>
-						</journal>
-					</journals>
-				</documento>
-			</headerOut>
-			<error>
-				<codigo>1</codigo>
-				<mensaje>Valor del campo cif vacío o inválido</mensaje>
-				<mensajeNegocio></mensajeNegocio>
-				<tipo>ERROR</tipo>
-				<recurso>resource</recurso>
-				<componente>tnd-msa-sp-wsclientes0033</componente>
-				<backend>00638</backend>
-			</error>
-		</ns3:ActualizarDatosEconomicosCliente32Response>
-	</ns2:Body>
-</ns2:Envelope>
-LEGADO
-<NS1:Envelope
-	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
-	<NS1:Body>
-		<NS2:ActualizarDatosEconomicosCliente32Response
-			xmlns:NS2="http://bpichincha.com/servicios">
-			<headerOut>
-				<dispositivo>0000000000000000000000000Unknown</dispositivo>
-				<empresa>0010</empresa>
-				<canal>01</canal>
-				<medio>010003</medio>
-				<aplicacion>00344</aplicacion>
-				<agencia>0010</agencia>
-				<tipoTransaccion>201003332</tipoTransaccion>
-				<geolocalizacion>45.9172999999999973397279973141849040985 -119.342500000000001136868377216160297394</geolocalizacion>
-				<usuario>USINTERT</usuario>
-				<unicidad>163AoWTzPr3hKCLpwZ6Pr6VOgDImgZKd9CAr4ZnP47R81JTujExUL5Eu0Gi7UBwvrECLBB</unicidad>
-				<guid>21cbdbd722b34ce09b811edb65eed5c1</guid>
-				<fechaHora>202608071214000613</fechaHora>
-				<filler></filler>
-				<idioma>es-EC</idioma>
-				<sesion>779052fd588eb3590cf195ef21985588</sesion>
-				<ip>155.226.129.251</ip>
-				<idCliente></idCliente>
-				<tipoIdCliente>0003</tipoIdCliente>
-				<bancs>
-					<teller>00070624</teller>
-					<terminal>1</terminal>
-					<institucion>0010</institucion>
-					<agencia>0012</agencia>
-					<estacion>1</estacion>
-					<aplicacion></aplicacion>
-					<canal></canal>
-				</bancs>
-				<documento>
-					<fechaContable></fechaContable>
-					<numeroDocumento></numeroDocumento>
-					<journals>
-						<journal>
-							<valor></valor>
-						</journal>
-					</journals>
-				</documento>
-			</headerOut>
-			<error>
-				<codigo>1</codigo>
-				<mensaje>TCSBRKR1_BP-Valor del campo cif vacío o inválido</mensaje>
-				<mensajeNegocio></mensajeNegocio>
-				<tipo>ERROR</tipo>
-				<recurso>WSClientes0033/ActualizarDatosEconomicosCliente32</recurso>
-				<componente>ActualizarDatosEconomicosCliente32</componente>
-				<backend>00638</backend>
-			</error>
-		</NS2:ActualizarDatosEconomicosCliente32Response>
-	</NS1:Body>
-</NS1:Envelope>
+automatico
+const body = insomnia.response.text();
+
+function iterationValue(name, fallback = '') {
+  try {
+    const value = insomnia.iterationData.get(name);
+    return value === undefined || value === null
+      ? fallback
+      : String(value);
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function getTagValue(tagName) {
+  const expression = new RegExp(
+    `<(?:(?:[\\w.-]+):)?${tagName}(?:\\s[^>]*)?>\\s*([^<]*)\\s*<\\/(?:(?:[\\w.-]+):)?${tagName}\\s*>`,
+    'i'
+  );
+
+  const result = body.match(expression);
+  return result ? result[1].trim() : '';
+}
+
+function normalizeMessage(value) {
+  return String(value || '')
+    .replace(/^(?:TCSBRKR\\d+_BP[-:]?)+/i, '')
+    .normalize('NFD')
+    .replace(/[\\u0300-\\u036f]/g, '')
+    .replace(/\\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+const caseId = iterationValue('caseId', 'MANUAL');
+const expectedCode = iterationValue('expectedCode');
+const expectedMessage = iterationValue('expectedMessage');
+const expectedType = iterationValue('expectedType');
+const expectedBackend = iterationValue('expectedBackend');
+const expectEconomicData =
+  iterationValue('expectEconomicData') === 'true';
+
+const codigo = getTagValue('codigo');
+const mensaje = getTagValue('mensaje');
+const tipo = getTagValue('tipo');
+const backend = getTagValue('backend');
+const recurso = getTagValue('recurso');
+
+const responseCode =
+  insomnia.response.code ??
+  insomnia.response.status;
+
+insomnia.test(`${caseId} - HTTP 200`, () => {
+  insomnia.expect(
+    responseCode === 200 ||
+    responseCode === '200' ||
+    responseCode === 'OK'
+  ).to.eql(true);
+});
+
+insomnia.test(`${caseId} - Respuesta SOAP`, () => {
+  insomnia.expect(body).to.match(
+    /<(?:[\w.-]+:)?Envelope(?:\s|>)/i
+  );
+});
+
+insomnia.test(`${caseId} - Sin SOAP Fault`, () => {
+  insomnia.expect(body).not.to.match(
+    /<(?:[\w.-]+:)?Fault(?:\s|>)/i
+  );
+});
+
+insomnia.test(
+  `${caseId} - Código ${expectedCode}`,
+  () => {
+    insomnia.expect(codigo).to.eql(expectedCode);
+  }
+);
+
+insomnia.test(
+  `${caseId} - Mensaje funcional`,
+  () => {
+    insomnia.expect(
+      normalizeMessage(mensaje)
+    ).to.eql(
+      normalizeMessage(expectedMessage)
+    );
+  }
+);
+
+insomnia.test(
+  `${caseId} - Tipo ${expectedType}`,
+  () => {
+    insomnia.expect(tipo).to.eql(expectedType);
+  }
+);
+
+insomnia.test(
+  `${caseId} - Backend ${expectedBackend}`,
+  () => {
+    insomnia.expect(backend).to.eql(expectedBackend);
+  }
+);
+
+if (expectEconomicData) {
+  insomnia.test(
+    `${caseId} - Datos económicos informados`,
+    () => {
+      insomnia.expect(body).to.match(
+        /<(?:[\w.-]+:)?detalleEconomicos(?:\s|>)/i
+      );
+    }
+  );
+}
+
+insomnia.test(
+  `${caseId} - Recurso no genérico`,
+  () => {
+    insomnia.expect(
+      recurso.toLowerCase()
+    ).not.to.eql('resource');
+  }
+);
+
+
+--------------------------------------------
+
+Comparar automáticamente Legado vs. Migrado
+
+Además de validar contra los CA, puedes guardar el resultado del Legado y compararlo con el Migrado.
+
+Agrega al final del script del Legado:
+
+const comparisonResult = {
+  codigo,
+  mensaje: normalizeMessage(mensaje),
+  tipo,
+  backend
+};
+
+insomnia.environment.set(
+  `legacy_${caseId}`,
+  JSON.stringify(comparisonResult)
+);
+
+Agrega al final del script del Migrado:
+
+const legacyStored =
+  insomnia.environment.get(`legacy_${caseId}`);
+
+insomnia.test(
+  `${caseId} - Existe resultado Legado`,
+  () => {
+    insomnia.expect(legacyStored).to.be.a('string');
+    insomnia.expect(legacyStored.length).to.be.greaterThan(0);
+  }
+);
+
+if (legacyStored) {
+  const legacyResult = JSON.parse(legacyStored);
+
+  insomnia.test(
+    `${caseId} - Código Migrado = Legado`,
+    () => {
+      insomnia.expect(codigo).to.eql(
+        legacyResult.codigo
+      );
+    }
+  );
+
+  insomnia.test(
+    `${caseId} - Mensaje Migrado = Legado`,
+    () => {
+      insomnia.expect(
+        normalizeMessage(mensaje)
+      ).to.eql(
+        legacyResult.mensaje
+      );
+    }
+  );
+
+  insomnia.test(
+    `${caseId} - Tipo Migrado = Legado`,
+    () => {
+      insomnia.expect(tipo).to.eql(
+        legacyResult.tipo
+      );
+    }
+  );
+
+  insomnia.test(
+    `${caseId} - Backend Migrado = Legado`,
+    () => {
+      insomnia.expect(backend).to.eql(
+        legacyResult.backend
+      );
+    }
+  );
+}
+
+No compares el XML completo como texto. Eso generaría falsos errores por diferencias como:
+
+NS1 frente a ns2.
+<filler/> frente a <filler></filler>.
+Prefijo TCSBRKR1_BP-.
+Nombre técnico de recurso y componente.
