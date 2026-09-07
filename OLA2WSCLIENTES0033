@@ -1,92 +1,113 @@
-response legado
-const body = insomnia.response.text();
-
-insomnia.environment.set(
-  'legacy_WSClientes0033_ConsultarDatosEconomicosCliente01',
-  body
-);
-
-insomnia.test('Legado - HTTP exitoso', () => {
-  const code = insomnia.response.code;
-  const status = insomnia.response.status;
-
-  insomnia.expect(
-    code === 200 || status === 200 || status === 'OK'
-  ).to.eql(true);
-});
-
-insomnia.test('Legado - Código funcional 0', () => {
-  insomnia.expect(body).to.match(
-    /<codigo>\s*0\s*<\/codigo>/i
-  );
-});
-
-insomnia.test('Legado - Mensaje OK', () => {
-  insomnia.expect(body).to.match(
-    /<mensaje>\s*OK\s*<\/mensaje>/i
-  );
-});
-
-insomnia.test('Legado - Datos económicos informados', () => {
-  insomnia.expect(body).to.include('<detalleEconomicos>');
-  insomnia.expect(body).to.include('<ingresos>');
-  insomnia.expect(body).to.include('<egresos>');
-  insomnia.expect(body).to.include('<estado>');
-});
-
-response migrado 
-const migratedBody = insomnia.response.text();
-
-const legacyBody = insomnia.environment.get(
-  'legacy_WSClientes0033_ConsultarDatosEconomicosCliente01'
-);
-
-function normalizeXml(xml) {
-  return String(xml || '')
-    .replace(/>\s+</g, '><')
-    .replace(/\r?\n/g, '')
-    .trim();
-}
-
-insomnia.test('Migrado - Existe baseline Legado', () => {
-  insomnia.expect(legacyBody).to.be.a('string');
-  insomnia.expect(legacyBody.length).to.be.greaterThan(0);
-});
-
-insomnia.test('Migrado - HTTP exitoso', () => {
-  const code = insomnia.response.code;
-  const status = insomnia.response.status;
-
-  insomnia.expect(
-    code === 200 || status === 200 || status === 'OK'
-  ).to.eql(true);
-});
-
-insomnia.test('Migrado - Código funcional 0', () => {
-  insomnia.expect(migratedBody).to.match(
-    /<codigo>\s*0\s*<\/codigo>/i
-  );
-});
-
-insomnia.test('Migrado - Mensaje OK', () => {
-  insomnia.expect(migratedBody).to.match(
-    /<mensaje>\s*OK\s*<\/mensaje>/i
-  );
-});
-
-insomnia.test('Migrado - Datos económicos informados', () => {
-  insomnia.expect(migratedBody).to.include(
-    '<detalleEconomicos>'
-  );
-  insomnia.expect(migratedBody).to.include('<ingresos>');
-  insomnia.expect(migratedBody).to.include('<egresos>');
-  insomnia.expect(migratedBody).to.include('<estado>');
-});
-
-insomnia.test('Legado y Migrado - XML equivalente', () => {
-  insomnia.expect(
-    normalizeXml(migratedBody)
-  ).to.eql(
-    normalizeXml(legacyBody)
-  );
-});
+migrado 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Envelope
+	xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:ns3="http://bpichincha.com/servicios">
+	<ns2:Body>
+		<ns3:ActualizarDatosEconomicosCliente32Response>
+			<headerOut>
+				<dispositivo>0000000000000000000000000Unknown</dispositivo>
+				<empresa>0010</empresa>
+				<canal>01</canal>
+				<medio>010003</medio>
+				<aplicacion>00344</aplicacion>
+				<agencia>0010</agencia>
+				<tipoTransaccion>201003332</tipoTransaccion>
+				<geolocalizacion>45.9172999999999973397279973141849040985 -119.342500000000001136868377216160297394</geolocalizacion>
+				<usuario>USINTERT</usuario>
+				<unicidad>163AoWTzPr3hKCLpwZ6Pr6VOgDImgZKd9CAr4ZnP47R81JTujExUL5Eu0Gi7UBwvrECLBB</unicidad>
+				<guid>21cbdbd722b34ce09b811edb65eed5c1</guid>
+				<fechaHora>202608071214000613</fechaHora>
+				<filler></filler>
+				<idioma>es-EC</idioma>
+				<sesion>779052fd588eb3590cf195ef21985588</sesion>
+				<ip>155.226.129.251</ip>
+				<idCliente></idCliente>
+				<tipoIdCliente>0003</tipoIdCliente>
+				<bancs>
+					<teller>00070624</teller>
+					<terminal>1</terminal>
+					<institucion>0010</institucion>
+					<agencia>0012</agencia>
+					<estacion>1</estacion>
+					<aplicacion></aplicacion>
+					<canal></canal>
+				</bancs>
+				<documento>
+					<fechaContable></fechaContable>
+					<numeroDocumento></numeroDocumento>
+					<journals>
+						<journal>
+							<valor></valor>
+						</journal>
+					</journals>
+				</documento>
+			</headerOut>
+			<error>
+				<codigo>1</codigo>
+				<mensaje>Valor del campo cif vacío o inválido</mensaje>
+				<mensajeNegocio></mensajeNegocio>
+				<tipo>ERROR</tipo>
+				<recurso>resource</recurso>
+				<componente>tnd-msa-sp-wsclientes0033</componente>
+				<backend>00638</backend>
+			</error>
+		</ns3:ActualizarDatosEconomicosCliente32Response>
+	</ns2:Body>
+</ns2:Envelope>
+LEGADO
+<NS1:Envelope
+	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
+	<NS1:Body>
+		<NS2:ActualizarDatosEconomicosCliente32Response
+			xmlns:NS2="http://bpichincha.com/servicios">
+			<headerOut>
+				<dispositivo>0000000000000000000000000Unknown</dispositivo>
+				<empresa>0010</empresa>
+				<canal>01</canal>
+				<medio>010003</medio>
+				<aplicacion>00344</aplicacion>
+				<agencia>0010</agencia>
+				<tipoTransaccion>201003332</tipoTransaccion>
+				<geolocalizacion>45.9172999999999973397279973141849040985 -119.342500000000001136868377216160297394</geolocalizacion>
+				<usuario>USINTERT</usuario>
+				<unicidad>163AoWTzPr3hKCLpwZ6Pr6VOgDImgZKd9CAr4ZnP47R81JTujExUL5Eu0Gi7UBwvrECLBB</unicidad>
+				<guid>21cbdbd722b34ce09b811edb65eed5c1</guid>
+				<fechaHora>202608071214000613</fechaHora>
+				<filler></filler>
+				<idioma>es-EC</idioma>
+				<sesion>779052fd588eb3590cf195ef21985588</sesion>
+				<ip>155.226.129.251</ip>
+				<idCliente></idCliente>
+				<tipoIdCliente>0003</tipoIdCliente>
+				<bancs>
+					<teller>00070624</teller>
+					<terminal>1</terminal>
+					<institucion>0010</institucion>
+					<agencia>0012</agencia>
+					<estacion>1</estacion>
+					<aplicacion></aplicacion>
+					<canal></canal>
+				</bancs>
+				<documento>
+					<fechaContable></fechaContable>
+					<numeroDocumento></numeroDocumento>
+					<journals>
+						<journal>
+							<valor></valor>
+						</journal>
+					</journals>
+				</documento>
+			</headerOut>
+			<error>
+				<codigo>1</codigo>
+				<mensaje>TCSBRKR1_BP-Valor del campo cif vacío o inválido</mensaje>
+				<mensajeNegocio></mensajeNegocio>
+				<tipo>ERROR</tipo>
+				<recurso>WSClientes0033/ActualizarDatosEconomicosCliente32</recurso>
+				<componente>ActualizarDatosEconomicosCliente32</componente>
+				<backend>00638</backend>
+			</error>
+		</NS2:ActualizarDatosEconomicosCliente32Response>
+	</NS1:Body>
+</NS1:Envelope>
