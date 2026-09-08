@@ -1,0 +1,122 @@
+WSTecnicos0084
+├── EP-001-LEGADO
+├── EP-001-MIGRADO
+├── EP-002-LEGADO
+├── EP-002-MIGRADO
+├── EP-003-LEGADO
+├── EP-003-MIGRADO
+├── EP-004-LEGADO
+├── EP-004-MIGRADO
+├── EP-005-LEGADO
+└── EP-005-MIGRADO
+
+SCRIPT 
+const config = {
+  caseId: 'EP-001',
+  expectedCode: '0',
+  expectedMessage: 'OK'
+};
+
+const body = insomnia.response.text();
+
+function getTagValue(tagName) {
+  const regex = new RegExp(
+    `<(?:(?:[\\w.-]+):)?${tagName}(?:\\s[^>]*)?>` +
+    `\\s*([^<]*)\\s*` +
+    `<\\/(?:(?:[\\w.-]+):)?${tagName}\\s*>`,
+    'i'
+  );
+
+  const result = body.match(regex);
+  return result ? result[1].trim() : '';
+}
+
+function normalizeMessage(value) {
+  return String(value || '')
+    .replace(/^(?:TCSBRKR\\d+_BP[-:]?)+/i, '')
+    .normalize('NFD')
+    .replace(/[\\u0300-\\u036f]/g, '')
+    .replace(/\\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+const codigo = getTagValue('codigo');
+const mensaje = getTagValue('mensaje');
+
+const status =
+  insomnia.response.code ??
+  insomnia.response.status;
+
+insomnia.test(`${config.caseId} - HTTP exitoso`, () => {
+  insomnia.expect(
+    status === 200 ||
+    status === '200' ||
+    status === 'OK'
+  ).to.eql(true);
+});
+
+insomnia.test(`${config.caseId} - Respuesta SOAP`, () => {
+  insomnia.expect(body).to.match(
+    /<(?:[\w.-]+:)?Envelope(?:\s|>)/i
+  );
+});
+
+insomnia.test(`${config.caseId} - Sin SOAP Fault`, () => {
+  insomnia.expect(body).not.to.match(
+    /<(?:[\w.-]+:)?Fault(?:\s|>)/i
+  );
+});
+
+insomnia.test(
+  `${config.caseId} - Código esperado`,
+  () => {
+    insomnia.expect(codigo).to.eql(
+      config.expectedCode
+    );
+  }
+);
+
+insomnia.test(
+  `${config.caseId} - Mensaje esperado`,
+  () => {
+    insomnia.expect(
+      normalizeMessage(mensaje)
+    ).to.eql(
+      normalizeMessage(config.expectedMessage)
+    );
+  }
+);
+---------------------------------------------------------------------------------------------------------------------------------------
+Configuraciones:
+
+// EP-001
+const config = {
+  caseId: 'EP-001',
+  expectedCode: '0',
+  expectedMessage: 'OK'
+};
+// EP-002
+const config = {
+  caseId: 'EP-002',
+  expectedCode: '1',
+  expectedMessage: 'Valor del campo fecha vacio o invalido'
+};
+// EP-003
+const config = {
+  caseId: 'EP-003',
+  expectedCode: '1',
+  expectedMessage: 'Valor del campo fecha vacio o invalido'
+};
+// EP-004
+const config = {
+  caseId: 'EP-004',
+  expectedCode: '0',
+  expectedMessage: 'OK'
+};
+// EP-005
+const config = {
+  caseId: 'EP-005',
+  expectedCode: '1',
+  expectedMessage: 'Valor del campo fecha vacio o invalido'
+};
