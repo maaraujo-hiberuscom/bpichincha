@@ -1,3 +1,83 @@
+REQUEST
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header />
+	<soapenv:Body>
+		<ser:ActualizarDetallesProducto31
+			xmlns:ser="http://bpichincha.com/servicios">
+			<headerIn>
+				<dispositivo>61e5aca65cfebd1b</dispositivo>
+				<empresa>0010</empresa>
+				<canal>03</canal>
+				<medio>030006</medio>
+				<aplicacion>00663</aplicacion>
+				<agencia></agencia>
+				<tipoTransaccion>302004031</tipoTransaccion>
+				<geolocalizacion>0,0</geolocalizacion>
+				<usuario>USINTERT</usuario>
+				<unicidad></unicidad>
+				<guid>1a2e113075a14c98b83d324f8255ef60</guid>
+				<fechaHora>202402061200080296</fechaHora>
+				<filler>61e5aca65cfebd1b||96:B4:03:7A:EC:E5|Android|10|samsung|SM-G960U1</filler>
+				<idioma>es-EC</idioma>
+				<sesion>841455e8-e441-44de-9d2b-560cb2a7f945</sesion>
+				<ip>157.100.89.177</ip>
+				<idCliente>1715897763</idCliente>
+				<tipoIdCliente>0001</tipoIdCliente>
+				<bancs>
+					<teller>00070560</teller>
+					<terminal>1</terminal>
+					<institucion>0010</institucion>
+					<agencia>1</agencia>
+					<estacion>1</estacion>
+					<aplicacion></aplicacion>
+					<canal></canal>
+				</bancs>
+			</headerIn>
+			<bodyIn>
+				<ordenante>
+					<cif>2623750</cif>
+					<identificacion>1715897763</identificacion>
+					<tipoIdentificacion>0001</tipoIdentificacion>
+				</ordenante>
+				<transaccion>
+					<producto>
+						<numero></numero>
+						<hash>634458534368322b636a722b673956424d6c434771674b655a4c574d2f74436a2f53777170735a546376513d</hash>
+						<alias>CTA596</alias>
+						<tipo>corriente</tipo>
+					</producto>
+					<canales>
+						<canal>
+							<codigo>030001</codigo>
+							<accion>activar</accion>
+							<monto>8000</monto>
+							<moneda>USD</moneda>
+						</canal>
+						<canal>
+							<codigo>020002</codigo>
+							<accion>activar</accion>
+							<monto>5000</monto>
+							<moneda>USD</moneda>
+						</canal>
+					</canales>
+				</transaccion>
+				<seguridad>
+					<tieneConfianzaSesion>Alta</tieneConfianzaSesion>
+				</seguridad>
+				<flujo>
+					<estado>iniciar</estado>
+					<campos>
+						<campo>
+							<clave></clave>
+							<valor></valor>
+						</campo>
+					</campos>
+				</flujo>
+			</bodyIn>
+		</ser:ActualizarDetallesProducto31>
+	</soapenv:Body>
+</soapenv:Envelope>
 migrado sin tag numero 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <NS1:Envelope
