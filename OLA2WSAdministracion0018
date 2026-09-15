@@ -1,0 +1,171 @@
+LEGADO
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Body>
+		<ns2:guardarEstadoFactura22Response
+			xmlns:ns2="http://bpichincha.com/servicios">
+			<headerOut>
+				<dispositivo>9bQuTMzGBTM7/sxxVRY+E5whYnM3xQz3ZMSjDiYTlt8</dispositivo>
+				<empresa>0010</empresa>
+				<canal>02</canal>
+				<medio>020002</medio>
+				<aplicacion>00647</aplicacion>
+				<agencia>197</agencia>
+				<tipoTransaccion>302000201</tipoTransaccion>
+				<geolocalizacion>1234</geolocalizacion>
+				<usuario>ISMAVEGA</usuario>
+				<unicidad>6ef49129ccd84529bda5317d260dee6c</unicidad>
+				<guid>59cae047abad47d5b683388a132fbddf</guid>
+				<fechaHora>202506251508450015</fechaHora>
+				<filler></filler>
+				<idioma>es-EC</idioma>
+				<sesion>f65194bc-153a-497a-9b66-d80e6f8e51ff</sesion>
+				<ip>0.0.0.0</ip>
+				<idCliente>0801545674</idCliente>
+				<tipoIdCliente>0001</tipoIdCliente>
+			</headerOut>
+			<bodyOut>
+				<estadoFacturas/>
+			</bodyOut>
+			<error>
+				<codigo>9999</codigo>
+				<mensaje>VHReglas-nested exception is: javax.transaction.RollbackException</mensaje>
+				<mensajeNegocio></mensajeNegocio>
+				<tipo>FATAL</tipo>
+				<recurso>WSAdministracion0018/guardarEstadoFactura22</recurso>
+				<componente>WSAdministracion0018</componente>
+				<backend>00641</backend>
+			</error>
+		</ns2:guardarEstadoFactura22Response>
+	</soapenv:Body>
+</soapenv:Envelope>
+
+-------------------MIGRADO--
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Body>
+		<ns2:guardarEstadoFactura22Response
+			xmlns:ns2="http://bpichincha.com/servicios"
+			xmlns:ns3="http://bpichincha.com/servicios">
+			<headerOut>
+				<dispositivo>9bQuTMzGBTM7/sxxVRY+E5whYnM3xQz3ZMSjDiYTlt8</dispositivo>
+				<empresa>0010</empresa>
+				<canal>02</canal>
+				<medio>020002</medio>
+				<aplicacion>00647</aplicacion>
+				<agencia>197</agencia>
+				<tipoTransaccion>302000201</tipoTransaccion>
+				<geolocalizacion>1234</geolocalizacion>
+				<usuario>ISMAVEGA</usuario>
+				<unicidad>6ef49129ccd84529bda5317d260dee6c</unicidad>
+				<guid>59cae047abad47d5b683388a132fbddf</guid>
+				<fechaHora>202506251508450015</fechaHora>
+				<filler/>
+				<idioma>es-EC</idioma>
+				<sesion>f65194bc-153a-497a-9b66-d80e6f8e51ff</sesion>
+				<ip>0.0.0.0</ip>
+				<idCliente>0801545674</idCliente>
+				<tipoIdCliente>0001</tipoIdCliente>
+			</headerOut>
+			<bodyOut>
+				<estadoFacturas/>
+			</bodyOut>
+			<error>
+				<codigo>9999</codigo>
+				<mensaje>Exception is: oracle.jdbc.OracleDatabaseException</mensaje>
+				<mensajeNegocio/>
+				<tipo>FATAL</tipo>
+				<recurso>tca-msa-sp-wsadministracion0018/guardarEstadoFactura22</recurso>
+				<componente>tca-msa-sp-wsadministracion0018</componente>
+				<backend>00641</backend>
+			</error>
+		</ns2:guardarEstadoFactura22Response>
+	</soapenv:Body>
+</soapenv:Envelope>
+
+//LEGASO SIN IDENTIFICACION
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Body>
+		<ns2:guardarEstadoFactura22Response
+			xmlns:ns2="http://bpichincha.com/servicios">
+			<headerOut>
+				<dispositivo>9bQuTMzGBTM7/sxxVRY+E5whYnM3xQz3ZMSjDiYTlt8</dispositivo>
+				<empresa>0010</empresa>
+				<canal>02</canal>
+				<medio>020002</medio>
+				<aplicacion>00647</aplicacion>
+				<agencia>197</agencia>
+				<tipoTransaccion>302000201</tipoTransaccion>
+				<geolocalizacion>1234</geolocalizacion>
+				<usuario>ISMAVEGA</usuario>
+				<unicidad>6ef49129ccd84529bda5317d260dee6c</unicidad>
+				<guid>59cae047abad47d5b683388a132fbddf</guid>
+				<fechaHora>202506251508450015</fechaHora>
+				<filler></filler>
+				<idioma>es-EC</idioma>
+				<sesion>f65194bc-153a-497a-9b66-d80e6f8e51ff</sesion>
+				<ip>0.0.0.0</ip>
+				<idCliente></idCliente>
+				<tipoIdCliente>0001</tipoIdCliente>
+			</headerOut>
+			<bodyOut>
+				<estadoFacturas/>
+			</bodyOut>
+			<error>
+				<codigo>9999</codigo>
+				<mensaje>VHReglas-nested exception is: javax.transaction.RollbackException</mensaje>
+				<mensajeNegocio></mensajeNegocio>
+				<tipo>FATAL</tipo>
+				<recurso>WSAdministracion0018/guardarEstadoFactura22</recurso>
+				<componente>WSAdministracion0018</componente>
+				<backend>00641</backend>
+			</error>
+		</ns2:guardarEstadoFactura22Response>
+	</soapenv:Body>
+</soapenv:Envelope>
+
+//MIGRADO SIN IDENTIFDICACION 
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Body>
+		<ns2:guardarEstadoFactura22Response
+			xmlns:ns2="http://bpichincha.com/servicios"
+			xmlns:ns3="http://bpichincha.com/servicios">
+			<headerOut>
+				<dispositivo>9bQuTMzGBTM7/sxxVRY+E5whYnM3xQz3ZMSjDiYTlt8</dispositivo>
+				<empresa>0010</empresa>
+				<canal>02</canal>
+				<medio>020002</medio>
+				<aplicacion>00647</aplicacion>
+				<agencia>197</agencia>
+				<tipoTransaccion>302000201</tipoTransaccion>
+				<geolocalizacion>1234</geolocalizacion>
+				<usuario>ISMAVEGA</usuario>
+				<unicidad>6ef49129ccd84529bda5317d260dee6c</unicidad>
+				<guid>59cae047abad47d5b683388a132fbddf</guid>
+				<fechaHora>202506251508450015</fechaHora>
+				<filler/>
+				<idioma>es-EC</idioma>
+				<sesion>f65194bc-153a-497a-9b66-d80e6f8e51ff</sesion>
+				<ip>0.0.0.0</ip>
+				<idCliente>X</idCliente>
+				<tipoIdCliente>0001</tipoIdCliente>
+			</headerOut>
+			<bodyOut>
+				<estadoFacturas/>
+			</bodyOut>
+			<error>
+				<codigo>9999</codigo>
+				<mensaje>Exception is: oracle.jdbc.OracleDatabaseException</mensaje>
+				<mensajeNegocio/>
+				<tipo>FATAL</tipo>
+				<recurso>tca-msa-sp-wsadministracion0018/guardarEstadoFactura22</recurso>
+				<componente>tca-msa-sp-wsadministracion0018</componente>
+				<backend>00641</backend>
+			</error>
+		</ns2:guardarEstadoFactura22Response>
+	</soapenv:Body>
+</soapenv:Envelope>
