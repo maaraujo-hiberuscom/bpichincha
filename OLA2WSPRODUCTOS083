@@ -1,116 +1,5 @@
-migrado completo <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:Envelope
-	xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/"
-	xmlns:ns3="http://bpichincha.com/servicios">
-	<ns2:Body>
-		<ns3:ActualizarDesautorizacionCuenta31Response>
-			<headerOut>
-				<dispositivo>740425676521314</dispositivo>
-				<empresa>0010</empresa>
-				<canal>01</canal>
-				<medio>000523</medio>
-				<aplicacion>00650</aplicacion>
-				<agencia>0012</agencia>
-				<tipoTransaccion>203007951</tipoTransaccion>
-				<geolocalizacion></geolocalizacion>
-				<usuario>ismavega</usuario>
-				<unicidad></unicidad>
-				<guid>114ca1e3c1e64c81b7f71e1a1bc0022f_prueba</guid>
-				<fechaHora>202609021033040500</fechaHora>
-				<filler></filler>
-				<idioma>es-EC</idioma>
-				<sesion>FRMKDESEMBKP-ismavega-1.788362936189E12</sesion>
-				<ip>4.231.84.48</ip>
-				<idCliente>1312561648</idCliente>
-				<tipoIdCliente>0001</tipoIdCliente>
-				<bancs>
-					<teller>00088836</teller>
-					<terminal>1</terminal>
-					<institucion>0010</institucion>
-					<agencia>1</agencia>
-					<estacion>1</estacion>
-					<aplicacion></aplicacion>
-					<canal></canal>
-				</bancs>
-				<documento>
-					<fechaContable></fechaContable>
-					<numeroDocumento></numeroDocumento>
-					<journals>
-						<journal>
-							<valor></valor>
-						</journal>
-					</journals>
-				</documento>
-			</headerOut>
-			<error>
-				<codigo>0</codigo>
-				<mensaje>OK</mensaje>
-				<mensajeNegocio></mensajeNegocio>
-				<tipo>INFO</tipo>
-				<recurso>csg-msa-sp-wsproductos0083/ActualizarDesautorizacionCuenta31</recurso>
-				<componente>csg-msa-sp-wsproductos0083</componente>
-				<backend>00638</backend>
-			</error>
-		</ns3:ActualizarDesautorizacionCuenta31Response>
-	</ns2:Body>
-</ns2:Envelope>
-
-legado completo 
-<NS1:Envelope
-	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
-	<NS1:Body>
-		<NS2:ActualizarDesautorizacionCuenta31Response
-			xmlns:NS2="http://bpichincha.com/servicios">
-			<headerOut>
-				<dispositivo>740425676521314</dispositivo>
-				<empresa>0010</empresa>
-				<canal>01</canal>
-				<medio>000523</medio>
-				<aplicacion>00650</aplicacion>
-				<agencia>0012</agencia>
-				<tipoTransaccion>203007951</tipoTransaccion>
-				<geolocalizacion></geolocalizacion>
-				<usuario>ismavega</usuario>
-				<unicidad></unicidad>
-				<guid>114ca1e3c1e64c81b7f71e1a1bc0022f_prueba</guid>
-				<fechaHora>202609021033040500</fechaHora>
-				<filler></filler>
-				<idioma>es-EC</idioma>
-				<sesion>FRMKDESEMBKP-ismavega-1.788362936189E12</sesion>
-				<ip>4.231.84.48</ip>
-				<idCliente>1312561648</idCliente>
-				<tipoIdCliente>0001</tipoIdCliente>
-				<bancs>
-					<teller>00088836</teller>
-					<terminal>1</terminal>
-					<institucion>0010</institucion>
-					<agencia>1</agencia>
-					<estacion>1</estacion>
-					<aplicacion></aplicacion>
-					<canal></canal>
-				</bancs>
-				<documento>
-					<fechaContable></fechaContable>
-					<numeroDocumento></numeroDocumento>
-					<journals>
-						<journal>
-							<valor></valor>
-						</journal>
-					</journals>
-				</documento>
-			</headerOut>
-			<error>
-				<codigo>0</codigo>
-				<mensaje>TCSBRKR1_BP-OK</mensaje>
-				<mensajeNegocio></mensajeNegocio>
-				<tipo>INFO</tipo>
-				<recurso>WSProductos0083/ActualizarDesautorizacionCuenta31</recurso>
-				<componente>WSProductos0083</componente>
-				<backend>00638</backend>
-			</error>
-		</NS2:ActualizarDesautorizacionCuenta31Response>
-	</NS1:Body>
-</NS1:Envelope> migrado  sin bnumero de cuenta <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+mmigrado vector doble coma 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:Envelope
 	xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/"
 	xmlns:ns3="http://bpichincha.com/servicios">
@@ -165,7 +54,7 @@ legado completo
 			</error>
 		</ns3:ActualizarDesautorizacionCuenta31Response>
 	</ns2:Body>
-</ns2:Envelope> legado sin numero de cuenta <NS1:Envelope
+</ns2:Envelope> legado doble coma <NS1:Envelope
 	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
 	<NS1:Body>
 		<NS2:ActualizarDesautorizacionCuenta31Response
@@ -209,14 +98,123 @@ legado completo
 				</documento>
 			</headerOut>
 			<error>
-				<codigo>0</codigo>
-				<mensaje>TCSBRKR1_BP-OK</mensaje>
+				<codigo>1</codigo>
+				<mensaje>TCSBRKR1_BP-Valor del campo numeroCuenta vacío o inválido</mensaje>
 				<mensajeNegocio></mensajeNegocio>
-				<tipo>INFO</tipo>
+				<tipo>ERROR</tipo>
 				<recurso>WSProductos0083/ActualizarDesautorizacionCuenta31</recurso>
-				<componente>WSProductos0083</componente>
+				<componente>ActualizarDesautorizacionCuenta31</componente>
 				<backend>00638</backend>
 			</error>
 		</NS2:ActualizarDesautorizacionCuenta31Response>
 	</NS1:Body>
-</NS1:Envelope>
+</NS1:Envelope> legado vector unico <NS1:Envelope
+	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
+	<NS1:Body>
+		<NS2:ActualizarDesautorizacionCuenta31Response
+			xmlns:NS2="http://bpichincha.com/servicios">
+			<headerOut>
+				<dispositivo>740425676521314</dispositivo>
+				<empresa>0010</empresa>
+				<canal>01</canal>
+				<medio>000523</medio>
+				<aplicacion>00650</aplicacion>
+				<agencia>0012</agencia>
+				<tipoTransaccion>203007951</tipoTransaccion>
+				<geolocalizacion></geolocalizacion>
+				<usuario>ismavega</usuario>
+				<unicidad></unicidad>
+				<guid>114ca1e3c1e64c81b7f71e1a1bc0022f_prueba</guid>
+				<fechaHora>202609021033040500</fechaHora>
+				<filler></filler>
+				<idioma>es-EC</idioma>
+				<sesion>FRMKDESEMBKP-ismavega-1.788362936189E12</sesion>
+				<ip>4.231.84.48</ip>
+				<idCliente>1312561648</idCliente>
+				<tipoIdCliente>0001</tipoIdCliente>
+				<bancs>
+					<teller>00088836</teller>
+					<terminal>1</terminal>
+					<institucion>0010</institucion>
+					<agencia>1</agencia>
+					<estacion>1</estacion>
+					<aplicacion></aplicacion>
+					<canal></canal>
+				</bancs>
+				<documento>
+					<fechaContable></fechaContable>
+					<numeroDocumento></numeroDocumento>
+					<journals>
+						<journal>
+							<valor></valor>
+						</journal>
+					</journals>
+				</documento>
+			</headerOut>
+			<error>
+				<codigo>1</codigo>
+				<mensaje>TCSBRKR1_BP-Valor del campo numeroCuenta vacío o inválido</mensaje>
+				<mensajeNegocio></mensajeNegocio>
+				<tipo>ERROR</tipo>
+				<recurso>WSProductos0083/ActualizarDesautorizacionCuenta31</recurso>
+				<componente>ActualizarDesautorizacionCuenta31</componente>
+				<backend>00638</backend>
+			</error>
+		</NS2:ActualizarDesautorizacionCuenta31Response>
+	</NS1:Body>
+</NS1:Envelope> migrado vector unico <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Envelope
+	xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:ns3="http://bpichincha.com/servicios">
+	<ns2:Body>
+		<ns3:ActualizarDesautorizacionCuenta31Response>
+			<headerOut>
+				<dispositivo>740425676521314</dispositivo>
+				<empresa>0010</empresa>
+				<canal>01</canal>
+				<medio>000523</medio>
+				<aplicacion>00650</aplicacion>
+				<agencia>0012</agencia>
+				<tipoTransaccion>203007951</tipoTransaccion>
+				<geolocalizacion></geolocalizacion>
+				<usuario>ismavega</usuario>
+				<unicidad></unicidad>
+				<guid>114ca1e3c1e64c81b7f71e1a1bc0022f_prueba</guid>
+				<fechaHora>202609021033040500</fechaHora>
+				<filler></filler>
+				<idioma>es-EC</idioma>
+				<sesion>FRMKDESEMBKP-ismavega-1.788362936189E12</sesion>
+				<ip>4.231.84.48</ip>
+				<idCliente>1312561648</idCliente>
+				<tipoIdCliente>0001</tipoIdCliente>
+				<bancs>
+					<teller>00088836</teller>
+					<terminal>1</terminal>
+					<institucion>0010</institucion>
+					<agencia>1</agencia>
+					<estacion>1</estacion>
+					<aplicacion></aplicacion>
+					<canal></canal>
+				</bancs>
+				<documento>
+					<fechaContable></fechaContable>
+					<numeroDocumento></numeroDocumento>
+					<journals>
+						<journal>
+							<valor></valor>
+						</journal>
+					</journals>
+				</documento>
+			</headerOut>
+			<error>
+				<codigo>1</codigo>
+				<mensaje>Valor del campo numeroCuenta vacío o inválido</mensaje>
+				<mensajeNegocio></mensajeNegocio>
+				<tipo>ERROR</tipo>
+				<recurso>csg-msa-sp-wsproductos0083/ActualizarDesautorizacionCuenta31</recurso>
+				<componente>csg-msa-sp-wsproductos0083</componente>
+				<backend>00638</backend>
+			</error>
+		</ns3:ActualizarDesautorizacionCuenta31Response>
+	</ns2:Body>
+</ns2:Envelope>
