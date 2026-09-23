@@ -1,59 +1,5 @@
-LEGADO 
-<NS1:Envelope
-	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
-	<NS1:Body>
-		<NS2:ConsultarInversionesClientesAuro05Response
-			xmlns:NS2="http://bpichincha.com/servicios">
-			<headerOut>
-				<dispositivo>01010101010101010101010101010101010101010101</dispositivo>
-				<empresa>0010</empresa>
-				<canal>01</canal>
-				<medio>010003</medio>
-				<aplicacion>00352</aplicacion>
-				<agencia></agencia>
-				<tipoTransaccion>201009305</tipoTransaccion>
-				<geolocalizacion></geolocalizacion>
-				<usuario>USINTERT</usuario>
-				<unicidad></unicidad>
-				<guid>666559047754832202411071159020419</guid>
-				<fechaHora>202411071159020419</fechaHora>
-				<filler></filler>
-				<idioma>es-EC</idioma>
-				<sesion>033744223102008202411071159020419</sesion>
-				<ip></ip>
-				<idCliente></idCliente>
-				<tipoIdCliente></tipoIdCliente>
-				<bancs>
-					<teller>00008002</teller>
-					<terminal>1</terminal>
-					<institucion>0010</institucion>
-					<agencia>0012</agencia>
-					<estacion>1</estacion>
-					<aplicacion></aplicacion>
-					<canal></canal>
-				</bancs>
-				<documento>
-					<fechaContable></fechaContable>
-					<numeroDocumento></numeroDocumento>
-					<journals>
-						<journal>
-							<valor></valor>
-						</journal>
-					</journals>
-				</documento>
-			</headerOut>
-			<error>
-				<codigo>2</codigo>
-				<mensaje>TCSBRKR1_BP-No existe datos</mensaje>
-				<mensajeNegocio></mensajeNegocio>
-				<tipo>ERROR</tipo>
-				<recurso>WSClientes0093/ConsultarInversionesClientesAuro05</recurso>
-				<componente>ConsultarInversionesClientesAuro05</componente>
-				<backend>00638</backend>
-			</error>
-		</NS2:ConsultarInversionesClientesAuro05Response>
-	</NS1:Body>
-</NS1:Envelope> MIGRADO <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+MIGRACION IDENTIFICACION VACIO EP-003 CA-04
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <NS1:Envelope
 	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/"
 	xmlns:NS2="http://bpichincha.com/servicios">
@@ -97,103 +43,185 @@ LEGADO
 					</journals>
 				</documento>
 			</headerOut>
-			<bodyOut>
-				<BPResumenInversionDto>
-					<Banco>BP</Banco>
-					<Ciudad>QUITO</Ciudad>
-					<Estado>ACTIVA</Estado>
-					<FechaEmision>2006-07-28T00:00:00</FechaEmision>
-					<FechaVencimiento>2033-12-12T00:00:00</FechaVencimiento>
-					<InventarioId>7</InventarioId>
-					<Moneda>USD</Moneda>
-					<Monto>800.00</Monto>
-					<Nombre>MIG-CERTIFICADO INTEGRACION USD</Nombre>
-					<NombreCorto>MCD INTEGRACION</NombreCorto>
-					<Numero>36874865</Numero>
-					<Oficina>ABP AGENCIA AMAZONAS 2</Oficina>
-					<Plazo>9999</Plazo>
-					<Segmento>Personas</Segmento>
-					<TasaBruta>0.50000000</TasaBruta>
-					<UnidadNegocio>BANCA PRIVADA</UnidadNegocio>
-				</BPResumenInversionDto>
-				<BPResumenInversionDto>
-					<Banco>BP</Banco>
-					<Ciudad>QUITO</Ciudad>
-					<Estado>ACTIVA</Estado>
-					<FechaEmision>2020-03-03T00:00:00</FechaEmision>
-					<FechaVencimiento>2030-11-06T00:00:00</FechaVencimiento>
-					<InventarioId>16659</InventarioId>
-					<Moneda>USD</Moneda>
-					<Monto>100000.00</Monto>
-					<Nombre>CERT. BIENESTAR FUTURO</Nombre>
-					<NombreCorto>CD. BIENESTAR FUTURO</NombreCorto>
-					<Numero>C106886.00.00</Numero>
-					<Oficina>ABP AGENCIA AMAZONAS 2</Oficina>
-					<Plazo>3900</Plazo>
-					<Segmento>Personas</Segmento>
-					<TasaBruta>5.00000000</TasaBruta>
-					<UnidadNegocio>BANCA PRIVADA</UnidadNegocio>
-				</BPResumenInversionDto>
-				<BPResumenInversionDto>
-					<Banco>BP</Banco>
-					<Ciudad>QUITO</Ciudad>
-					<Estado>ACTIVA</Estado>
-					<FechaEmision>2020-05-18T00:00:00</FechaEmision>
-					<FechaVencimiento>2020-06-17T00:00:00</FechaVencimiento>
-					<InventarioId>16840</InventarioId>
-					<Moneda>USD</Moneda>
-					<Monto>100000.00</Monto>
-					<Nombre>PLAZODOLARNUEVO</Nombre>
-					<NombreCorto>PLAZODOLARNUEVO</NombreCorto>
-					<Numero>C106958.00.00</Numero>
-					<Oficina>ABP AGENCIA AMAZONAS 2</Oficina>
-					<Plazo>30</Plazo>
-					<Segmento>Personas</Segmento>
-					<TasaBruta>4.00000000</TasaBruta>
-					<UnidadNegocio>BANCA PRIVADA</UnidadNegocio>
-				</BPResumenInversionDto>
-				<BPResumenInversionDto>
-					<Banco>BP</Banco>
-					<Ciudad>QUITO</Ciudad>
-					<Estado>ACTIVA</Estado>
-					<FechaEmision>2020-05-21T00:00:00</FechaEmision>
-					<FechaVencimiento>2020-08-19T00:00:00</FechaVencimiento>
-					<InventarioId>17841</InventarioId>
-					<Moneda>USD</Moneda>
-					<Monto>10000.00</Monto>
-					<Nombre>PLAZODOLARNUEVO</Nombre>
-					<NombreCorto>PLAZODOLARNUEVO</NombreCorto>
-					<Numero>C106961.00.00</Numero>
-					<Oficina>ABP AGENCIA AMAZONAS 2</Oficina>
-					<Plazo>90</Plazo>
-					<Segmento>Personas</Segmento>
-					<TasaBruta>3.70000000</TasaBruta>
-					<UnidadNegocio>BANCA PRIVADA</UnidadNegocio>
-				</BPResumenInversionDto>
-				<BPResumenInversionDto>
-					<Banco>BP</Banco>
-					<Ciudad>QUITO</Ciudad>
-					<Estado>ACTIVA</Estado>
-					<FechaEmision>2020-10-15T00:00:00</FechaEmision>
-					<FechaVencimiento>2021-04-13T00:00:00</FechaVencimiento>
-					<InventarioId>23263</InventarioId>
-					<Moneda>USD</Moneda>
-					<Monto>1000.00</Monto>
-					<Nombre>PLAZODOLARNUEVO</Nombre>
-					<NombreCorto>PLAZODOLARNUEVO</NombreCorto>
-					<Numero>C107169.00.00</Numero>
-					<Oficina>ABP AGENCIA AMAZONAS 2</Oficina>
-					<Plazo>180</Plazo>
-					<Segmento>Personas</Segmento>
-					<TasaBruta>3.40000000</TasaBruta>
-					<UnidadNegocio>BANCA PRIVADA</UnidadNegocio>
-				</BPResumenInversionDto>
-			</bodyOut>
 			<error>
-				<codigo>0</codigo>
-				<mensaje>OK</mensaje>
+				<codigo>1</codigo>
+				<mensaje>Valor del campo identificacion es vacío o inválido</mensaje>
 				<mensajeNegocio></mensajeNegocio>
-				<tipo>INFO</tipo>
+				<tipo>ERROR</tipo>
+				<recurso>WSClientes0093/ConsultarInversionesClientesAuro05</recurso>
+				<componente>WSClientes0093</componente>
+				<backend>00638</backend>
+			</error>
+		</NS2:ConsultarInversionesClientesAuro05Response>
+	</NS1:Body>
+</NS1:Envelope>
+LEGADO IDENTIFICACION VACIO EP-003 CA-04
+
+<NS1:Envelope
+	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
+	<NS1:Body>
+		<NS2:ConsultarInversionesClientesAuro05Response
+			xmlns:NS2="http://bpichincha.com/servicios"/>
+			<error>
+				<headerOut>
+					<dispositivo>01010101010101010101010101010101010101010101</dispositivo>
+					<empresa>0010</empresa>
+					<canal>01</canal>
+					<medio>010003</medio>
+					<aplicacion>00352</aplicacion>
+					<agencia></agencia>
+					<tipoTransaccion>201009305</tipoTransaccion>
+					<geolocalizacion></geolocalizacion>
+					<usuario>USINTERT</usuario>
+					<unicidad></unicidad>
+					<guid>666559047754832202411071159020419</guid>
+					<fechaHora>202411071159020419</fechaHora>
+					<filler></filler>
+					<idioma>es-EC</idioma>
+					<sesion>033744223102008202411071159020419</sesion>
+					<ip></ip>
+					<idCliente></idCliente>
+					<tipoIdCliente></tipoIdCliente>
+					<bancs>
+						<teller>00008002</teller>
+						<terminal>1</terminal>
+						<institucion>0010</institucion>
+						<agencia>0012</agencia>
+						<estacion>1</estacion>
+						<aplicacion></aplicacion>
+						<canal></canal>
+					</bancs>
+					<documento>
+						<fechaContable></fechaContable>
+						<numeroDocumento></numeroDocumento>
+						<journals>
+							<journal>
+								<valor></valor>
+							</journal>
+						</journals>
+					</documento>
+				</headerOut>
+				<codigo>1</codigo>
+				<mensaje>Valor del campo identificacion es vacío o inválido</mensaje>
+				<tipo>ERROR</tipo>
+				<error>
+					<mensajeNegocio></mensajeNegocio>
+					<tipo>INFO</tipo>
+					<recurso>WSClientes0093/ConsultarInversionesClientesAuro05</recurso>
+					<componente>WSClientes0093</componente>
+					<backend>00638</backend>
+				</error>
+			</error>
+		</NS1:Body>
+	</NS1:Envelope>
+legado idetificacion0
+<NS1:Envelope
+	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/">
+	<NS1:Body>
+		<NS2:ConsultarInversionesClientesAuro05Response
+			xmlns:NS2="http://bpichincha.com/servicios"/>
+			<error>
+				<headerOut>
+					<dispositivo>01010101010101010101010101010101010101010101</dispositivo>
+					<empresa>0010</empresa>
+					<canal>01</canal>
+					<medio>010003</medio>
+					<aplicacion>00352</aplicacion>
+					<agencia></agencia>
+					<tipoTransaccion>201009305</tipoTransaccion>
+					<geolocalizacion></geolocalizacion>
+					<usuario>USINTERT</usuario>
+					<unicidad></unicidad>
+					<guid>666559047754832202411071159020419</guid>
+					<fechaHora>202411071159020419</fechaHora>
+					<filler></filler>
+					<idioma>es-EC</idioma>
+					<sesion>033744223102008202411071159020419</sesion>
+					<ip></ip>
+					<idCliente></idCliente>
+					<tipoIdCliente></tipoIdCliente>
+					<bancs>
+						<teller>00008002</teller>
+						<terminal>1</terminal>
+						<institucion>0010</institucion>
+						<agencia>0012</agencia>
+						<estacion>1</estacion>
+						<aplicacion></aplicacion>
+						<canal></canal>
+					</bancs>
+					<documento>
+						<fechaContable></fechaContable>
+						<numeroDocumento></numeroDocumento>
+						<journals>
+							<journal>
+								<valor></valor>
+							</journal>
+						</journals>
+					</documento>
+				</headerOut>
+				<codigo>1</codigo>
+				<mensaje>Valor del campo identificacion es vacío o inválido</mensaje>
+				<tipo>ERROR</tipo>
+				<error>
+					<mensajeNegocio></mensajeNegocio>
+					<tipo>INFO</tipo>
+					<recurso>WSClientes0093/ConsultarInversionesClientesAuro05</recurso>
+					<componente>WSClientes0093</componente>
+					<backend>00638</backend>
+				</error>
+			</error>
+		</NS1:Body>
+	</NS1:Envelope>
+migrado idetificacion 0
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NS1:Envelope
+	xmlns:NS1="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:NS2="http://bpichincha.com/servicios">
+	<NS1:Body>
+		<NS2:ConsultarInversionesClientesAuro05Response>
+			<headerOut>
+				<dispositivo>01010101010101010101010101010101010101010101</dispositivo>
+				<empresa>0010</empresa>
+				<canal>01</canal>
+				<medio>010003</medio>
+				<aplicacion>00352</aplicacion>
+				<agencia></agencia>
+				<tipoTransaccion>201009305</tipoTransaccion>
+				<geolocalizacion></geolocalizacion>
+				<usuario>USINTERT</usuario>
+				<unicidad></unicidad>
+				<guid>666559047754832202411071159020419</guid>
+				<fechaHora>202411071159020419</fechaHora>
+				<filler></filler>
+				<idioma>es-EC</idioma>
+				<sesion>033744223102008202411071159020419</sesion>
+				<ip></ip>
+				<idCliente></idCliente>
+				<tipoIdCliente></tipoIdCliente>
+				<bancs>
+					<teller>00008002</teller>
+					<terminal>1</terminal>
+					<institucion>0010</institucion>
+					<agencia>0012</agencia>
+					<estacion>1</estacion>
+					<aplicacion></aplicacion>
+					<canal></canal>
+				</bancs>
+				<documento>
+					<fechaContable></fechaContable>
+					<numeroDocumento></numeroDocumento>
+					<journals>
+						<journal>
+							<valor></valor>
+						</journal>
+					</journals>
+				</documento>
+			</headerOut>
+			<error>
+				<codigo>1</codigo>
+				<mensaje>Valor del campo identificacion es vacío o inválido</mensaje>
+				<mensajeNegocio></mensajeNegocio>
+				<tipo>ERROR</tipo>
 				<recurso>WSClientes0093/ConsultarInversionesClientesAuro05</recurso>
 				<componente>WSClientes0093</componente>
 				<backend>00638</backend>
