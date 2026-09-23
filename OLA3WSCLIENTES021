@@ -1,82 +1,72 @@
-
 curl --location 'https://tpr-msa-sp-wsclientes0021-enp.apps.ocptest.uiotest.bpichinchatest.test/IntegrationBus/soap/WSClientes0021' \
 --header 'Content-Type: text/xml; charset=UTF-8' \
 --header 'SOAPAction;' \
+--header 'Cookie: 6f24e325090def372b3a1bb0d3db15b6=7251ad53c2660480ceb4d257a066c8ec' \
 --data '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:NS1="http://bpichincha.com/servicios">
   <soapenv:Header/>
   <soapenv:Body>
     <NS1:ProcesarDatosBienesCliente31>
       <headerIn>
-        <dispositivo>3b7ab995755d1b689568837818078cc7b3bf4c0a</dispositivo>
+        <dispositivo>0000000000000000000000Chrome137</dispositivo>
         <empresa>0010</empresa>
         <canal>01</canal>
         <medio>010003</medio>
         <aplicacion>00344</aplicacion>
-        <agencia>0016</agencia>
+        <agencia>BP_EJ_138</agencia>
         <tipoTransaccion>201002131</tipoTransaccion>
-        <geolocalizacion>-68.150, 0.1254</geolocalizacion>
-        <usuario>USRCRM</usuario>
-        <unicidad>669cd9789461ddff1ddbf61c46ca24fb36a68e03</unicidad>
-        <guid>3F2504E04F8911D39A0C0305E82C3302</guid>
-        <fechaHora>202006281313131262</fechaHora>
-        <filler>get documents for id client</filler>
+        <geolocalizacion>-0.230899999999999994138022429979173466563 -78.5211000000000041154635255225002765656</geolocalizacion>
+        <usuario>USINTERT</usuario>
+        <unicidad>VHXNdqdWW9tw3nWE8crmYzfdmcsrP3HclOvrEIpuaMTgZdRquStaifhgkdLqFwPOeEqsWg</unicidad>
+        <guid>b7bb89dfe24b49c09671b4a80a072743</guid>
+        <fechaHora>202506230957320829</fechaHora>
+        <filler></filler>
         <idioma>es-EC</idioma>
-        <sesion>zdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</sesion>
-        <ip>69.69.69.69</ip>
-        <idCliente>1719143453</idCliente>
+        <sesion>22619119959e07a1adc5396787856a20</sesion>
+        <ip>163.116.226.89</ip>
+        <idCliente>1305067694</idCliente>
         <tipoIdCliente>0001</tipoIdCliente>
         <bancs>
-          <teller>00070560</teller>
+          <teller>00070624</teller>
           <terminal>1</terminal>
           <institucion>0010</institucion>
-          <agencia>1</agencia>
+          <agencia>0012</agencia>
           <estacion>1</estacion>
+          <aplicacion></aplicacion>
+          <canal></canal>
         </bancs>
       </headerIn>
       <bodyIn>
         <informacionActivos>
-          <cif>2062142</cif>
+          <cif>0000000002404348</cif>
           <operacion>1</operacion>
           <bienes>
             <bienesInmuebles>
               <bienesInmueble>
-                <tipo>2</tipo>
-                <pais>EC</pais>
-                <provincia>10</provincia>
-                <ciudad>0038</ciudad>
-                <avaluo>30000.00</avaluo>
-                <identificador>1</identificador>
+                <tipo></tipo>
+                <pais></pais>
+                <provincia></provincia>
+                <ciudad></ciudad>
+                <avaluo></avaluo>
+                <identificador></identificador>
+                <accion></accion>
               </bienesInmueble>
             </bienesInmuebles>
             <vehiculos>
               <vehiculo>
-                <marcaModelio>CHEVE</marcaModelio>
-                <anio>2014</anio>
-                <avaluo>25000.00</avaluo>
-                <identificador>1</identificador>
-                <accion>M</accion>
-              </vehiculo>
-              <vehiculo>
-                <marcaModelio>TOYO</marcaModelio>
-                <anio>2015</anio>
-                <avaluo>28000.00</avaluo>
-                <identificador>2</identificador>
-                <accion>A</accion>
+                <marcaModelio></marcaModelio>
+                <anio></anio>
+                <avaluo></avaluo>
+                <identificador></identificador>
+                <accion></accion>
               </vehiculo>
             </vehiculos>
             <otrosBienes>
               <otroBien>
-                <descripcion>LOCALES COMERCIALES</descripcion>
-                <informacionAdicional>ARRIENDO</informacionAdicional>
-                <avaluo>67000.00</avaluo>
+                <descripcion>DEPARTAMENTO</descripcion>
+                <informacionAdicional></informacionAdicional>
+                <avaluo>10000001</avaluo>
                 <identificador>1</identificador>
-              </otroBien>
-              <otroBien>
-                <descripcion>EQUIPO DE SONIDO Y OTROS ENSERES</descripcion>
-                <informacionAdicional>ENSERES</informacionAdicional>
-                <avaluo>3000.00</avaluo>
-                <identificador>2</identificador>
-                <accion>b</accion>
+                <accion>B</accion>
               </otroBien>
             </otrosBienes>
           </bienes>
